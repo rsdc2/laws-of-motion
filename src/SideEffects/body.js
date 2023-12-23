@@ -1,6 +1,36 @@
 
 
 const Body = {
+    /**
+     * 
+     * @param {number} t
+     * @param {[number, number]} vel 
+     * @param {[number, number]} startXY
+     * @param {SVGCircleElement} body
+     */
+    moveAtT: (t, vel, startXY, body) => {
+        const [x, y] = startXY
+        const [δx, δy] = vel
+        Body.setX(body, δx * t + x)
+        Body.setY(body, δy * t + y)
+
+        return body
+    },
+
+    /**
+     * 
+     * @param {[number, number]} vel 
+     * @param {SVGCircleElement} body
+     */
+    move: (vel, body) => {
+        const num = Body.numAttr(body)
+        const [x, y] = [num("cx"), num("cy")]
+        const [δx, δy] = vel
+        Body.setX(body, δx + x)
+        Body.setY(body, δy + y)
+
+        return body
+    },
 
     /**
      * Create a new circle element with relevant 
@@ -43,12 +73,34 @@ const Body = {
     /**
      * Set the cx and cy coordinates of a circle element
      * @param {SVGCircleElement} body 
+     * @param {number} x
+     * @returns {SVGCircleElement}
+     */
+    setX: (body, x) => {
+        body.setAttribute('cx', String(x))
+        return body
+    },
+
+    /**
+     * Set the cx and cy coordinates of a circle element
+     * @param {SVGCircleElement} body 
      * @param {[number, number]} xy
      * @returns {SVGCircleElement}
      */
-    setXY: (body, xy, ) => {
+    setXY: (body, xy) => {
         const [x, y] = xy
         body.setAttribute('cx', String(x))
+        body.setAttribute('cy', String(y))
+        return body
+    },
+
+    /**
+     * Set the cx and cy coordinates of a circle element
+     * @param {SVGCircleElement} body 
+     * @param {number} y
+     * @returns {SVGCircleElement}
+     */
+    setY: (body, y) => {
         body.setAttribute('cy', String(y))
         return body
     },
@@ -84,6 +136,14 @@ const Body = {
      * @returns {number}
      */
     r: (body) => Body.numAttr(body)("r"),
+
+    /**
+     * 
+     * @param {SVGCircleElement} body 
+     * @returns {[number, number]}
+     */
+    xy: (body) => [Body.numAttr(body)("cx"), Body.numAttr(body)("cy")],
+
 
     /**
      * 

@@ -109,36 +109,5 @@ const sol = Body.new(
     "sol"
 )
 
-space.appendChild(mercuryInit)
-space.appendChild(mercuryOrbit)
-
-space.appendChild(venusInit)
-space.appendChild(venusOrbit)
-
-space.appendChild(earthInit)
-space.appendChild(earthOrbit)
-
-space.appendChild(marsInit)
-space.appendChild(marsOrbit)
-
-space.appendChild(jupiterInit)
-space.appendChild(jupiterOrbit)
-
-space.appendChild(saturnOrbit)
-space.appendChild(saturnInit)
-
-space.appendChild(uranusOrbit)
-space.appendChild(uranusInit)
-
-space.appendChild(neptuneOrbit)
-space.appendChild(neptuneInit)
-
-space.appendChild(neptuneOrbit)
-space.appendChild(neptuneInit)
-
-space.appendChild(plutoOrbit)
-space.appendChild(plutoInit)
-
-space.appendChild(saturnRingsInit)
 
 space.appendChild(sol)  

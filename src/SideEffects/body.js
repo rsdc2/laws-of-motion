@@ -4,15 +4,34 @@ const Body = {
     /**
      * 
      * @param {number} t
+     * @param {[number, number]} pos
      * @param {[number, number]} vel 
-     * @param {[number, number]} startXY
      * @param {SVGCircleElement} body
      */
-    moveAtT: (t, vel, startXY, body) => {
-        const [x, y] = startXY
+    moveAtT: (t, pos, vel, body) => {
+        const [x, y] = pos
         const [δx, δy] = vel
         Body.setX(body, δx * t + x)
         Body.setY(body, δy * t + y)
+
+        return body
+    },
+
+    /**
+     * 
+     * @param {number} t
+     * @param {[number, number]} pos
+     * @param {[number, number]} vel 
+     * @param {[number, number]} acc
+     * @param {SVGCircleElement} body
+     */
+    moveAtT_: (t, pos, vel, acc, body) => {
+        const [x, y] = pos
+        const [δx, δy] = vel
+        const [δδx, δδy] = acc
+
+        Body.setX(body, (δδx * t + δx) * t + x)
+        Body.setY(body, (δδy * t + δy) * t + y)
 
         return body
     },

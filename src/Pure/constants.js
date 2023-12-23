@@ -2,8 +2,8 @@ const {cos, sin, tan, PI, sqrt} = Math
 
 
 const SOL = {
-    x: 700,
-    y: 700
+    x: 500,
+    y: 50
 }
 
 const MERCURY = {

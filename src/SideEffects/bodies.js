@@ -7,4 +7,4 @@ const solInit = Body.new(
     "sol"
 )
 
-const sol= () => circle("#sol")
+const sol = () => circle("#sol")

@@ -8,7 +8,7 @@ const Body = {
      * @param {[number, number]} vel 
      * @param {SVGCircleElement} body
      */
-    moveAtT: (t, pos, vel, body) => {
+    moveAtT_: (t, pos, vel, body) => {
         const [x, y] = pos
         const [δx, δy] = vel
         Body.setX(body, δx * t + x)
@@ -25,7 +25,7 @@ const Body = {
      * @param {[number, number]} acc
      * @param {SVGCircleElement} body
      */
-    moveAtT_: (t, pos, vel, acc, body) => {
+    moveAtT: (t, pos, vel, acc, body) => {
         const [x, y] = pos
         const [δx, δy] = vel
         const [δδx, δδy] = acc

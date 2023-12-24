@@ -18,7 +18,10 @@ const Body = {
     },
 
     /**
-     * 
+     * Moves the body to a certain position of a body
+     * based on an initial starting position
+     * (pos), an initial velocity (vel) and 
+     * an acceleration
      * @param {number} t
      * @param {Vec2D} pos
      * @param {Vec2D} vel 
@@ -26,13 +29,11 @@ const Body = {
      * @param {SVGCircleElement} body
      */
     moveAtT: (t, pos, vel, acc, body) => {
-        // https://en.wikipedia.org/wiki/Force
-        const [x, y] = pos
-        const [δx, δy] = vel
-        const [δδx, δδy] = acc
+        // cf. https://en.wikipedia.org/wiki/Force
+        const [x, y] = Motion.positionAtT(t, pos, vel, acc)
 
-        Body.setX(body, (δδx * t + δx) * t + x)
-        Body.setY(body, (δδy * t + δy) * t + y)
+        Body.setX(body, x)
+        Body.setY(body, y)
 
         return body
     },

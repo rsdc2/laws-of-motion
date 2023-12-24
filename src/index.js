@@ -1,3 +1,3 @@
 addListeners()
-space.appendChild(solInit)  
+appendBodies()
 Timer.start()

@@ -101,8 +101,12 @@ circle.planet#pluto {
 }
 
 
-circle#sol {
+circle#sol1 {
   fill: yellow;
+}
+
+circle#sol2 {
+  fill: red;
 }
 
 ellipse.orbit {

@@ -20,9 +20,9 @@ const Body = {
     /**
      * 
      * @param {number} t
-     * @param {[number, number]} pos
-     * @param {[number, number]} vel 
-     * @param {[number, number]} acc
+     * @param {Vec2D} pos
+     * @param {Vec2D} vel 
+     * @param {Vec2D} acc
      * @param {SVGCircleElement} body
      */
     moveAtT: (t, pos, vel, acc, body) => {

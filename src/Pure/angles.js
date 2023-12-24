@@ -30,9 +30,10 @@ const Angle = {
 
     /**
      * Take a 2D vector, and return a magnitude
-     * and an angle
+     * and an angle in degrees
      * @param {Vec2D} vec a 2D vector
-     * @returns {[number, number]} a magnitude and an angle
+     * @returns {[number, number]} a magnitude and 
+     * an angle in degrees
      */
     toRθ: vec => {
         const [x, y] = vec

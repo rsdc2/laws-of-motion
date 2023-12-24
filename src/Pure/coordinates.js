@@ -23,7 +23,7 @@ const cart =
 
     let rad = 0
     if (angleUnit == "degrees") {
-        rad = degToRad(θ)
+        rad = Angle.toRad(θ)
     } else {
         rad = θ
     }

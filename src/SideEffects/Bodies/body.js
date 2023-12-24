@@ -26,6 +26,7 @@ const Body = {
      * @param {SVGCircleElement} body
      */
     moveAtT: (t, pos, vel, acc, body) => {
+        // https://en.wikipedia.org/wiki/Force
         const [x, y] = pos
         const [δx, δy] = vel
         const [δδx, δδy] = acc

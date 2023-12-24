@@ -36,6 +36,7 @@ const Angle = {
      * an angle in degrees
      */
     toRθ: vec => {
+        // cf. https://en.wikipedia.org/wiki/Inverse_trigonometric_functions
         const [x, y] = vec
         const θ = Angle.toDeg(atan(y / x))
         const r = sqrt(x**2 + y**2)

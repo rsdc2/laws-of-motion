@@ -2,7 +2,9 @@
 
 const Body = {
     /**
-     * 
+     * Moves a body to a position at time t
+     * based on an initial velocity and an initial
+     * position
      * @param {number} t
      * @param {[number, number]} pos
      * @param {[number, number]} vel 
@@ -39,23 +41,8 @@ const Body = {
     },
 
     /**
-     * 
-     * @param {[number, number]} vel 
-     * @param {SVGCircleElement} body
-     */
-    move: (vel, body) => {
-        const num = Body.numAttr(body)
-        const [x, y] = [num("cx"), num("cy")]
-        const [δx, δy] = vel
-        Body.setX(body, δx + x)
-        Body.setY(body, δy + y)
-
-        return body
-    },
-
-    /**
      * Create a new circle element with relevant 
-     * properties for an orbiting body
+     * properties for a body
      * @param {number} bodyRadius
      * @param {[number, number]} center
      * @param {string} id

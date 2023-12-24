@@ -17,13 +17,13 @@ const Angle = {
     /**
      * Takes a magnitude and an angle, and
      * return a 2D vector
-     * @param {number} m magnitude
+     * @param {number} r magnitude
      * @param {number} θ angle
      * @returns {Vec2D} a 2D vector
      */
-    toVec: (m, θ) => {
-        const x = m * cos(θ)
-        const y = m * sin(θ)
+    toVec: (r, θ) => {
+        const x = r * cos(θ)
+        const y = r * sin(θ)
 
         return [x, y]
     },

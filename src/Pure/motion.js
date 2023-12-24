@@ -1,4 +1,24 @@
 const Motion = {
+
+    /**
+     * 
+     * @param {number} r distance
+     * @param {number} M mass 
+     * @param {Vec2D} vec vector
+     * @return {Vec2D}
+     */
+    g: (r, M, vec) => {
+        // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
+
+        const s = (G * M) / r ** 2
+
+        // Convert vector to unit vector
+        const unitVec = Vec.toUnit(vec)
+        const [x, y] = unitVec
+
+        return [s * x, s * y]
+    },
+
     /**
      * Calculates the position of a body
      * based on an initial starting position

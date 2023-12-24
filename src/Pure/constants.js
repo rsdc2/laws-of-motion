@@ -1,4 +1,4 @@
-
+const G = 1
 
 /** @type {BodyT} */
 const SOL1 = {

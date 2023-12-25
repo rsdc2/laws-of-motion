@@ -49,26 +49,30 @@ const Motion = {
      * @param {number} t
      * @param {Vec2D} pos initial position
      * @param {Vec2D} vel initial velocity
-     * @param {Vec2D} acc accelerations
-     * @param {Vec2D} δacc change in acceleration
+     * @param {Array.<Vec2D>} accs accelerations
      * @return {[Vec2D, Vec2D, Vec2D]}
      */
-    positionAtTChangingAcc: (t, pos, vel, acc, δacc) => {
+    positionAtTChangingAcc: (t, pos, vel, accs) => {
         // cf. https://en.wikipedia.org/wiki/Force
         const [x, y] = pos
         const [δx, δy] = vel
-        const [accX, accY] = acc
-        const [δδx, δδy] = δacc
 
+        const sumAcc = accs.reduce( (sum, acc) => {
+            const [δδx, δδy] = acc
+            const [sumX, sumY] = sum
+            return [δδx + sumX, δδy + sumY]
+        }, [0, 0])
+
+        const [sumAccX, sumAccY] = sumAcc 
 
         const vel_ = /** @type {Vec2D}*/ ([
-            (accX + δx) * t,
-            (accY + δy) * t
+            (sumAccX + δx) * t,
+            (sumAccY + δy) * t
         ])
 
         const pos_ = /** @type {Vec2D}*/ ([
-            (accX + δx) * t + x,
-            (accY + δy) * t + y
+            (sumAccX + δx) * t + x,
+            (sumAccY + δy) * t + y
         ])
 
         // console.log(vel_, sumAcc)

@@ -1,6 +1,5 @@
-
-
 const Body = {
+    
     /**
      * Moves a body to a position at time t
      * based on an initial velocity and an initial

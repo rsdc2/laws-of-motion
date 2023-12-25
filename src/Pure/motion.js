@@ -39,6 +39,28 @@ const Motion = {
         return [(δδx * t + δx) * t + x,
                 (δδy * t + δy) * t + y]
     },
+
+
+    /**
+     * Calculates the position of a body
+     * based on an initial starting position
+     * (pos), an initial velocity (vel) and 
+     * an acceleration
+     * @param {number} t
+     * @param {Vec2D} pos
+     * @param {Vec2D} vel 
+     * @param {Array.<Vec2D>} accs accelerations
+     * @return {Vec2D}
+     */
+    positionAtTChangingAcc: (t, pos, vel, accs) => {
+        // cf. https://en.wikipedia.org/wiki/Force
+        const [x, y] = pos
+        const [δx, δy] = vel
+        const [δδx, δδy] = acc
+
+        return [(δδx * t + δx) * t + x,
+                (δδy * t + δy) * t + y]
+    },
 }
 
 /**

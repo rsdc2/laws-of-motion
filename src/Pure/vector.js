@@ -32,7 +32,7 @@ const Vec = {
      * @param {Vec2D} vec2 
      * @return {Vec2D}
      */
-    sub: (vec1, vec2) => {
+    substract: (vec1, vec2) => {
         const [x1, y1] = vec1
         const [x2, y2] = vec2
 

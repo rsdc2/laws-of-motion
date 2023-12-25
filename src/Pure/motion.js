@@ -47,8 +47,8 @@ const Motion = {
      * (pos), an initial velocity (vel) and 
      * an acceleration
      * @param {number} t
-     * @param {Vec2D} pos
-     * @param {Vec2D} vel 
+     * @param {Vec2D} pos initial position
+     * @param {Vec2D} vel initial velocity
      * @param {Array.<Vec2D>} accs accelerations
      * @return {Vec2D}
      */
@@ -56,10 +56,17 @@ const Motion = {
         // cf. https://en.wikipedia.org/wiki/Force
         const [x, y] = pos
         const [δx, δy] = vel
-        const [δδx, δδy] = acc
 
-        return [(δδx * t + δx) * t + x,
-                (δδy * t + δy) * t + y]
+        const sumAcc = accs.reduce( (sum, acc) => {
+            const [δδx, δδy] = acc
+            const [sumX, sumY] = sum
+            return [δδx + sumX, δδy + sumY]
+        }, [0, 0])
+
+        const [sumAccX, sumAccY] = sumAcc 
+
+        return [(sumAccX + δx) * t + x,
+                (sumAccY * δy) * t + y]
     },
 }
 

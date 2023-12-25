@@ -40,6 +40,27 @@ const Body = {
     },
 
     /**
+     * Moves the body to a certain position of a body
+     * based on an initial starting position
+     * (pos), an initial velocity (vel) and 
+     * an acceleration
+     * @param {number} t
+     * @param {Vec2D} pos
+     * @param {Vec2D} vel 
+     * @param {Array.<Vec2D>} accs
+     * @param {SVGCircleElement} body
+     */
+    moveAtTChangingAcc: (t, pos, vel, accs, body) => {
+        // cf. https://en.wikipedia.org/wiki/Force
+        const [x, y] = Motion.positionAtTChangingAcc(t, pos, vel, accs)
+
+        Body.setX(body, x)
+        Body.setY(body, y)
+
+        return body
+    },
+
+    /**
      * Create a new circle element with relevant 
      * properties for a body
      * @param {number} bodyRadius

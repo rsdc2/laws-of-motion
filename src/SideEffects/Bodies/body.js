@@ -52,7 +52,10 @@ const Body = {
      */
     moveAtTChangingAcc: (t, pos, vel, accs, body) => {
         // cf. https://en.wikipedia.org/wiki/Force
-        const [x, y] = Motion.positionAtTChangingAcc(t, pos, vel, accs)
+        const [[x, y], vel_, acc_] = Motion.positionAtTChangingAcc(t, pos, vel, accs)
+
+        // console.log([x, y], vel_, acc_)
+        // console.log(vel_)
 
         Body.setX(body, x)
         Body.setY(body, y)

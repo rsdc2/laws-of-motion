@@ -21,9 +21,9 @@ const Vec = {
      * @returns {Vec2D} 
      */
     toUnit: (vec) => {
-        const [r, θ] = Angle.toRθ(vec)
-
-        return Angle.toVec(1, θ)
+        const [x, y] = vec
+        const m = sqrt(x ** 2 + y ** 2)
+        return [x/m, y/m]
     },
 
     /**

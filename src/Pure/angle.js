@@ -22,8 +22,8 @@ const Angle = {
      * @returns {Vec2D} a 2D vector
      */
     toVec: (r, θ) => {
-        const x = r * cos(θ)
-        const y = r * sin(θ)
+        const x = r * cos(Angle.toRad(θ))
+        const y = r * sin(Angle.toRad(θ))
 
         return [x, y]
     },
@@ -35,10 +35,10 @@ const Angle = {
      * @returns {[number, number]} a magnitude and 
      * an angle in degrees
      */
-    toRθ: vec => {
+    toPolar: vec => {
         // cf. https://en.wikipedia.org/wiki/Inverse_trigonometric_functions
         const [x, y] = vec
-        const θ = Angle.toDeg(atan(y / x))
+        const θ = Angle.toDeg(atan2(y, x))
         const r = sqrt(x**2 + y**2)
         return [r, θ]
     }

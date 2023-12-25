@@ -2,6 +2,7 @@ const {
     acos,
     asin,
     atan,
+    atan2,
     cos, 
     sin, 
     tan, 

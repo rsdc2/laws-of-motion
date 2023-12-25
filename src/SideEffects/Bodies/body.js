@@ -1,6 +1,23 @@
 const Body = {
     
     /**
+     * 
+     * @param {Vec2D} acc 
+     * @param {SVGCircleElement} body 
+     */
+    accelerate: (acc, body) => {
+        const pos = Body.xy(body)
+        const vel = Body.v(body)
+        
+        
+        const [pos_, vel_, acc_] = Motion.position(pos, vel, acc)
+
+        Body.setPos(body, pos_)
+        Body.setV(body, vel_)
+        Body.setAcc(body, acc)
+    },
+
+    /**
      * Moves a body to a position at time t
      * based on an initial velocity and an initial
      * position
@@ -54,8 +71,6 @@ const Body = {
         // cf. https://en.wikipedia.org/wiki/Force
         const [[x, y], vel_, acc_] = Motion.positionAtTChangingAcc(t, pos, vel, accs)
 
-
-
         Body.setX(body, x)
         Body.setY(body, y)
 
@@ -101,6 +116,32 @@ const Body = {
         (qname) => parseFloat(body.getAttribute(qname)),
 
     /**
+     * Set the acceleration vector of a circle element
+     * @param {SVGCircleElement} body 
+     * @param {Vec2D} acc
+     * @returns {SVGCircleElement}
+     */
+    setAcc: (body, acc) => {
+        const [ax, ay] = acc
+        body.setAttribute('ax', String(ax))
+        body.setAttribute('ay', String(ay))
+        return body
+    },
+
+    /**
+     * Set the velocity vector of a circle element
+     * @param {SVGCircleElement} body 
+     * @param {Vec2D} vxy
+     * @returns {SVGCircleElement}
+     */
+    setV: (body, vxy) => {
+        const [vx, vy] = vxy
+        body.setAttribute('vx', String(vx))
+        body.setAttribute('vy', String(vy))
+        return body
+    },
+
+    /**
      * Set the cx and cy coordinates of a circle element
      * @param {SVGCircleElement} body 
      * @param {number} x
@@ -111,13 +152,15 @@ const Body = {
         return body
     },
 
+
+
     /**
      * Set the cx and cy coordinates of a circle element
      * @param {SVGCircleElement} body 
-     * @param {[number, number]} xy
+     * @param {Vec2D} xy
      * @returns {SVGCircleElement}
      */
-    setXY: (body, xy) => {
+    setPos: (body, xy) => {
         const [x, y] = xy
         body.setAttribute('cx', String(x))
         body.setAttribute('cy', String(y))
@@ -168,9 +211,22 @@ const Body = {
     r: (body) => Body.numAttr(body)("r"),
 
     /**
+     * Get the velocity of a body as a 2D vector 
+     * @param {SVGCircleElement} body 
+     * @returns {Vec2D}
+     */
+    v: (body) => {
+
+        const vx = Body.numAttr(body)("vx")
+        const vy = Body.numAttr(body)("vy")
+        
+        return [vx, vy]
+    },
+
+    /**
      * 
      * @param {SVGCircleElement} body 
-     * @returns {[number, number]}
+     * @returns {Vec2D}
      */
     xy: (body) => [Body.numAttr(body)("cx"), Body.numAttr(body)("cy")],
 

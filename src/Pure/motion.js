@@ -79,6 +79,30 @@ const Motion = {
 
         return [pos_, vel_, sumAcc]
     },
+
+
+    /**
+     * Calculates the position of a body
+     * based on an initial starting position
+     * (pos), an initial velocity (vel) and 
+     * an acceleration
+     * @param {Vec2D} pos initial position
+     * @param {Vec2D} vel initial velocity
+     * @param {Vec2D} acc acceleration
+     * @return {[Vec2D, Vec2D, Vec2D]}
+     */
+    position: (pos, vel, acc) => {
+        // cf. https://en.wikipedia.org/wiki/Force
+        const [x, y] = pos
+        const [δx, δy] = vel
+        const [δδx, δδy] = acc
+        
+        const vel_ = Vector2D.add(vel, acc)
+        const pos_ = Vector2D.add(pos, vel)
+        console.log('vel', vel, vel_)
+
+        return /** @type {[Vec2D, Vec2D, Vec2D]}*/ ([pos_, vel_, acc])
+    },
 }
 
 /**

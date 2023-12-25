@@ -1,6 +1,18 @@
 
-const Vec = {
+const Vector2D = {
     
+    /**
+     * Add together two vectors
+     * @param {Vec2D} vec1 
+     * @param {Vec2D} vec2 
+     * @return {Vec2D}
+     */
+    add: (vec1, vec2) => {
+        const [vec1X, vec1Y] = vec1
+        const [vec2X, vec2Y] = vec2
+        return [vec1X + vec2X, vec1Y + vec2Y]
+    },
+
     /** 
      * Multiply a vector by a scalar
      * @param {number} s

@@ -14,7 +14,6 @@ const Vec = {
         (v) => s * v 
     ),
 
-
     /**
      * Convert a vector into a unit vector
      * @param {Vec2D} vec
@@ -32,7 +31,7 @@ const Vec = {
      * @param {Vec2D} vec2 
      * @return {Vec2D}
      */
-    substract: (vec1, vec2) => {
+    subtract: (vec1, vec2) => {
         const [x1, y1] = vec1
         const [x2, y2] = vec2
 

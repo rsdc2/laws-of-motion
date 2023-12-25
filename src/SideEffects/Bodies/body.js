@@ -47,12 +47,12 @@ const Body = {
      * @param {number} t
      * @param {Vec2D} pos
      * @param {Vec2D} vel 
-     * @param {Array.<Vec2D>} accs
+     * @param {Vec2D} acc
      * @param {SVGCircleElement} body
      */
-    moveAtTChangingAcc: (t, pos, vel, accs, body) => {
+    moveAtTChangingAcc: (t, pos, vel, acc, body) => {
         // cf. https://en.wikipedia.org/wiki/Force
-        const [[x, y], vel_, acc_] = Motion.positionAtTChangingAcc(t, pos, vel, accs)
+        const [[x, y], vel_, acc_] = Motion.positionAtTChangingAcc(t, pos, vel, acc)
 
         // console.log([x, y], vel_, acc_)
         // console.log(vel_)

@@ -5,23 +5,26 @@ const Timer = {
     start: () => setInterval( () => {
         t += 1
         if (t == 1) {
-            const velInit = Angle.toVec(3, 180) // initial velocity 
-            Body.setPos(sol1(), SOL1.xy)
-            Body.setV(sol1(), velInit)
-            console.log("hello")
+            const velInitSol1 = Angle.toVec(1.7, 90) // initial velocity 
+            Body.setPos(pluto(), PLUTO.xy)
+            Body.setV(pluto(), velInitSol1)
+
+            const velInitJupiter = Angle.toVec(2.5, 90) // initial velocity 
+            Body.setPos(jupiter(), JUPITER.xy)
+            Body.setV(jupiter(), velInitJupiter)
         }
 
-        Body.accelerate([-1, 0], sol1())
-        console.log(Body.xy(sol1()))
-        
+        const [x1, y1] = Vector2D.subtract(SOL.xy, Body.xy(pluto())) // current relative position
+        const [r1, θ1] = Angle.toPolar([x1, y1])
 
-        // const [x, y] = Vector2D.subtract(Body.xy(sol1()), SOL2.xy) // current relative position
+        const [x2, y2] = Vector2D.subtract(SOL.xy, Body.xy(jupiter())) // current relative position
+        const [r2, θ2] = Angle.toPolar([x2, y2])
 
-        // const [r, θ] = Angle.toPolar([x, y])
-        
-        // const g = Motion.g(r, 400, Vector2D.toUnit([x, y]))
-        // console.log(g)
+        const g1 = Motion.g(r1, 1000, Vector2D.toUnit([x1, y1]))
+        const g2 = Motion.g(r2, 1000, Vector2D.toUnit([x2, y2]))
+        Body.accelerate(g1, pluto())
+        Body.accelerate(g2, jupiter())
 
-    }, 50)
+    }, 10)
 }
 

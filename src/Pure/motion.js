@@ -14,7 +14,6 @@ const Motion = {
 
         // Convert vector to unit vector
         const [x, y] = unitVec
-        // console.log(vec)
 
         return [s * x, s * y]
     },
@@ -75,8 +74,6 @@ const Motion = {
             (sumAccY + δy) * t + y
         ])
 
-        // console.log(vel_, sumAcc)
-
         return [pos_, vel_, sumAcc]
     },
 
@@ -99,9 +96,8 @@ const Motion = {
         
         const vel_ = Vector2D.add(vel, acc)
         const pos_ = Vector2D.add(pos, vel)
-        console.log('vel', vel, vel_)
 
-        return /** @type {[Vec2D, Vec2D, Vec2D]}*/ ([pos_, vel_, acc])
+        return [pos_, vel_, acc]
     },
 }
 

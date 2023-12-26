@@ -78,7 +78,6 @@ circle.planet#jupiter {
   fill: orange
 }
 
-
 circle.planet#saturn {
   fill: yellow
 }
@@ -100,12 +99,7 @@ circle.planet#pluto {
   fill: grey;
 }
 
-
-circle#sol1 {
-  fill: yellow;
-}
-
-circle#sol2 {
+circle#sol {
   fill: red;
 }
 

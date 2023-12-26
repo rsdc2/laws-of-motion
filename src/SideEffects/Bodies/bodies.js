@@ -1,22 +1,48 @@
 
 const space = svg("#space")
 
-const sol1Init = Body.new(
-    10, 
-    SOL1.xy, 
-    "sol1"
+/** @type {BodyT} */
+const SOL = {
+    xy: [3000, 3000],
+    mass: 1000
+}
+
+/** @type {BodyT} */
+const JUPITER = {
+    xy: Vector2D.add([200, 0], SOL.xy),
+    mass: 1
+}
+
+/** @type {BodyT} */
+const PLUTO = {
+    xy: Vector2D.add([500, 0], SOL.xy),
+    mass: 1
+}
+
+const solInit = Body.new(
+    50, 
+    SOL.xy, 
+    "sol"
 )
 
-const sol2Init = Body.new(
+const jupiterInit = Body.new(
     10, 
-    SOL2.xy, 
-    "sol2"
+    JUPITER.xy, 
+    "jupiter"
 )
 
-const sol1 = () => circle("#sol1")
-const sol2 = () => circle("#sol2")
+const plutoInit = Body.new(
+    10, 
+    PLUTO.xy, 
+    "pluto"
+)
+
+const sol = () => circle("#sol")
+const pluto = () => circle("#pluto")
+const jupiter = () => circle("#jupiter")
 
 const appendBodies = () => {
-    space.appendChild(sol1Init)  
-    space.appendChild(sol2Init)  
+    space.appendChild(plutoInit)  
+    space.appendChild(solInit)  
+    space.appendChild(jupiterInit)  
 }

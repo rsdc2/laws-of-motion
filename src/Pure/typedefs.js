@@ -6,5 +6,6 @@
 /**
  * @typedef {Object} BodyT
  * @property {Vec2D} xy
+ * @property {number} mass
  */
 

@@ -32,9 +32,12 @@ const Vector2D = {
      * @returns {Vec2D} 
      */
     toUnit: (vec) => {
+        // cf. https://www.cuemath.com/calculus/unit-vector/ 
         const [x, y] = vec
-        const m = sqrt(x ** 2 + y ** 2)
-        return [x/m, y/m]
+        const magnitude = sqrt(x ** 2 + y ** 2)
+        return [x / magnitude, y / magnitude]
+        // const [r, _] = Angle.toPolar(vec)
+        // return 
     },
 
     /**

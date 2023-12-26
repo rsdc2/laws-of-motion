@@ -37,6 +37,8 @@ const Angle = {
      */
     toPolar: vec => {
         // cf. https://en.wikipedia.org/wiki/Inverse_trigonometric_functions
+        // cf. https://en.wikipedia.org/wiki/Atan2
+        // cf. https://en.wikipedia.org/wiki/Polar_coordinate_system#Converting_between_polar_and_Cartesian_coordinates
         const [x, y] = vec
         const θ = Angle.toDeg(atan2(y, x))
         const r = sqrt(x**2 + y**2)

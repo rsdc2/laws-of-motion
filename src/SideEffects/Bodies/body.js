@@ -9,13 +9,42 @@ const Body = {
         const pos = Body.xy(body)
         const vel = Body.v(body)
         
-        
         const [pos_, vel_, acc_] = Motion.position(pos, vel, acc)
 
         Body.setPos(body, pos_)
-        Body.setV(body, vel_)
+        Body.setVel(body, vel_)
         Body.setAcc(body, acc)
     },
+
+    /**
+     * Set initial velocity and position
+     * @param {SVGCircleElement} body 
+     * @param {Vec2D} pos initial position
+     * @param {Vec2D} vel initial velocity
+     * @returns {SVGCircleElement}
+     */
+    init: (body, pos, vel) => {
+        Body.setPos(body, pos)
+        Body.setVel(body, vel)
+        return body
+    },
+
+    /**
+     * Set initial velocity and position with 
+     * velocity in polar terms
+     * @param {SVGCircleElement} body 
+     * @param {BodyT} bodyT
+     * @returns {SVGCircleElement}
+     */
+    initPolar: (body, bodyT) => {
+        const pos = bodyT.xy
+        const vel = bodyT.velPolar
+
+        Body.setPos(body, pos)
+        Body.setVelPolar(body, vel)
+        return body
+    },
+
 
     /**
      * Moves a body to a position at time t
@@ -127,6 +156,19 @@ const Body = {
         body.setAttribute('ay', String(ay))
         return body
     },
+    
+    /**
+     * Set the cx and cy coordinates of a circle element
+     * @param {SVGCircleElement} body 
+     * @param {Vec2D} xy
+     * @returns {SVGCircleElement}
+     */
+    setPos: (body, xy) => {
+        const [x, y] = xy
+        body.setAttribute('cx', String(x))
+        body.setAttribute('cy', String(y))
+        return body
+    },
 
     /**
      * Set the velocity vector of a circle element
@@ -134,8 +176,22 @@ const Body = {
      * @param {Vec2D} vxy
      * @returns {SVGCircleElement}
      */
-    setV: (body, vxy) => {
+    setVel: (body, vxy) => {
         const [vx, vy] = vxy
+        body.setAttribute('vx', String(vx))
+        body.setAttribute('vy', String(vy))
+        return body
+    },
+
+    /**
+     * Set the velocity vector of a circle element in polar terms
+     * @param {SVGCircleElement} body 
+     * @param {PolarVec} polar
+     * @returns {SVGCircleElement}
+     */
+    setVelPolar: (body, polar) => {
+        const [r, θ] = polar
+        const [vx, vy] = Angle.toVec(r, θ)
         body.setAttribute('vx', String(vx))
         body.setAttribute('vy', String(vy))
         return body
@@ -154,18 +210,7 @@ const Body = {
 
 
 
-    /**
-     * Set the cx and cy coordinates of a circle element
-     * @param {SVGCircleElement} body 
-     * @param {Vec2D} xy
-     * @returns {SVGCircleElement}
-     */
-    setPos: (body, xy) => {
-        const [x, y] = xy
-        body.setAttribute('cx', String(x))
-        body.setAttribute('cy', String(y))
-        return body
-    },
+
 
     /**
      * Set the cx and cy coordinates of a circle element

@@ -6,7 +6,7 @@ const Body = {
      * @param {SVGCircleElement} body 
      */
     accelerate: (acc, body) => {
-        const pos = Body.xy(body)
+        const pos = Body.pos(body)
         const vel = Body.v(body)
         
         const [pos_, vel_, acc_] = Motion.position(pos, vel, acc)
@@ -37,7 +37,7 @@ const Body = {
      * @returns {SVGCircleElement}
      */
     initPolar: (body, bodyT) => {
-        const pos = bodyT.xy
+        const pos = bodyT.pos
         const vel = bodyT.velPolar
 
         Body.setPos(body, pos)
@@ -273,7 +273,7 @@ const Body = {
      * @param {SVGCircleElement} body 
      * @returns {Vec2D}
      */
-    xy: (body) => [Body.numAttr(body)("cx"), Body.numAttr(body)("cy")],
+    pos: (body) => [Body.numAttr(body)("cx"), Body.numAttr(body)("cy")],
 
 
     /**

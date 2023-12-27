@@ -36,8 +36,7 @@ const Vector2D = {
         const [x, y] = vec
         const magnitude = sqrt(x ** 2 + y ** 2)
         return [x / magnitude, y / magnitude]
-        // const [r, _] = Angle.toPolar(vec)
-        // return 
+
     },
 
     /**

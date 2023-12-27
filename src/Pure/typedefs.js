@@ -11,7 +11,7 @@
 
 /**
  * @typedef {Object} BodyT
- * @property {Vec2D} xy
+ * @property {Vec2D} pos
  * @property {number} mass
  * @property {PolarVec} velPolar initial velocity
  */

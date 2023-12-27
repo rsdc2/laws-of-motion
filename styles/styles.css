@@ -103,6 +103,11 @@ circle#sol {
   fill: red;
 }
 
+circle#sol2 {
+  fill: blue;
+}
+
+
 ellipse.orbit {
   stroke: white;
   fill: none;

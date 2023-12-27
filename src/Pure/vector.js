@@ -49,6 +49,19 @@ const Vector2D = {
         const [x1, y1] = vec1
         const [x2, y2] = vec2
 
+        return [- x1 + x2, - y1 + y2]
+    },
+
+    /**
+     * Substract vec2 from vec1
+     * @param {Vec2D} vec1 
+     * @param {Vec2D} vec2 
+     * @return {Vec2D}
+     */
+    subtract2: (vec1, vec2) => {
+        const [x1, y1] = vec1
+        const [x2, y2] = vec2
+
         return [x1 - x2, y1 - y2]
     }
 }

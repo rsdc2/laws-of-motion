@@ -55,7 +55,7 @@ const appendBodies = () => {
     space.appendChild(jupiterInit)  
 }
 
-const initBodies = () => {
+const startBodies = () => {
     // Body.initPolar(pluto(), PLUTO)
     Body.startPolar(jupiter(), JUPITER)
 

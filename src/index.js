@@ -1,4 +1,4 @@
 addListeners()
 appendBodies()
-initBodies()
+startBodies()
 Timer.start()

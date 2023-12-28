@@ -45,87 +45,32 @@ const Body = {
         return body
     },
 
-
     /**
-     * Moves a body to a position at time t
-     * based on an initial velocity and an initial
-     * position
-     * @param {number} t
-     * @param {[number, number]} pos
-     * @param {[number, number]} vel 
-     * @param {SVGCircleElement} body
+     * Return the mass of a body
+     * @param {SVGCircleElement} body 
+     * @returns {number}
      */
-    moveAtT_: (t, pos, vel, body) => {
-        const [x, y] = pos
-        const [δx, δy] = vel
-        Body.setX(body, δx * t + x)
-        Body.setY(body, δy * t + y)
-
-        return body
-    },
-
-    /**
-     * Moves the body to a certain position of a body
-     * based on an initial starting position
-     * (pos), an initial velocity (vel) and 
-     * an acceleration
-     * @param {number} t
-     * @param {Vec2D} pos
-     * @param {Vec2D} vel 
-     * @param {Vec2D} acc
-     * @param {SVGCircleElement} body
-     */
-    moveAtT: (t, pos, vel, acc, body) => {
-        // cf. https://en.wikipedia.org/wiki/Force
-        const [x, y] = Motion.positionAtT(t, pos, vel, acc)
-
-        Body.setX(body, x)
-        Body.setY(body, y)
-
-        return body
-    },
-
-    /**
-     * Moves the body to a certain position of a body
-     * based on an initial starting position
-     * (pos), an initial velocity (vel) and 
-     * an acceleration
-     * @param {number} t
-     * @param {Vec2D} pos
-     * @param {Vec2D} vel 
-     * @param {Array.<Vec2D>} accs
-     * @param {SVGCircleElement} body
-     */
-    moveAtTChangingAcc: (t, pos, vel, accs, body) => {
-        // cf. https://en.wikipedia.org/wiki/Force
-        const [[x, y], vel_, acc_] = Motion.positionAtTChangingAcc(t, pos, vel, accs)
-
-        Body.setX(body, x)
-        Body.setY(body, y)
-
-        return body
+    mass: (body) => {
+        return Body.numAttr(body)("mass")
     },
 
     /**
      * Create a new circle element with relevant 
      * properties for a body
-     * @param {number} bodyRadius
-     * @param {[number, number]} center
-     * @param {string} id
-
+     * @param {BodyT} bodyT
      * @returns {SVGCircleElement}
      */
-    new: (bodyRadius, center, id) => {
+    new: (bodyT) => {
         const elem = document.createElementNS(SVGNS, "circle")
 
-        const [cx, cy] = center
+        const [cx, cy] = bodyT.pos
 
         setAttrs(elem)(
             ["cx", String(cx)],
             ["cy", String(cy)],
-            ["r", String(bodyRadius)],
-            ["θ", "90"],
-            ["id", id]
+            ["r", String(bodyT.bodyRadius)],
+            ["mass", String(bodyT.mass)],
+            ["id", bodyT.id]
         )
 
         addClasses(elem)("planet")
@@ -158,13 +103,22 @@ const Body = {
     },
     
     /**
+     * Set the mass of a body
+     * @param {SVGCircleElement} body 
+     * @param {number} mass
+     */
+    setMass: (body, mass) => {
+        body.setAttribute("mass", String(mass))
+    },
+
+    /**
      * Set the cx and cy coordinates of a circle element
      * @param {SVGCircleElement} body 
-     * @param {Vec2D} xy
+     * @param {Vec2D} pos
      * @returns {SVGCircleElement}
      */
-    setPos: (body, xy) => {
-        const [x, y] = xy
+    setPos: (body, pos) => {
+        const [x, y] = pos
         body.setAttribute('cx', String(x))
         body.setAttribute('cy', String(y))
         return body

@@ -20,11 +20,13 @@ const Vector2D = {
     multScalar: (s) => 
     /**
      * 
-     * @param {Array.<number>} vect 
+     * @param {Vec2D} vec 
+     * @return {Vec2D}
      */
-    (vect) => vect.map( 
-        (v) => s * v 
-    ),
+    (vec) => {
+        const [x, y] = vec
+        return [s * x, s * y]
+    },
 
     /**
      * Convert a vector into a unit vector
@@ -40,25 +42,25 @@ const Vector2D = {
     },
 
     /**
-     * Substract vec2 from vec1
-     * @param {Vec2D} vec1 
-     * @param {Vec2D} vec2 
-     * @return {Vec2D}
-     */
-    subtract: (vec1, vec2) => {
-        const [x1, y1] = vec1
-        const [x2, y2] = vec2
-
-        return [- x1 + x2, - y1 + y2]
-    },
-
-    /**
-     * Substract vec2 from vec1
+     * vec2 - vec1
      * @param {Vec2D} vec1 
      * @param {Vec2D} vec2 
      * @return {Vec2D}
      */
     subtract2: (vec1, vec2) => {
+        const [x1, y1] = vec1
+        const [x2, y2] = vec2
+
+        return [x2 - x1, y2 - y1]
+    },
+
+    /**
+     * Substract vec1 - vec2
+     * @param {Vec2D} vec1 
+     * @param {Vec2D} vec2 
+     * @return {Vec2D}
+     */
+    subtract1: (vec1, vec2) => {
         const [x1, y1] = vec1
         const [x2, y2] = vec2
 

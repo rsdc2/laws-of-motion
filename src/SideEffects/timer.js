@@ -15,6 +15,7 @@ const sunAndPlanets = () => {
 } 
 
 const twoSuns = () => {
+    // TODO: Change r values to centre of mass, cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
     const [xSolSol2, ySolSol2] = Vector2D.subtract2(Body.pos(sol2()), Body.pos(sol())) // current relative position
     const [rSolSol2, θSolSol2] = Angle.toPolar([xSolSol2, ySolSol2])
 

@@ -23,7 +23,7 @@ const Body = {
      * @param {Vec2D} vel initial velocity
      * @returns {SVGCircleElement}
      */
-    init: (body, pos, vel) => {
+    start: (body, pos, vel) => {
         Body.setPos(body, pos)
         Body.setVel(body, vel)
         return body
@@ -36,7 +36,7 @@ const Body = {
      * @param {BodyT} bodyT
      * @returns {SVGCircleElement}
      */
-    initPolar: (body, bodyT) => {
+    startPolar: (body, bodyT) => {
         const pos = bodyT.pos
         const vel = bodyT.velPolar
 

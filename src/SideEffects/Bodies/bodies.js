@@ -57,8 +57,8 @@ const appendBodies = () => {
 
 const initBodies = () => {
     // Body.initPolar(pluto(), PLUTO)
-    Body.initPolar(jupiter(), JUPITER)
+    Body.startPolar(jupiter(), JUPITER)
 
-    Body.initPolar(sol(), SOL)
-    Body.initPolar(sol2(), SOL2)
+    Body.startPolar(sol(), SOL)
+    Body.startPolar(sol2(), SOL2)
 }

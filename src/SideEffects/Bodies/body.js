@@ -1,4 +1,4 @@
-const Body = {
+const BodyT = {
     
     /**
      * 
@@ -6,14 +6,14 @@ const Body = {
      * @param {SVGCircleElement} body 
      */
     accelerate: (acc, body) => {
-        const pos = Body.pos(body)
-        const vel = Body.v(body)
+        const pos = BodyT.pos(body)
+        const vel = BodyT.v(body)
         
         const [pos_, vel_, acc_] = Motion.position(pos, vel, acc)
 
-        Body.setPos(body, pos_)
-        Body.setVel(body, vel_)
-        Body.setAcc(body, acc)
+        BodyT.setPos(body, pos_)
+        BodyT.setVel(body, vel_)
+        BodyT.setAcc(body, acc)
     },
 
     /**
@@ -24,8 +24,8 @@ const Body = {
      * @returns {SVGCircleElement}
      */
     start: (body, pos, vel) => {
-        Body.setPos(body, pos)
-        Body.setVel(body, vel)
+        BodyT.setPos(body, pos)
+        BodyT.setVel(body, vel)
         return body
     },
 
@@ -33,15 +33,15 @@ const Body = {
      * Set initial velocity and position with 
      * velocity in polar terms
      * @param {SVGCircleElement} body 
-     * @param {BodyT} bodyT
+     * @param {BodyInst} bodyT
      * @returns {SVGCircleElement}
      */
     startPolar: (body, bodyT) => {
         const pos = bodyT.pos
         const vel = bodyT.velPolar
 
-        Body.setPos(body, pos)
-        Body.setVelPolar(body, vel)
+        BodyT.setPos(body, pos)
+        BodyT.setVelPolar(body, vel)
         return body
     },
 
@@ -51,13 +51,13 @@ const Body = {
      * @returns {number}
      */
     mass: (body) => {
-        return Body.numAttr(body)("mass")
+        return BodyT.numAttr(body)("mass")
     },
 
     /**
      * Create a new circle element with relevant 
      * properties for a body
-     * @param {BodyT} bodyT
+     * @param {BodyInst} bodyT
      * @returns {SVGCircleElement}
      */
     new: (bodyT) => {
@@ -193,21 +193,21 @@ const Body = {
      * @param {SVGCircleElement} body 
      * @returns {number}
      */
-    cx: (body) => Body.numAttr(body)("cx"),  
+    cx: (body) => BodyT.numAttr(body)("cx"),  
 
     /**
      * 
      * @param {SVGCircleElement} body 
      * @returns {number}
      */
-    cy: (body) => Body.numAttr(body)("cy"),
+    cy: (body) => BodyT.numAttr(body)("cy"),
  
     /**
      * 
      * @param {SVGCircleElement} body 
      * @returns {number}
      */
-    r: (body) => Body.numAttr(body)("r"),
+    r: (body) => BodyT.numAttr(body)("r"),
 
     /**
      * Get the velocity of a body as a 2D vector 
@@ -216,8 +216,8 @@ const Body = {
      */
     v: (body) => {
 
-        const vx = Body.numAttr(body)("vx")
-        const vy = Body.numAttr(body)("vy")
+        const vx = BodyT.numAttr(body)("vx")
+        const vy = BodyT.numAttr(body)("vy")
         
         return [vx, vy]
     },
@@ -227,7 +227,7 @@ const Body = {
      * @param {SVGCircleElement} body 
      * @returns {Vec2D}
      */
-    pos: (body) => [Body.numAttr(body)("cx"), Body.numAttr(body)("cy")],
+    pos: (body) => [BodyT.numAttr(body)("cx"), BodyT.numAttr(body)("cy")],
 
 
     /**

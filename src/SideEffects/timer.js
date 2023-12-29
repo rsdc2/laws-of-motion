@@ -1,31 +1,31 @@
 
 
 const sunAndPlanets = () => {
-    const [x1, y1] = Vector2D.subtract(SOL.pos, Body.pos(pluto())) // current relative position
+    const [x1, y1] = Vector2D.subtract(SOL.pos, BodyT.pos(pluto())) // current relative position
     const [r1, θ1] = Angle.toPolar([x1, y1])
 
-    const [x2, y2] = Vector2D.subtract(SOL.pos, Body.pos(jupiter())) // current relative position
+    const [x2, y2] = Vector2D.subtract(SOL.pos, BodyT.pos(jupiter())) // current relative position
     const [r2, θ2] = Angle.toPolar([x2, y2])
 
     const g1 = Motion.g(r1, SOL.mass, Vector2D.toUnit([x1, y1]))
     const g2 = Motion.g(r2, SOL.mass, Vector2D.toUnit([x2, y2]))
-    Body.accelerate(g1, pluto())
-    Body.accelerate(g2, jupiter())
+    BodyT.accelerate(g1, pluto())
+    BodyT.accelerate(g2, jupiter())
 
 } 
 
 const twoSuns = () => {
     // TODO: Change r values to centre of mass, cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
-    const [xSolSol2, ySolSol2] = Vector2D.subtract2(Body.pos(sol2()), Body.pos(sol())) // current relative position
+    const [xSolSol2, ySolSol2] = Vector2D.subtract2(BodyT.pos(sol2()), BodyT.pos(sol())) // current relative position
     const [rSolSol2, θSolSol2] = Angle.toPolar([xSolSol2, ySolSol2])
 
-    const [xSol2Sol, ySol2Sol] = Vector2D.subtract2(Body.pos(sol()), Body.pos(sol2())) // current relative position
+    const [xSol2Sol, ySol2Sol] = Vector2D.subtract2(BodyT.pos(sol()), BodyT.pos(sol2())) // current relative position
     const [rSol2Sol, θSol2] = Angle.toPolar([xSol2Sol, ySol2Sol])
 
-    const [xJSol, yJSol] = Vector2D.subtract2(Body.pos(sol()), Body.pos(jupiter())) // current relative position
+    const [xJSol, yJSol] = Vector2D.subtract2(BodyT.pos(sol()), BodyT.pos(jupiter())) // current relative position
     const [rJSol, θJSol] = Angle.toPolar([xJSol, yJSol])
 
-    const [xJSol2, yJSol2] = Vector2D.subtract2(Body.pos(sol2()), Body.pos(jupiter())) // current relative position
+    const [xJSol2, yJSol2] = Vector2D.subtract2(BodyT.pos(sol2()), BodyT.pos(jupiter())) // current relative position
     const [rJSol2, θJSol2] = Angle.toPolar([xJSol2, yJSol2])
 
 
@@ -36,9 +36,9 @@ const twoSuns = () => {
 
     const gJ = Vector2D.add(gJFromSol, gJFromSol2)
 
-    Body.accelerate(gSolFromSol2, sol())
-    Body.accelerate(gSol2FromSol, sol2())
-    Body.accelerate(gJ, jupiter())
+    BodyT.accelerate(gSolFromSol2, sol())
+    BodyT.accelerate(gSol2FromSol, sol2())
+    BodyT.accelerate(gJ, jupiter())
     console.log(rJSol)
 }
 

@@ -17,5 +17,6 @@
  * @property {number} mass
  * @property {PolarVec} velPolar initial velocity
  * @property {SVGCircleElement} [circle]
+ * @property {Vec2D} currentPos
  */
 

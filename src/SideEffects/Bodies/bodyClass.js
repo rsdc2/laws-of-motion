@@ -62,6 +62,11 @@ class CelestialBody {
         return elem
     }
 
+    gFrom(body) {
+        // const gSolFromSol2 = Motion.g(rSol2Sol, sol2.mass, Vector2D.toUnit([xSolSol2, ySolSol2]))
+        return Motion.g(this.rToBody(body), body.mass, this.relPosUnitVec(body))
+    }
+
     get id() {
         return this.#initialParams.id
     }
@@ -84,6 +89,32 @@ class CelestialBody {
 
     set pos(value) {
         BodyT.setPos(this.#circle, value)
+    }
+
+    /**
+     * Position vector relative to another body
+     * @param {CelestialBody} body 
+     */
+    relPosVec (body) {
+        return Vector2D.subtract(this.pos, body.pos)
+    }
+
+    /**
+     * 
+     * @param {CelestialBody} body 
+     * @returns 
+     */
+    relPosUnitVec (body) {
+        return Vector2D.toUnit(this.relPosVec(body))
+    }
+
+    /**
+     * Calculate the direct distance to another body
+     * @param {CelestialBody} body 
+     */
+    rToBody (body) {
+        const [r, _] = Angle.toPolar(this.relPosVec(body))
+        return r
     }
 
     get vel() {

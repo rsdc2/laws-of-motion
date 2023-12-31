@@ -10,6 +10,8 @@ const SOL = {
     velPolar: [0, 90]
 }
 
+
+
 /** @type {BodyInst} */
 const SOL2 = {
     id: "sol2",
@@ -42,7 +44,15 @@ const sol2Init = BodyT.new(SOL2)
 const jupiterInit = BodyT.new(JUPITER)
 const plutoInit = BodyT.new(PLUTO)
 
-const sol = () => circle("#sol")
+// const sol = () => circle("#sol")
+const sol = new BodyType(
+    "sol",
+    [3000, 3000],
+    50,
+    1000,
+    [0, 90]
+)
+
 const sol2 = () => circle("#sol2")
 const pluto = () => circle("#pluto")
 const jupiter = () => circle("#jupiter")

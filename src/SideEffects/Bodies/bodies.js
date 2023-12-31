@@ -1,74 +1,40 @@
 
-const space = svg("#space")
+const space = new Space(svg("#space"))
 
-/** @type {BodyInst} */
-const SOL = {
+const sol = new CelestialBody({
     id: "sol",
     pos: [3000, 3000],
     bodyRadius: 50,
     mass: 1000,
     velPolar: [0, 90]
-}
+})
 
-
-
-/** @type {BodyInst} */
-const SOL2 = {
+const sol2 = new CelestialBody({
     id: "sol2",
-    pos: Vector2D.add([2000, 0], SOL.pos),
+    pos: Vector2D.add([2000, 0], sol.initialPos),
     bodyRadius: 10,
     mass: 1,
     velPolar: [0.7, 90]
-}
+})
 
-/** @type {BodyInst} */
-const JUPITER = {
+const jupiter = new CelestialBody({
     id: "jupiter",
-    pos: Vector2D.add([1000, 0], SOL.pos),
+    pos: Vector2D.add([1000, 0], sol.initialPos),
     bodyRadius: 10,
     mass: 1,
     velPolar: [1, 130]
-}
-    
-/** @type {BodyInst} */
-const PLUTO = {
+})
+
+const pluto = new CelestialBody({
     id: "pluto",
-    pos: Vector2D.add([500, 0], SOL.pos),
+    pos: Vector2D.add([500, 0], sol.initialPos),
     bodyRadius: 10,
     mass: 1,
     velPolar: [0.7, 90]
-}
+})
 
-const solInit = BodyT.new(SOL)
-const sol2Init = BodyT.new(SOL2)
-const jupiterInit = BodyT.new(JUPITER)
-const plutoInit = BodyT.new(PLUTO)
-
-// const sol = () => circle("#sol")
-const sol = new BodyType(
-    "sol",
-    [3000, 3000],
-    50,
-    1000,
-    [0, 90]
-)
-
-const sol2 = () => circle("#sol2")
-const pluto = () => circle("#pluto")
-const jupiter = () => circle("#jupiter")
-
-
-const appendBodies = () => {
-    space.appendChild(solInit)  
-    space.appendChild(sol2Init)  
-    // space.appendChild(plutoInit)  
-    space.appendChild(jupiterInit)  
-}
-
-const startBodies = () => {
-    // BodyT.initPolar(pluto(), PLUTO)
-    BodyT.startPolar(jupiter(), JUPITER)
-
-    BodyT.startPolar(sol(), SOL)
-    BodyT.startPolar(sol2(), SOL2)
-}
+space.appendBodies([
+    sol,
+    sol2,
+    jupiter
+])

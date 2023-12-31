@@ -7,7 +7,7 @@ const BodyT = {
      */
     accelerate: (acc, body) => {
         const pos = BodyT.pos(body)
-        const vel = BodyT.v(body)
+        const vel = BodyT.vel(body)
         
         const [pos_, vel_, acc_] = Motion.position(pos, vel, acc)
 
@@ -33,7 +33,7 @@ const BodyT = {
      * Set initial velocity and position with 
      * velocity in polar terms
      * @param {SVGCircleElement} body 
-     * @param {BodyInst} bodyT
+     * @param {InitialBodyParams} bodyT
      * @returns {SVGCircleElement}
      */
     startPolar: (body, bodyT) => {
@@ -57,7 +57,7 @@ const BodyT = {
     /**
      * Create a new circle element with relevant 
      * properties for a body
-     * @param {BodyInst} bodyT
+     * @param {InitialBodyParams} bodyT
      * @returns {SVGCircleElement}
      */
     new: (bodyT) => {
@@ -188,6 +188,20 @@ const BodyT = {
         return body
     },
 
+
+    /**
+     * Get the velocity of a body as a 2D vector 
+     * @param {SVGCircleElement} body 
+     * @returns {Vec2D}
+     */
+    acc: (body) => {
+
+        const ax = BodyT.numAttr(body)("ax")
+        const ay = BodyT.numAttr(body)("ay")
+        
+        return [ax, ay]
+    },
+
     /**
      * 
      * @param {SVGCircleElement} body 
@@ -214,7 +228,7 @@ const BodyT = {
      * @param {SVGCircleElement} body 
      * @returns {Vec2D}
      */
-    v: (body) => {
+    vel: (body) => {
 
         const vx = BodyT.numAttr(body)("vx")
         const vy = BodyT.numAttr(body)("vy")

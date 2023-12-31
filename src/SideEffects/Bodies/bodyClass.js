@@ -1,31 +1,38 @@
-/** @type {BodyInst} */
-class BodyType {
-    #id
-    #posInit; 
-    #bodyRadius
-    #mass;
-    #velPolarInit
+
+class CelestialBody {
+    #initialParams
     #circle
 
     /**
      * 
-     * @param {string} id 
-     * @param {Vec2D} pos initial position
-     * @param {number} bodyRadius 
-     * @param {number} mass initial mass
-     * @param {PolarVec} velPolar initial velocity
+     * @param {InitialBodyParams} params body parameters
      */
-    constructor (id, pos, bodyRadius, mass, velPolar) {
-        this.#id = id
-        this.#posInit = pos
-        this.#bodyRadius = bodyRadius
-        this.#mass = mass
-        this.#velPolarInit = velPolar
+    constructor (params) {
+        this.#initialParams = params
         this.#circle = this.#createCircle()
     }
 
+    get acc() {
+        return BodyT.acc(this.#circle)
+    }
+
+    set acc(value) {
+        BodyT.setAcc(this.#circle, value)
+    }
+
+    /**
+     * 
+     * @param {Vec2D} acc 
+     */
+    accelerate (acc) {        
+        const [pos, vel, _] = Motion.position(this.pos, this.vel, acc)
+        this.pos = pos
+        this.vel = vel
+        this.acc = acc
+    }
+
     get bodyRadius() {
-        return this.#bodyRadius
+        return this.#initialParams.bodyRadius
     }
 
     get circle() {
@@ -36,16 +43,16 @@ class BodyType {
     #createCircle () {
         const elem = document.createElementNS(SVGNS, "circle")
 
-        const [cx, cy] = this.#posInit
+        const [cx, cy] = this.#initialParams.pos
         
-        const [r, θ] = this.#velPolarInit
+        const [r, θ] = this.#initialParams.velPolar
         const [vx, vy] = Angle.toVec(r, θ)
 
         setAttrs(elem)(
             ["cx", String(cx)],
             ["cy", String(cy)],
-            ["r", String(this.bodyRadius)],
-            ["mass", String(this.mass)],
+            ["r", String(this.#initialParams.bodyRadius)],
+            ["mass", String(this.#initialParams.mass)],
             ["vx", String(vx)],
             ["vy", String(vy)],
             ["id", this.id]
@@ -56,17 +63,34 @@ class BodyType {
     }
 
     get id() {
-        return this.#id
+        return this.#initialParams.id
+    }
+
+    get initialParams () {
+        return this.#initialParams
+    }
+
+    get initialPos () {
+        return this.#initialParams.pos
     }
 
     get mass() {
-        return this.#mass
+        return this.#initialParams.mass
     }
 
     get pos() {
         return BodyT.pos(this.#circle)
     }
 
-}
+    set pos(value) {
+        BodyT.setPos(this.#circle, value)
+    }
 
-// const x = new BodyType('sol', [0, 0], 10, 50, [0, 90])
+    get vel() {
+        return BodyT.vel(this.#circle)
+    }
+
+    set vel(value) {
+        BodyT.setVel(this.#circle, value)
+    }
+}

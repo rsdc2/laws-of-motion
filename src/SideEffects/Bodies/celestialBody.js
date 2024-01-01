@@ -13,15 +13,15 @@ class CelestialBody {
     }
 
     get acc() {
-        return BodyT.acc(this.#circle)
+        return BodyFuncs.acc(this.#circle)
     }
 
     set acc(value) {
-        BodyT.setAcc(this.#circle, value)
+        BodyFuncs.setAcc(this.#circle, value)
     }
 
     /**
-     * 
+     * Apply an acceleration
      * @param {Vec2D} acc 
      */
     accelerate (acc) {        
@@ -30,6 +30,28 @@ class CelestialBody {
         this.vel = vel
         this.acc = acc
     }
+
+    /**
+     * Apply gravitational accelerations from an 
+     * array of bodies
+     * @param {Array.<CelestialBody>} bodies 
+     */
+    accelerateFrom (bodies) {
+        const acc = this.accelerationFrom(bodies)
+        this.accelerate(acc)
+    }
+
+    /**
+     * Obtain sum of gravitational accelerations from an 
+     * array of bodies
+     * @param {Array.<CelestialBody>} bodies 
+     * @return {Vec2D}
+     */
+    accelerationFrom (bodies) {
+        const acc = /** @type {Vec2D}*/ ([0, 0])
+        const gs = bodies.map( (body) => this.gFrom(body) )
+        return gs.reduce( (acc, g) => Vector2D.add(acc, g), acc)
+    }   
 
     get bodyRadius() {
         return this.#initialParams.bodyRadius
@@ -62,6 +84,11 @@ class CelestialBody {
         return elem
     }
 
+    /**
+     * 
+     * @param {CelestialBody} body 
+     * @returns {Vec2D}
+     */
     gFrom(body) {
         return Motion.g(this.rTo(body), body.mass, this.relPosUnitVec(body))
     }
@@ -83,16 +110,17 @@ class CelestialBody {
     }
 
     get pos() {
-        return BodyT.pos(this.#circle)
+        return BodyFuncs.pos(this.#circle)
     }
 
     set pos(value) {
-        BodyT.setPos(this.#circle, value)
+        BodyFuncs.setPos(this.#circle, value)
     }
 
     /**
      * Position vector relative to another body
      * @param {CelestialBody} body 
+     * @return {Vec2D}
      */
     relPosVec (body) {
         return Vector2D.subtract(this.pos, body.pos)
@@ -101,15 +129,16 @@ class CelestialBody {
     /**
      * 
      * @param {CelestialBody} body 
-     * @returns 
+     * @returns {Vec2D}
      */
     relPosUnitVec (body) {
         return Vector2D.toUnit(this.relPosVec(body))
     }
 
     /**
-     * Calculate the direct distance to another body
+     * Calculate the distance to another body as a scalar
      * @param {CelestialBody} body 
+     * @return {number}
      */
     rTo (body) {
         const [r, _] = Angle.toPolar(this.relPosVec(body))
@@ -117,10 +146,10 @@ class CelestialBody {
     }
 
     get vel() {
-        return BodyT.vel(this.#circle)
+        return BodyFuncs.vel(this.#circle)
     }
 
     set vel(value) {
-        BodyT.setVel(this.#circle, value)
+        BodyFuncs.setVel(this.#circle, value)
     }
 }

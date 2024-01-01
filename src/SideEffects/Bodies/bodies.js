@@ -13,7 +13,7 @@ const sol2 = new CelestialBody({
     id: "sol2",
     pos: Vector2D.add([2000, 0], sol.initialPos),
     bodyRadius: 10,
-    mass: 1,
+    mass: 1000,
     velPolar: [0.7, 90]
 })
 

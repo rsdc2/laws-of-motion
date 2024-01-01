@@ -13,7 +13,7 @@ const sol2 = new CelestialBody({
     id: "sol2",
     pos: Vector2D.add([2000, 0], sol.initialPos),
     bodyRadius: 10,
-    mass: 1000,
+    mass: 1,
     velPolar: [0.7, 90]
 })
 
@@ -22,7 +22,7 @@ const jupiter = new CelestialBody({
     pos: Vector2D.add([1000, 0], sol.initialPos),
     bodyRadius: 10,
     mass: 1,
-    velPolar: [1, 130]
+    velPolar: [1, 90]
 })
 
 const pluto = new CelestialBody({

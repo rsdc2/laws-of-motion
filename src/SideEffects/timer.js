@@ -20,6 +20,7 @@ const twoSuns = () => {
     sol.accelerateFrom([sol2, jupiter])
     sol2.accelerateFrom([sol, jupiter])
     jupiter.accelerateFrom([sol, sol2])
+    console.log(sol.rTo(jupiter), sol.rTo(sol2))
 }
 
 const Timer = {

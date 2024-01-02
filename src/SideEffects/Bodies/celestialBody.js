@@ -13,11 +13,11 @@ class CelestialBody {
     }
 
     get acc() {
-        return BodyFuncs.acc(this.#circle)
+        return Circle.acc(this.#circle)
     }
 
     set acc(value) {
-        BodyFuncs.setAcc(this.#circle, value)
+        Circle.setAcc(this.#circle, value)
     }
 
     /**
@@ -110,11 +110,11 @@ class CelestialBody {
     }
 
     get pos() {
-        return BodyFuncs.pos(this.#circle)
+        return Circle.pos(this.#circle)
     }
 
     set pos(value) {
-        BodyFuncs.setPos(this.#circle, value)
+        Circle.setPos(this.#circle, value)
     }
 
     /**
@@ -146,10 +146,10 @@ class CelestialBody {
     }
 
     get vel() {
-        return BodyFuncs.vel(this.#circle)
+        return Circle.vel(this.#circle)
     }
 
     set vel(value) {
-        BodyFuncs.setVel(this.#circle, value)
+        Circle.setVel(this.#circle, value)
     }
 }

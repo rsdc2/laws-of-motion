@@ -1,7 +1,7 @@
 /**
  * @namespace
  */
-const BodyFuncs = {
+const Circle = {
     
     /**
      * 
@@ -9,14 +9,14 @@ const BodyFuncs = {
      * @param {SVGCircleElement} body 
      */
     accelerate: (acc, body) => {
-        const pos = BodyFuncs.pos(body)
-        const vel = BodyFuncs.vel(body)
+        const pos = Circle.pos(body)
+        const vel = Circle.vel(body)
         
         const [pos_, vel_, acc_] = Motion.position(pos, vel, acc)
 
-        BodyFuncs.setPos(body, pos_)
-        BodyFuncs.setVel(body, vel_)
-        BodyFuncs.setAcc(body, acc)
+        Circle.setPos(body, pos_)
+        Circle.setVel(body, vel_)
+        Circle.setAcc(body, acc)
     },
 
     /**
@@ -27,8 +27,8 @@ const BodyFuncs = {
      * @returns {SVGCircleElement}
      */
     start: (body, pos, vel) => {
-        BodyFuncs.setPos(body, pos)
-        BodyFuncs.setVel(body, vel)
+        Circle.setPos(body, pos)
+        Circle.setVel(body, vel)
         return body
     },
 
@@ -43,8 +43,8 @@ const BodyFuncs = {
         const pos = bodyT.pos
         const vel = bodyT.velPolar
 
-        BodyFuncs.setPos(body, pos)
-        BodyFuncs.setVelPolar(body, vel)
+        Circle.setPos(body, pos)
+        Circle.setVelPolar(body, vel)
         return body
     },
 
@@ -54,7 +54,7 @@ const BodyFuncs = {
      * @returns {number}
      */
     mass: (body) => {
-        return BodyFuncs.numAttr(body)("mass")
+        return Circle.numAttr(body)("mass")
     },
 
     /**
@@ -199,8 +199,8 @@ const BodyFuncs = {
      */
     acc: (body) => {
 
-        const ax = BodyFuncs.numAttr(body)("ax")
-        const ay = BodyFuncs.numAttr(body)("ay")
+        const ax = Circle.numAttr(body)("ax")
+        const ay = Circle.numAttr(body)("ay")
         
         return [ax, ay]
     },
@@ -210,21 +210,21 @@ const BodyFuncs = {
      * @param {SVGCircleElement} body 
      * @returns {number}
      */
-    cx: (body) => BodyFuncs.numAttr(body)("cx"),  
+    cx: (body) => Circle.numAttr(body)("cx"),  
 
     /**
      * 
      * @param {SVGCircleElement} body 
      * @returns {number}
      */
-    cy: (body) => BodyFuncs.numAttr(body)("cy"),
+    cy: (body) => Circle.numAttr(body)("cy"),
  
     /**
      * 
      * @param {SVGCircleElement} body 
      * @returns {number}
      */
-    r: (body) => BodyFuncs.numAttr(body)("r"),
+    r: (body) => Circle.numAttr(body)("r"),
 
     /**
      * Get the velocity of a body as a 2D vector 
@@ -233,8 +233,8 @@ const BodyFuncs = {
      */
     vel: (body) => {
 
-        const vx = BodyFuncs.numAttr(body)("vx")
-        const vy = BodyFuncs.numAttr(body)("vy")
+        const vx = Circle.numAttr(body)("vx")
+        const vy = Circle.numAttr(body)("vy")
         
         return [vx, vy]
     },
@@ -244,7 +244,7 @@ const BodyFuncs = {
      * @param {SVGCircleElement} body 
      * @returns {Vec2D}
      */
-    pos: (body) => [BodyFuncs.numAttr(body)("cx"), BodyFuncs.numAttr(body)("cy")],
+    pos: (body) => [Circle.numAttr(body)("cx"), Circle.numAttr(body)("cy")],
 
 
     /**

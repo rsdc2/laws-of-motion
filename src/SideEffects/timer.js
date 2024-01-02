@@ -17,9 +17,11 @@
 const twoSuns = () => {
     // TODO: Change r values to centre of mass, cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
-    sol.accelerateFrom([sol2, jupiter])
-    sol2.accelerateFrom([sol, jupiter])
-    jupiter.accelerateFrom([sol, sol2])
+    sol.accelerateFrom([sol2, jupiter, moon1, moon2])
+    sol2.accelerateFrom([sol, jupiter, moon1, moon2])
+    jupiter.accelerateFrom([sol, sol2, moon1, moon2])
+    moon1.accelerateFrom([sol, sol2, jupiter, moon2])
+    moon2.accelerateFrom([sol, sol2, jupiter, moon1])
     console.log(sol.rTo(jupiter), sol.rTo(sol2))
 }
 

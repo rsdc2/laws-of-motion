@@ -107,6 +107,10 @@ circle#sol2 {
   fill: blue;
 }
 
+circle#moon {
+  fill: grey
+}
+
 
 ellipse.orbit {
   stroke: white;

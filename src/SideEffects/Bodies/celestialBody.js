@@ -109,6 +109,11 @@ class CelestialBody {
         return this.#initialParams.mass
     }
 
+    get momentum() {
+        // cf. https://en.wikipedia.org/wiki/Momentum
+        return Vector2D.multScalar(this.mass)(this.vel)
+    }
+
     get pos() {
         return Circle.pos(this.#circle)
     }

@@ -13,7 +13,7 @@ const sol2 = new CelestialBody({
     id: "sol2",
     pos: Vector2D.add([2000, 0], sol.initialPos),
     bodyRadius: 10,
-    mass: 50,
+    mass: 500,
     velPolar: [0.7, 90]
 })
 
@@ -43,16 +43,16 @@ const moon2 = new CelestialBody({
 
 const pluto = new CelestialBody({
     id: "pluto",
-    pos: Vector2D.add([500, 0], sol.initialPos),
+    pos: Vector2D.add([2000, 0], sol.initialPos),
     bodyRadius: 10,
-    mass: 1,
+    mass: 50,
     velPolar: [0.7, 90]
 })
 
 space.appendBodies([
     sol,
     sol2,
-    jupiter, 
-    moon1,
-    moon2
+    // jupiter, 
+    // moon1,
+    // moon2
 ])

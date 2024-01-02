@@ -14,6 +14,14 @@
 
 // } 
 
+const twoBody = () => {
+    sol.accelerateFrom([sol2])
+    sol2.accelerateFrom([sol])
+    const [r, _] = Angle.toPolar(Vector2D.add(sol.momentum, sol2.momentum))
+    // cf. https://en.wikipedia.org/wiki/Two-body_problem
+    console.log(r)
+}
+
 const twoSuns = () => {
     // TODO: Change r values to centre of mass, cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
@@ -28,7 +36,8 @@ const twoSuns = () => {
 const Timer = {
     start: () => setInterval( () => {
         // sunAndPlanets()
-        twoSuns()
+        // twoSuns()
+        twoBody()
     }, 5)
 }
 

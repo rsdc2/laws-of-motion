@@ -107,10 +107,13 @@ circle#sol2 {
   fill: blue;
 }
 
-circle#moon {
+circle#moon1 {
   fill: grey
 }
 
+circle#moon2 {
+  fill: green
+}
 
 ellipse.orbit {
   stroke: white;

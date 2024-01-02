@@ -26,7 +26,7 @@ const jupiter = new CelestialBody({
 })
 
 const moon1 = new CelestialBody({
-    id: "moon",
+    id: "moon1",
     pos: Vector2D.add([100, 0], jupiter.initialPos),
     bodyRadius: 10,
     mass: 0.1,
@@ -34,7 +34,7 @@ const moon1 = new CelestialBody({
 })
 
 const moon2 = new CelestialBody({
-    id: "moon",
+    id: "moon2",
     pos: Vector2D.add([100, 0], sol2.initialPos),
     bodyRadius: 10,
     mass: 0.1,

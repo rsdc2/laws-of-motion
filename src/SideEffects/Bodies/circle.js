@@ -1,4 +1,5 @@
 /**
+ * Functions for interacting with SVG circle elements
  * @namespace
  */
 const Circle = {
@@ -6,74 +7,74 @@ const Circle = {
     /**
      * 
      * @param {Vec2D} acc 
-     * @param {SVGCircleElement} body 
+     * @param {SVGCircleElement} circle 
      */
-    accelerate: (acc, body) => {
-        const pos = Circle.pos(body)
-        const vel = Circle.vel(body)
+    accelerate: (acc, circle) => {
+        const pos = Circle.pos(circle)
+        const vel = Circle.vel(circle)
         
         const [pos_, vel_, acc_] = Motion.position(pos, vel, acc)
 
-        Circle.setPos(body, pos_)
-        Circle.setVel(body, vel_)
-        Circle.setAcc(body, acc)
+        Circle.setPos(circle, pos_)
+        Circle.setVel(circle, vel_)
+        Circle.setAcc(circle, acc)
     },
 
     /**
      * Set initial velocity and position
-     * @param {SVGCircleElement} body 
+     * @param {SVGCircleElement} circle 
      * @param {Vec2D} pos initial position
      * @param {Vec2D} vel initial velocity
      * @returns {SVGCircleElement}
      */
-    start: (body, pos, vel) => {
-        Circle.setPos(body, pos)
-        Circle.setVel(body, vel)
-        return body
+    start: (circle, pos, vel) => {
+        Circle.setPos(circle, pos)
+        Circle.setVel(circle, vel)
+        return circle
     },
 
     /**
      * Set initial velocity and position with 
      * velocity in polar terms
-     * @param {SVGCircleElement} body 
-     * @param {InitialBodyParams} bodyT
+     * @param {SVGCircleElement} circle 
+     * @param {InitialBodyParams} params
      * @returns {SVGCircleElement}
      */
-    startPolar: (body, bodyT) => {
-        const pos = bodyT.pos
-        const vel = bodyT.velPolar
+    startPolar: (circle, params) => {
+        const pos = params.pos
+        const vel = params.velPolar
 
-        Circle.setPos(body, pos)
-        Circle.setVelPolar(body, vel)
-        return body
+        Circle.setPos(circle, pos)
+        Circle.setVelPolar(circle, vel)
+        return circle
     },
 
     /**
      * Return the mass of a body
-     * @param {SVGCircleElement} body 
+     * @param {SVGCircleElement} circle 
      * @returns {number}
      */
-    mass: (body) => {
-        return Circle.numAttr(body)("mass")
+    mass: (circle) => {
+        return Circle.numAttr(circle)("mass")
     },
 
     /**
      * Create a new circle element with relevant 
      * properties for a body
-     * @param {InitialBodyParams} bodyT
+     * @param {InitialBodyParams} params
      * @returns {SVGCircleElement}
      */
-    new: (bodyT) => {
+    new: (params) => {
         const elem = document.createElementNS(SVGNS, "circle")
 
-        const [cx, cy] = bodyT.pos
+        const [cx, cy] = params.pos
 
         setAttrs(elem)(
             ["cx", String(cx)],
             ["cy", String(cy)],
-            ["r", String(bodyT.bodyRadius)],
-            ["mass", String(bodyT.mass)],
-            ["id", bodyT.id]
+            ["r", String(params.bodyRadius)],
+            ["mass", String(params.mass)],
+            ["id", params.id]
         )
 
         addClasses(elem)("planet")
@@ -83,86 +84,86 @@ const Circle = {
     /**
      * Get the named attribute qname from an 
      * circle element as a number
-     * @param {SVGCircleElement} body 
+     * @param {SVGCircleElement} circle 
      */
-    numAttr: (body) => 
+    numAttr: (circle) => 
     
         /**
          * @param {string} qname
         */
-        (qname) => parseFloat(body.getAttribute(qname)),
+        (qname) => parseFloat(circle.getAttribute(qname)),
 
     /**
      * Set the acceleration vector of a circle element
-     * @param {SVGCircleElement} body 
+     * @param {SVGCircleElement} circle 
      * @param {Vec2D} acc
      * @returns {SVGCircleElement}
      */
-    setAcc: (body, acc) => {
+    setAcc: (circle, acc) => {
         const [ax, ay] = acc
-        body.setAttribute('ax', String(ax))
-        body.setAttribute('ay', String(ay))
-        return body
+        circle.setAttribute('ax', String(ax))
+        circle.setAttribute('ay', String(ay))
+        return circle
     },
     
     /**
      * Set the mass of a body
-     * @param {SVGCircleElement} body 
+     * @param {SVGCircleElement} circle 
      * @param {number} mass
      */
-    setMass: (body, mass) => {
-        body.setAttribute("mass", String(mass))
+    setMass: (circle, mass) => {
+        circle.setAttribute("mass", String(mass))
     },
 
     /**
      * Set the cx and cy coordinates of a circle element
-     * @param {SVGCircleElement} body 
+     * @param {SVGCircleElement} circle 
      * @param {Vec2D} pos
      * @returns {SVGCircleElement}
      */
-    setPos: (body, pos) => {
+    setPos: (circle, pos) => {
         const [x, y] = pos
-        body.setAttribute('cx', String(x))
-        body.setAttribute('cy', String(y))
-        return body
+        circle.setAttribute('cx', String(x))
+        circle.setAttribute('cy', String(y))
+        return circle
     },
 
     /**
      * Set the velocity vector of a circle element
-     * @param {SVGCircleElement} body 
+     * @param {SVGCircleElement} circle 
      * @param {Vec2D} vxy
      * @returns {SVGCircleElement}
      */
-    setVel: (body, vxy) => {
+    setVel: (circle, vxy) => {
         const [vx, vy] = vxy
-        body.setAttribute('vx', String(vx))
-        body.setAttribute('vy', String(vy))
-        return body
+        circle.setAttribute('vx', String(vx))
+        circle.setAttribute('vy', String(vy))
+        return circle
     },
 
     /**
      * Set the velocity vector of a circle element in polar terms
-     * @param {SVGCircleElement} body 
+     * @param {SVGCircleElement} circle 
      * @param {PolarVec} polar
      * @returns {SVGCircleElement}
      */
-    setVelPolar: (body, polar) => {
+    setVelPolar: (circle, polar) => {
         const [r, θ] = polar
         const [vx, vy] = Angle.toVec(r, θ)
-        body.setAttribute('vx', String(vx))
-        body.setAttribute('vy', String(vy))
-        return body
+        circle.setAttribute('vx', String(vx))
+        circle.setAttribute('vy', String(vy))
+        return circle
     },
 
     /**
      * Set the cx and cy coordinates of a circle element
-     * @param {SVGCircleElement} body 
+     * @param {SVGCircleElement} circle 
      * @param {number} x
      * @returns {SVGCircleElement}
      */
-    setX: (body, x) => {
-        body.setAttribute('cx', String(x))
-        return body
+    setX: (circle, x) => {
+        circle.setAttribute('cx', String(x))
+        return circle
     },
 
 

@@ -54,7 +54,8 @@ class CelestialBody {
     }   
 
     /**
-     * 
+     * Add the relevant body class (body, star, planet, moon)
+     * to the SVG circle element. Default is 'body'
      * @param {SVGCircleElement} elem 
      * @return {SVGCircleElement}
      */
@@ -95,12 +96,17 @@ class CelestialBody {
     }
 
     /**
-     * 
+     * Calculate the gravitational attraction
+     * exerted by another body
      * @param {CelestialBody} body 
      * @returns {Vec2D}
      */
     gFrom(body) {
-        return Motion.g(this.rTo(body), body.mass, this.relPosUnitVec(body))
+        return Motion.g(
+            this.rTo(body), 
+            body.mass, 
+            this.relPosUnitVec(body)
+        )
     }
 
     get id() {

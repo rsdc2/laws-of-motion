@@ -52,7 +52,7 @@ const moon2 = new Moon({
 space.appendBodies([
     sol,
     sol2,
-    jupiter 
+    // jupiter 
     // moon1,
     // moon2
 ])

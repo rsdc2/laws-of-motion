@@ -12,13 +12,27 @@ class CelestialBody {
         this.#circle = this.#createCircle()
     }
 
+    /**
+     * Returns the acceleration of the body
+     */
     get acc() {
         return Circle.acc(this.#circle)
     }
 
+    /**
+     * Set the acceleration of the body
+     */
     set acc(value) {
         Circle.setAcc(this.#circle, value)
     }
+
+    get acceleration() {
+        return Circle.acc(this.#circle)
+    }
+
+    set acceleration(value) {
+        Circle.setAcc(this.#circle, value)
+    }    
 
     /**
      * Apply an acceleration
@@ -96,7 +110,15 @@ class CelestialBody {
     }
 
     /**
-     * Calculate the gravitational attraction
+     * Returns the overall force acting on the body.
+     * Force is change in momentum over time.
+     */
+    get force() {
+        return Vector2D.multScalar(this.mass)(this.acceleration)
+    }
+
+    /**
+     * Calculate the gravitational force
      * exerted by another body
      * @param {CelestialBody} body 
      * @returns {Vec2D}

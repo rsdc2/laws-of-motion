@@ -58,6 +58,10 @@ button:disabled:active {
   background-color: grey;
 }
 
+circle.body {
+  fill: grey
+}
+
 circle.planet#mercury {
   fill: grey
 }
@@ -99,19 +103,27 @@ circle.planet#pluto {
   fill: grey;
 }
 
-circle#sol {
+circle.star {
+  fill: white
+}
+
+circle.star#sol {
   fill: red;
 }
 
-circle#sol2 {
-  fill: blue;
+circle.star#sol2 {
+  fill: yellow;
 }
 
-circle#moon1 {
+circle.moon {
   fill: grey
 }
 
-circle#moon2 {
+circle.moon#moon1 {
+  fill: grey
+}
+
+circle.moon#moon2 {
   fill: green
 }
 

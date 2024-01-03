@@ -53,6 +53,16 @@ class CelestialBody {
         return gs.reduce( (acc, g) => Vector2D.add(acc, g), acc)
     }   
 
+    /**
+     * 
+     * @param {SVGCircleElement} elem 
+     * @return {SVGCircleElement}
+     */
+    addBodyClass (elem) {
+        addClasses(elem)("body")
+        return elem
+    }
+
     get bodyRadius() {
         return this.#initialParams.bodyRadius
     }
@@ -80,7 +90,7 @@ class CelestialBody {
             ["id", this.id]
         )
 
-        addClasses(elem)("planet")
+        this.addBodyClass(elem)
         return elem
     }
 

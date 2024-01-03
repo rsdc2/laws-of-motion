@@ -1,7 +1,7 @@
 
 const space = new Space(svg("#space"))
 
-const sol = new CelestialBody({
+const sol = new Star({
     id: "sol",
     pos: [3000, 3000],
     bodyRadius: 50,
@@ -9,7 +9,7 @@ const sol = new CelestialBody({
     velPolar: [0, 90]
 })
 
-const sol2 = new CelestialBody({
+const sol2 = new Star({
     id: "sol2",
     pos: Vector2D.add([2000, 0], sol.initialPos),
     bodyRadius: 10,
@@ -17,7 +17,7 @@ const sol2 = new CelestialBody({
     velPolar: [0.7, 90]
 })
 
-const jupiter = new CelestialBody({
+const jupiter = new Planet({
     id: "jupiter",
     pos: Vector2D.add([1000, 0], sol.initialPos),
     bodyRadius: 20,
@@ -25,7 +25,7 @@ const jupiter = new CelestialBody({
     velPolar: [1, 90]
 })
 
-const moon1 = new CelestialBody({
+const moon1 = new Moon({
     id: "moon1",
     pos: Vector2D.add([100, 0], jupiter.initialPos),
     bodyRadius: 10,
@@ -33,7 +33,7 @@ const moon1 = new CelestialBody({
     velPolar: [1.4, 90]
 })
 
-const moon2 = new CelestialBody({
+const moon2 = new Moon({
     id: "moon2",
     pos: Vector2D.add([100, 0], sol2.initialPos),
     bodyRadius: 10,
@@ -41,7 +41,7 @@ const moon2 = new CelestialBody({
     velPolar: [1.5, 90]
 })
 
-const pluto = new CelestialBody({
+const pluto = new Planet({
     id: "pluto",
     pos: Vector2D.add([2000, 0], sol.initialPos),
     bodyRadius: 10,

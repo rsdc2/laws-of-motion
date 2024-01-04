@@ -1,6 +1,7 @@
 /**
  * Services for two body interactions
- * such as centre of gravity
+ * such as centre of gravity.
+ * For terms see https://en.wikipedia.org/wiki/Two-body_problem
  */
 class TwoBody {
     #body1
@@ -42,6 +43,7 @@ class TwoBody {
     /**
      * Vector position of centre of mass
      * See Wikipedia on two body problem
+     * (https://en.wikipedia.org/wiki/Two-body_problem)
      */
     get R() {
         const {m1, m2, M, x1, x2} = this
@@ -51,24 +53,26 @@ class TwoBody {
         ) 
     }
 
+
+
     get momentumDegrees() {
-        const [_, θ] = this.momentumPolar
+        const [_, θ] = this.pPolar
         return θ
     }
 
     /**
-     * 
+     * Momentum as a 2D vector
      */
-    get momentumVec() {
-        return Vector2D.add(this.#body1.momentum, this.#body2.momentum)
+    get pVec() {
+        return Vector2D.add(this.#body1.pVec, this.#body2.pVec)
     }
 
-    get momentumPolar() {
-        return Angle.toPolar(this.momentumVec)
+    get pPolar() {
+        return Angle.toPolar(this.pVec)
     }
 
-    get momentumScalar() {
-        const [r, _] = this.momentumPolar
+    get pScalar() {
+        const [r, _] = this.pPolar
         return r
     }
 

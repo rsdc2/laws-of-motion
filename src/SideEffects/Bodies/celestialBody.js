@@ -151,7 +151,7 @@ class CelestialBody {
         return this.#initialParams.mass
     }
 
-    get momentum() {
+    get pVec() {
         // cf. https://en.wikipedia.org/wiki/Momentum
         return Vector2D.multScalar(this.mass)(this.vel)
     }

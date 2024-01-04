@@ -1,4 +1,8 @@
 
+/**
+ * Services for a general celestial body, incl.
+ * planets, stars and moons
+ */
 class CelestialBody {
     #initialParams
     #circle

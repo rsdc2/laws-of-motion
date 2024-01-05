@@ -4,7 +4,7 @@ const space = new Space(svg("#space"))
 const sol = new Star({
     id: "sol",
     pos: [3000, 3000],
-    bodyRadius: 50,
+    bodyRadius: 10,
     mass: 1000,
     velPolar: [0.35, 270]
 })

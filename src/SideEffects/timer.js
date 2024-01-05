@@ -22,6 +22,8 @@ const twoBody = () => {
     // cf. https://en.wikipedia.org/wiki/Two-body_problem
     // console.log(pair.momentumScalar)
     // console.log(binary.R)
+    // console.log(Angle.toPolar(binary.vel))
+    console.log(binary.velPolar)
 }
 
 const twoSuns = () => {
@@ -40,6 +42,6 @@ const Timer = {
         // sunAndPlanets()
         // twoSuns()
         twoBody()
-    }, 5)
+    }, 1)
 }
 

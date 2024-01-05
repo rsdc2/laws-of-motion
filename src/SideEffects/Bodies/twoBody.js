@@ -99,6 +99,7 @@ class TwoBody {
 
     /**
      * Momentum as a 2D vector
+     * cf. https://en.wikipedia.org/wiki/Momentum
      */
     get pVec() {
         return Vector2D.add(this.#body1.pVec, this.#body2.pVec)
@@ -108,7 +109,6 @@ class TwoBody {
      * Momentum as a scalar quantity and an 
      * angle
      */
-
     get pPolar() {
         return Angle.toPolar(this.pVec)
     }
@@ -141,6 +141,15 @@ class TwoBody {
             ["cy", String(cy)],
             ["r", "20"]
         )
+    }
+
+    get velVec() {
+        // return Vector2D.add(this.#body1.vel, this.#body2.vel)
+        return Vector2D.divScalar(this.pVec, this.M)
+    }
+
+    get velPolar() {
+        return Angle.toPolar(this.velVec)
     }
 
     /**

@@ -13,6 +13,17 @@ const Vector2D = {
         return [vec1X + vec2X, vec1Y + vec2Y]
     },
 
+    /**
+     * 
+     * @param {number} s 
+     * @param {Vec2D} vec 
+     * @return {Vec2D}
+     */
+    divScalar: (vec, s) => {
+        const [x, y] = vec
+        return [x / s, y / s]
+    },
+
     /** 
      * Multiply a vector by a scalar
      * @param {number} s

@@ -146,7 +146,8 @@ class TwoBody {
     /**
      * Return the velocity of the centre of mass.
      * Since the momentum of a system of particles 
-     * is p = Mv (see https://en.wikipedia.org/wiki/Momentum),
+     * is p = Mv (Euler's first law,
+     * see https://en.wikipedia.org/wiki/Momentum),
      * v = M / p.
      */
     get velVec() {

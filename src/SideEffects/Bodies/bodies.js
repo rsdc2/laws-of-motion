@@ -5,7 +5,7 @@ const sol = new Star({
     id: "sol",
     pos: [3000, 3000],
     bodyRadius: 50,
-    mass: 500,
+    mass: 1000,
     velPolar: [0.35, 270]
 })
 
@@ -49,9 +49,12 @@ const moon2 = new Moon({
     velPolar: [1.5, 90]
 })
 
+const binary = new TwoBody(sol, sol2)
+
 space.appendBodies([
     sol,
     sol2,
+    binary
     // jupiter 
     // moon1,
     // moon2

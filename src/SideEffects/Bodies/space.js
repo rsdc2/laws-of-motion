@@ -11,7 +11,7 @@ class Space {
 
     /**
      * Append an array of bodies to the SVG element
-     * @param {Array.<CelestialBody>} bodies 
+     * @param {Array.<CelestialBody | TwoBody>} bodies 
      */
     appendBodies (bodies) {
         bodies.forEach ( (body) => this.#elem.appendChild(body.circle) )

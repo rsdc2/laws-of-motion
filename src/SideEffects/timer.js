@@ -15,13 +15,13 @@
 // } 
 
 const twoBody = () => {
-    const binary = new TwoBody(sol, sol2)
     sol.accelerateFrom([sol2])
     sol2.accelerateFrom([sol])
+    binary.update()
     // const [r, _] = Angle.toPolar(Vector2D.add(sol.momentum, sol2.momentum))
     // cf. https://en.wikipedia.org/wiki/Two-body_problem
     // console.log(pair.momentumScalar)
-    console.log(binary.R)
+    // console.log(binary.R)
 }
 
 const twoSuns = () => {

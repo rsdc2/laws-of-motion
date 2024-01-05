@@ -6,6 +6,7 @@
 class TwoBody {
     #body1
     #body2
+    #circle
 
     /**
      * 
@@ -15,6 +16,7 @@ class TwoBody {
     constructor (body1, body2) {
         this.#body1 = body1
         this.#body2 = body2
+        this.#circle = this.#createRCircle()
     }
 
     get body1() {
@@ -23,6 +25,28 @@ class TwoBody {
 
     get body2() {
         return this.#body2
+    }
+
+    /**
+     * Create circle for representing the position 
+     * of the centre of mass
+     * @returns 
+     */
+    #createRCircle () {
+        const elem = document.createElementNS(SVGNS, "circle")
+        setAttrs(elem)(
+            ["id", "R"]
+        )
+        addClasses(elem)("body")
+        return elem
+    }
+
+    /**
+     * The SVG circle element representing the
+     * position of the centre of mass
+     */
+    get circle () {
+        return this.#circle
     }
 
     get m1() {
@@ -53,9 +77,10 @@ class TwoBody {
         ) 
     }
 
-
-
-    get momentumDegrees() {
+    /**
+     * Direction of momentum in degrees
+     */
+    get pDeg() {
         const [_, θ] = this.pPolar
         return θ
     }
@@ -74,6 +99,27 @@ class TwoBody {
     get pScalar() {
         const [r, _] = this.pPolar
         return r
+    }
+
+    /**
+     * Update the object
+     */
+    update() {
+        this.#updateRCirclePos()
+    }
+
+    /**
+     * Update the position of the centre of mass
+     * circle
+     */
+    #updateRCirclePos() {
+        const [cx, cy] = this.R
+        
+        setAttrs(this.circle)(
+            ["cx", String(cx)],
+            ["cy", String(cy)],
+            ["r", "20"]
+        )
     }
 
     get x1() {

@@ -14,7 +14,7 @@ const Vector2D = {
     },
 
     /**
-     * 
+     * Divide a vector by a scalar
      * @param {number} s 
      * @param {Vec2D} vec 
      * @return {Vec2D}

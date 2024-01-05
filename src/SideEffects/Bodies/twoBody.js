@@ -19,10 +19,16 @@ class TwoBody {
         this.#circle = this.#createRCircle()
     }
 
+    /**
+     * Returns body 1
+     */
     get body1() {
         return this.#body1
     }
 
+    /**
+     * Returns body 2
+     */
     get body2() {
         return this.#body2
     }
@@ -49,10 +55,16 @@ class TwoBody {
         return this.#circle
     }
 
+    /**
+     * Mass of body 1
+     */
     get m1() {
         return this.#body1.mass
     }
 
+    /**
+     * Mass of body 2
+     */
     get m2() {
         return this.#body2.mass
     }
@@ -72,8 +84,8 @@ class TwoBody {
     get R() {
         const {m1, m2, M, x1, x2} = this
         return Vector2D.add(
-            Vector2D.multScalar(m1/M)(x1),
-            Vector2D.multScalar(m2/M)(x2)
+            Vector2D.multScalar(m1 / M)(x1),
+            Vector2D.multScalar(m2 / M)(x2)
         ) 
     }
 
@@ -92,10 +104,19 @@ class TwoBody {
         return Vector2D.add(this.#body1.pVec, this.#body2.pVec)
     }
 
+    /**
+     * Momentum as a scalar quantity and an 
+     * angle
+     */
+
     get pPolar() {
         return Angle.toPolar(this.pVec)
     }
 
+    /**
+     * Scalar component of polar representation
+     * of momentum
+     */
     get pScalar() {
         const [r, _] = this.pPolar
         return r
@@ -122,10 +143,16 @@ class TwoBody {
         )
     }
 
+    /**
+     * Vector position of body 1
+     */
     get x1() {
         return this.#body1.pos
     }
 
+    /**
+     * Vector position of body 2
+     */
     get x2() {
         return this.#body2.pos
     }

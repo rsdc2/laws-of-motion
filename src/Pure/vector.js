@@ -1,4 +1,13 @@
 
+/**
+ * Class for handling 2D vectors.
+ * Underlying interface is Vec2D, which is
+ * a 2D array.
+ * Any method with the suffix 'Vec' is used 
+ * for interacting directly with Vec2D;
+ * otherwise methods interact with Vector2D
+ * 
+ */
 class Vector2D {
 
     #vec

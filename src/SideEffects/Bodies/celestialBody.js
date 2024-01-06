@@ -147,8 +147,19 @@ class CelestialBody {
         return this.#initialParams.pos
     }
 
+    get m() {
+        return this.mass
+    }
+
     get mass() {
         return this.#initialParams.mass
+    }
+
+    /**
+     * Mass * postion
+     */
+    get mpos() {
+        return Vector2D.multScalar(this.mass)(this.pos)
     }
 
     get pVec() {

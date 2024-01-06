@@ -1,6 +1,6 @@
 /**
  * Services for two body interactions
- * such as centre of gravity.
+ * such as centre of gravity of a two body system.
  * For terms see https://en.wikipedia.org/wiki/Two-body_problem
  */
 class BodyPair {
@@ -123,7 +123,7 @@ class BodyPair {
     }
 
     /**
-     * Update the object
+     * Update the position of the centre of mass
      */
     update() {
         this.#updateRCirclePos()

@@ -1,5 +1,4 @@
 
-const space = new Space(svg("#space"))
 
 const sol = new Star({
     id: "sol",
@@ -49,13 +48,13 @@ const moon2 = new Moon({
     velPolar: [1.5, 90]
 })
 
-const binary = new TwoBody(sol, sol2)
 
-space.appendBodies([
-    sol,
-    sol2,
-    binary
-    // jupiter 
-    // moon1,
-    // moon2
-])
+// const universe = new Universe(
+//     svg("#space"), 
+//     [sol, sol2]
+// )
+
+const universe = new Universe(
+    svg("#space"),
+    [sol, sol2, jupiter, moon1, moon2]
+)

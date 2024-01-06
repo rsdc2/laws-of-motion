@@ -17,13 +17,15 @@
 const twoBody = () => {
     sol.accelerateFrom([sol2])
     sol2.accelerateFrom([sol])
-    binary.update()
+    universe.binary.update()
     // const [r, _] = Angle.toPolar(Vector2D.add(sol.momentum, sol2.momentum))
     // cf. https://en.wikipedia.org/wiki/Two-body_problem
     // console.log(pair.momentumScalar)
     // console.log(binary.R)
     // console.log(Angle.toPolar(binary.vel))
-    console.log(binary.velPolar)
+    // console.log(binary.pPolar)
+    // console.log(universe.pPolar)
+    console.log(universe.pPolar)
 }
 
 const twoSuns = () => {
@@ -34,14 +36,16 @@ const twoSuns = () => {
     jupiter.accelerateFrom([sol, sol2, moon1, moon2])
     moon1.accelerateFrom([sol, sol2, jupiter, moon2])
     moon2.accelerateFrom([sol, sol2, jupiter, moon1])
-    console.log(sol.rTo(jupiter), sol.rTo(sol2))
+
+    console.log(universe.pPolar)
+    // console.log(sol.rTo(jupiter), sol.rTo(sol2))
 }
 
 const Timer = {
     start: () => setInterval( () => {
         // sunAndPlanets()
-        // twoSuns()
-        twoBody()
+        twoSuns()
+        // twoBody()
     }, 1)
 }
 

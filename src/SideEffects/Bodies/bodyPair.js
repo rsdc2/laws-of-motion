@@ -3,7 +3,7 @@
  * such as centre of gravity.
  * For terms see https://en.wikipedia.org/wiki/Two-body_problem
  */
-class TwoBody {
+class BodyPair {
     #body1
     #body2
     #circle

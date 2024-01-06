@@ -76,5 +76,13 @@ const Vector2D = {
         const [x2, y2] = vec2
 
         return [x1 - x2, y1 - y2]
+    },
+
+    /**
+     * Sum an array of 2D vectors
+     * @param {Array.<Vec2D>} vecs
+     */
+    sum: (vecs) => {
+        return vecs.reduce( (vecSum, vec) => Vector2D.add(vecSum, vec) )
     }
 }

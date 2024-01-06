@@ -2,7 +2,7 @@
 const Vector2D = {
     
     /**
-     * Add together two vectors
+     * Add two vectors together
      * @param {Vec2D} vec1 
      * @param {Vec2D} vec2 
      * @return {Vec2D}
@@ -14,7 +14,7 @@ const Vector2D = {
     },
 
     /**
-     * Divide a vector by a scalar
+     * Divide a 2D vector by a scalar
      * @param {number} s 
      * @param {Vec2D} vec 
      * @return {Vec2D}

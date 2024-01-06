@@ -12,7 +12,7 @@ const Motion = {
 
         const s = -(G * M) / (r ** 2)
 
-        return Vector2D.multScalar(s)(unitVec)
+        return Vector2D.multScalarVec(s)(unitVec)
     },
 
     /**
@@ -53,8 +53,8 @@ const Motion = {
         const [δx, δy] = vel
         const [δδx, δδy] = acc
         
-        const vel_ = Vector2D.add(vel, acc)
-        const pos_ = Vector2D.add(pos, vel)
+        const vel_ = Vector2D.addVec(vel, acc)
+        const pos_ = Vector2D.addVec(pos, vel)
 
         return [pos_, vel_, acc]
     },

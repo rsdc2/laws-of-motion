@@ -35,7 +35,7 @@ const twoSuns = () => {
     moon1.accelerateFrom([sol, sol2, jupiter, moon2])
     moon2.accelerateFrom([sol, sol2, jupiter, moon1])
     universe.update()
-    console.log(universe.pPolar)
+    console.log(universe.p.r)
     // console.log(sol.rTo(jupiter), sol.rTo(sol2))
 }
 

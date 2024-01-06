@@ -76,8 +76,12 @@ class Universe {
         return masses.reduce( (sum, mass) => sum + mass )
     }
 
+    get p() {
+        return new Vector2D(this.pVec)
+    }
+
     get pPolar() {
-        return Angle.toPolar(this.pVec)
+        return this.p.polar
     }
 
     /**
@@ -85,7 +89,7 @@ class Universe {
      */
     get pVec() {
         const ps = this.#bodies.map( body => body.pVec )
-        return Vector2D.sum(ps)
+        return Vector2D.sumVecs(ps)
     }
 
     /**
@@ -93,8 +97,8 @@ class Universe {
      */
     get R() {
         const mposs = this.#bodies.map (body => body.mpos)
-        const summposs = Vector2D.sum(mposs)
-        return Vector2D.divScalar(summposs, this.M)       
+        const summposs = Vector2D.sumVecs(mposs)
+        return Vector2D.divScalarVec(summposs, this.M)       
     }
 
     /**

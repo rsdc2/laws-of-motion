@@ -17,16 +17,27 @@ class CelestialBody {
     }
 
     /**
-     * Returns the acceleration of the body
+     * Acceleration of the body as a Vector2D
      */
     get acc() {
+        return new Vector2D(this.accVec)
+    }
+
+    set acc(value) {
+        this.accVec = value.vec
+    }
+
+    /**
+     * Acceleration of the body as a Vec2D
+     */
+    get accVec() {
         return Circle.acc(this.#circle)
     }
 
     /**
      * Set the acceleration of the body
      */
-    set acc(value) {
+    set accVec(value) {
         Circle.setAcc(this.#circle, value)
     }
 
@@ -42,11 +53,11 @@ class CelestialBody {
      * Apply an acceleration
      * @param {Vec2D} acc 
      */
-    accelerate (acc) {        
-        const [pos, vel, _] = Motion.position(this.pos, this.vel, acc)
-        this.pos = pos
-        this.vel = vel
-        this.acc = acc
+    accelerateVec (acc) {        
+        const [pos, vel, _] = Motion.position(this.posVec, this.velVec, acc)
+        this.posVec = pos
+        this.velVec = vel
+        this.accVec = acc
     }
 
     /**
@@ -56,7 +67,7 @@ class CelestialBody {
      */
     accelerateFrom (bodies) {
         const acc = this.accelerationFrom(bodies)
-        this.accelerate(acc)
+        this.accelerateVec(acc)
     }
 
     /**
@@ -68,7 +79,7 @@ class CelestialBody {
     accelerationFrom (bodies) {
         const acc = /** @type {Vec2D}*/ ([0, 0])
         const gs = bodies.map( (body) => this.gFrom(body) )
-        return gs.reduce( (acc, g) => Vector2D.add(acc, g), acc)
+        return gs.reduce( (acc, g) => Vector2D.addVec(acc, g), acc)
     }   
 
     /**
@@ -118,7 +129,7 @@ class CelestialBody {
      * Force is change in momentum over time.
      */
     get force() {
-        return Vector2D.multScalar(this.mass)(this.acceleration)
+        return Vector2D.multScalarVec(this.mass)(this.acceleration)
     }
 
     /**
@@ -159,19 +170,31 @@ class CelestialBody {
      * Mass * postion
      */
     get mpos() {
-        return Vector2D.multScalar(this.mass)(this.pos)
+        return Vector2D.multScalarVec(this.mass)(this.posVec)
+    }
+
+    get p() {
+        return this.v.multScalar(this.mass)
     }
 
     get pVec() {
         // cf. https://en.wikipedia.org/wiki/Momentum
-        return Vector2D.multScalar(this.mass)(this.vel)
+        return Vector2D.multScalarVec(this.mass)(this.velVec)
     }
 
     get pos() {
-        return Circle.pos(this.#circle)
+        return new Vector2D(this.posVec)
     }
 
     set pos(value) {
+        this.posVec = value.vec 
+    }
+
+    get posVec() {
+        return Circle.pos(this.#circle)
+    }
+
+    set posVec(value) {
         Circle.setPos(this.#circle, value)
     }
 
@@ -181,7 +204,7 @@ class CelestialBody {
      * @return {Vec2D}
      */
     relPosVec (body) {
-        return Vector2D.subtract(this.pos, body.pos)
+        return Vector2D.subtractVec(this.posVec, body.posVec)
     }
 
     /**
@@ -203,11 +226,27 @@ class CelestialBody {
         return r
     }
 
+    get v() {
+        return this.vel
+    }
+
+    set v(value) {
+        this.velVec = value.vec
+    }
+
     get vel() {
-        return Circle.vel(this.#circle)
+        return new Vector2D(this.velVec)
     }
 
     set vel(value) {
+        this.velVec = value.vec
+    }
+
+    get velVec() {
+        return Circle.vel(this.#circle)
+    }
+
+    set velVec(value) {
         Circle.setVel(this.#circle, value)
     }
 }

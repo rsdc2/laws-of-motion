@@ -83,9 +83,9 @@ class BodyPair {
      */
     get R() {
         const {m1, m2, M, x1, x2} = this
-        return Vector2D.add(
-            Vector2D.multScalar(m1 / M)(x1),
-            Vector2D.multScalar(m2 / M)(x2)
+        return Vector2D.addVec(
+            Vector2D.multScalarVec(m1 / M)(x1),
+            Vector2D.multScalarVec(m2 / M)(x2)
         ) 
     }
 
@@ -102,7 +102,7 @@ class BodyPair {
      * cf. https://en.wikipedia.org/wiki/Momentum
      */
     get pVec() {
-        return Vector2D.add(this.#body1.pVec, this.#body2.pVec)
+        return Vector2D.addVec(this.#body1.pVec, this.#body2.pVec)
     }
 
     /**
@@ -151,7 +151,7 @@ class BodyPair {
      * v = M / p.
      */
     get velVec() {
-        return Vector2D.divScalar(this.pVec, this.M)
+        return Vector2D.divScalarVec(this.pVec, this.M)
     }
 
     get velPolar() {
@@ -162,13 +162,13 @@ class BodyPair {
      * Vector position of body 1
      */
     get x1() {
-        return this.#body1.pos
+        return this.#body1.posVec
     }
 
     /**
      * Vector position of body 2
      */
     get x2() {
-        return this.#body2.pos
+        return this.#body2.posVec
     }
 }

@@ -1,13 +1,32 @@
 const Motion = {
 
     /**
-     * 
+     * Calculate the gravitational attraction experienced
+     * by a body b1 on account of another body b2
+     * at distance r from b2, where b2 has mass M 
+     * @param {number} r distance
+     * @param {number} M mass 
+     * @param {Vector2D} unitVector vector
+     * @return {Vector2D}
+     */
+    g: (r, M, unitVector) => {
+        // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
+
+        const s = - (G * M) / (r ** 2)
+
+        return unitVector.multScalar(s)
+    },
+
+    /**
+     * Calculate the gravitational attraction experienced
+     * by a body b1 on account of another body b2
+     * at distance r from b2, where b2 has mass M 
      * @param {number} r distance
      * @param {number} M mass 
      * @param {Vec2D} unitVec vector
      * @return {Vec2D}
      */
-    g: (r, M, unitVec) => {
+    gVec: (r, M, unitVec) => {
         // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
         const s = -(G * M) / (r ** 2)

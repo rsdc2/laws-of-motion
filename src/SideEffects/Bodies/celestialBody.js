@@ -139,7 +139,7 @@ class CelestialBody {
      * @returns {Vec2D}
      */
     gFrom(body) {
-        return Motion.g(
+        return Motion.gVec(
             this.rTo(body), 
             body.mass, 
             this.relPosUnitVec(body)

@@ -42,11 +42,11 @@ class CelestialBody {
     }
 
     get acceleration() {
-        return Circle.acc(this.#circle)
+        return this.acc
     }
 
     set acceleration(value) {
-        Circle.setAcc(this.#circle, value)
+        this.acc = value
     }    
 
     /**
@@ -129,7 +129,7 @@ class CelestialBody {
      * Force is change in momentum over time.
      */
     get force() {
-        return Vector2D.multScalarVec(this.mass)(this.acceleration)
+        return Vector2D.multScalarVec(this.mass)(this.accVec)
     }
 
     /**
@@ -201,9 +201,18 @@ class CelestialBody {
     /**
      * Position vector relative to another body
      * @param {CelestialBody} body 
+     * @returns 
+     */
+    relPosTo (body) {
+        return this.pos.subtract(body.pos)
+    }
+
+    /**
+     * Position vector relative to another body
+     * @param {CelestialBody} body 
      * @return {Vec2D}
      */
-    relPosVec (body) {
+    relPosVecTo (body) {
         return Vector2D.subtractVec(this.posVec, body.posVec)
     }
 
@@ -213,7 +222,7 @@ class CelestialBody {
      * @returns {Vec2D}
      */
     relPosUnitVec (body) {
-        return Vector2D.toUnit(this.relPosVec(body))
+        return this.relPosTo(body).unit
     }
 
     /**
@@ -222,7 +231,7 @@ class CelestialBody {
      * @return {number}
      */
     rTo (body) {
-        const [r, _] = Angle.toPolar(this.relPosVec(body))
+        const [r, _] = Angle.toPolar(this.relPosVecTo(body))
         return r
     }
 

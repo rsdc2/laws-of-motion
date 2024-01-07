@@ -4,7 +4,7 @@ const sol = new Star({
     id: "sol",
     pos: [3000, 3000],
     bodyRadius: 10,
-    mass: 500,
+    mass: 10,
     velPolar: [0.3, 270]
 })
 
@@ -12,8 +12,8 @@ const sol2 = new Star({
     id: "sol2",
     pos: Vector2D.addVec([2000, 0], sol.initialPos),
     bodyRadius: 50,
-    mass: 500,
-    velPolar: [0.3, 90]
+    mass: 1000,
+    velPolar: [0.003, 90]
 })
 
 const jupiter = new Planet({

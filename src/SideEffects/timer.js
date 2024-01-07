@@ -25,7 +25,7 @@ const twoBody = () => {
     // console.log(Angle.toPolar(binary.vel))
     // console.log(binary.pPolar)
     // console.log(universe.pPolar)
-    console.log(universe.pPolar)
+    console.log(sol.pos.vec, universe.R)
 }
 
 const twoSuns = () => {

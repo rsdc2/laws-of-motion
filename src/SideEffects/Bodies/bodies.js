@@ -4,16 +4,16 @@ const sol = new Star({
     id: "sol",
     pos: [3000, 3000],
     bodyRadius: 10,
-    mass: 1000,
-    velPolar: [0.35, 270]
+    mass: 500,
+    velPolar: [0.3, 270]
 })
 
 const sol2 = new Star({
     id: "sol2",
     pos: Vector2D.addVec([2000, 0], sol.initialPos),
-    bodyRadius: 10,
+    bodyRadius: 50,
     mass: 500,
-    velPolar: [0.35, 90]
+    velPolar: [0.3, 90]
 })
 
 const jupiter = new Planet({
@@ -49,12 +49,12 @@ const moon2 = new Moon({
 })
 
 
-// const universe = new Universe(
-//     svg("#space"), 
-//     [sol, sol2]
-// )
-
 const universe = new Universe(
-    svg("#space"),
-    [sol, sol2, jupiter, moon1, moon2]
+    svg("#space"), 
+    [sol, sol2]
 )
+
+// const universe = new Universe(
+//     svg("#space"),
+//     [sol, sol2, jupiter, moon1, moon2]
+// )

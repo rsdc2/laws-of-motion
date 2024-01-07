@@ -146,6 +146,21 @@ class CelestialBody {
         )
     }
 
+    // /**
+    //  * Calculate the gravitational force
+    //  * exerted by another body on the present body
+    //  * @param {CelestialBody} body 
+    //  * @returns {Vec2D}
+    //  */
+    // gFrom(body) {
+    //     return Motion.gVec12(
+    //         this.rTo(body),
+    //         this.mass,
+    //         body.mass,
+    //         body.relPosUnitVec(this)
+    //     )
+    // }
+
     get id() {
         return this.#initialParams.id
     }

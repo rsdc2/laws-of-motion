@@ -3,7 +3,9 @@ const Motion = {
     /**
      * Calculate the gravitational attraction experienced
      * by a body b1 on account of another body b2
-     * at distance r from b2, where b2 has mass M 
+     * at distance r from b2, where b2 has mass M.
+     * Assumes the object being attracted is of negligible
+     * mass compared to the attracting object
      * @param {number} r distance
      * @param {number} M mass 
      * @param {Vector2D} unitVector vector
@@ -20,7 +22,9 @@ const Motion = {
     /**
      * Calculate the gravitational attraction experienced
      * by a body b1 on account of another body b2
-     * at distance r from b2, where b2 has mass M 
+     * at distance r from b2, where b2 has mass M.
+     * Assumes the object being attracted is of negligible
+     * mass compared to the attracting object
      * @param {number} r distance
      * @param {number} M mass 
      * @param {Vec2D} unitVec vector
@@ -30,6 +34,24 @@ const Motion = {
         // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
         const s = -(G * M) / (r ** 2)
+
+        return Vector2D.multScalarVec(s)(unitVec)
+    },
+
+    /**
+     * Calculate the gravitational attraction experienced
+     * by a body b1 on account of another body b2
+     * at distance r from b2, where b2 has mass M.
+     * @param {number} r distance between body 1 and body 2
+     * @param {number} m1 mass of body 1
+     * @param {number} m2  mass of body 2
+     * @param {Vec2D} unitVec unit vector from body 2 to body 1
+     * @return {Vec2D}
+     */
+    gVec12: (r, m1, m2, unitVec) => {
+        // cf. https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation
+
+        const s = -(G * m1 * m2) / (r ** 2)
 
         return Vector2D.multScalarVec(s)(unitVec)
     },

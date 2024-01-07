@@ -42,8 +42,8 @@ const twoSuns = () => {
 const Timer = {
     start: () => setInterval( () => {
         // sunAndPlanets()
-        twoSuns()
-        // twoBody()
+        // twoSuns()
+        twoBody()
     }, 1)
 }
 

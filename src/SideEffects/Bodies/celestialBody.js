@@ -142,24 +142,9 @@ class CelestialBody {
         return Motion.gVec(
             this.rTo(body), 
             body.mass, 
-            this.relPosUnitVec(body)
+            this.posUnitVecRelTo(body)
         )
     }
-
-    // /**
-    //  * Calculate the gravitational force
-    //  * exerted by another body on the present body
-    //  * @param {CelestialBody} body 
-    //  * @returns {Vec2D}
-    //  */
-    // gFrom(body) {
-    //     return Motion.gVec12(
-    //         this.rTo(body),
-    //         this.mass,
-    //         body.mass,
-    //         body.relPosUnitVec(this)
-    //     )
-    // }
 
     get id() {
         return this.#initialParams.id
@@ -205,6 +190,15 @@ class CelestialBody {
         this.posVec = value.vec 
     }
 
+    /**
+     * Position vector relative to another body
+     * @param {CelestialBody} body 
+     * @returns {Vector2D}
+     */
+    posRelTo (body) {
+        return this.pos.subtract(body.pos)
+    }
+
     get posVec() {
         return Circle.pos(this.#circle)
     }
@@ -216,18 +210,9 @@ class CelestialBody {
     /**
      * Position vector relative to another body
      * @param {CelestialBody} body 
-     * @returns 
-     */
-    relPosTo (body) {
-        return this.pos.subtract(body.pos)
-    }
-
-    /**
-     * Position vector relative to another body
-     * @param {CelestialBody} body 
      * @return {Vec2D}
      */
-    relPosVecTo (body) {
+    posVecRelTo (body) {
         return Vector2D.subtractVec(this.posVec, body.posVec)
     }
 
@@ -236,8 +221,8 @@ class CelestialBody {
      * @param {CelestialBody} body 
      * @returns {Vec2D}
      */
-    relPosUnitVec (body) {
-        return this.relPosTo(body).unit
+    posUnitVecRelTo (body) {
+        return this.posRelTo(body).unit
     }
 
     /**
@@ -246,7 +231,7 @@ class CelestialBody {
      * @return {number}
      */
     rTo (body) {
-        const [r, _] = Angle.toPolar(this.relPosVecTo(body))
+        const [r, _] = Angle.toPolar(this.posVecRelTo(body))
         return r
     }
 

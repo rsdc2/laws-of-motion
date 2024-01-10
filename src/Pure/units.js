@@ -1,18 +1,18 @@
 class Distance {
 
-    #value // value in metres
+    #value // value in millions of km
 
     /**
      * 
-     * @param {number} metres
+     * @param {number} value millions of km
      */
-    constructor(metres) {
-        this.#value = metres
+    constructor(value) {
+        this.#value = value
     }
 
 
     /**
-     * 
+     * TODO get source for ratio
      * @param {number} au Astronomical Units
      */
     static fromAU(au) {
@@ -26,11 +26,17 @@ class Distance {
      * @returns 
      */
     static fromMetres(metres) {
-        return new Distance(metres)
+        return new Distance(metres / 1e6)
     }
 
-
     get metres() {
+        return this.#value * 1e6
+    }
+
+    /**
+     * Millions of km
+     */
+    get value() {
         return this.#value
     }
 

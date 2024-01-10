@@ -60,6 +60,13 @@ class Vector2D {
         return [x / s, y / s]
     }
 
+    /**
+     * 
+     * @param {Vec2D} vec 
+     */
+    static fromVec2D(vec) {
+        return new Vector2D(vec)
+    }   
 
     /**
      * Multiply the vector by a scalar
@@ -164,11 +171,15 @@ class Vector2D {
         return [x / magnitude, y / magnitude]
 
     }
+
+    get unit() {
+        return Vector2D.fromVec2D(this.unitVec)
+    }
     
     /**
      * The unit vector
      */
-    get unit() {
+    get unitVec() {
         return Vector2D.toUnit(this.#vec)
     }
 

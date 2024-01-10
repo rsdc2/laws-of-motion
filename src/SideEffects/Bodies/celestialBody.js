@@ -50,6 +50,17 @@ class CelestialBody {
     }    
 
     /**
+     * 
+     * @param {Vector2D} acc 
+     */
+    accelerate (acc) {
+        const [pos, vel, _] = Motion.position(this.posVec, this.velVec, acc.vec)
+        this.posVec = pos
+        this.velVec = vel
+        this.acc = acc
+    }
+
+    /**
      * Apply an acceleration
      * @param {Vec2D} acc 
      */
@@ -67,19 +78,19 @@ class CelestialBody {
      */
     accelerateFrom (bodies) {
         const acc = this.accelerationFrom(bodies)
-        this.accelerateVec(acc)
+        this.accelerate(acc)
     }
 
     /**
      * Obtain sum of gravitational accelerations from an 
      * array of bodies
      * @param {Array.<CelestialBody>} bodies 
-     * @return {Vec2D}
+     * @return {Vector2D}
      */
     accelerationFrom (bodies) {
-        const acc = /** @type {Vec2D}*/ ([0, 0])
+        const acc = Vector2D.fromVec2D([0, 0])
         const gs = bodies.map( (body) => this.gFrom(body) )
-        return gs.reduce( (acc, g) => Vector2D.addVec(acc, g), acc)
+        return gs.reduce( (acc, g) => acc.add(g), acc)
     }   
 
     /**
@@ -136,13 +147,13 @@ class CelestialBody {
      * Calculate the gravitational force
      * exerted by another body
      * @param {CelestialBody} body 
-     * @returns {Vec2D}
+     * @returns {Vector2D}
      */
     gFrom(body) {
-        return Motion.gVec(
+        return Gravity.g(
             this.rTo(body), 
             body.mass, 
-            this.posUnitVecRelTo(body)
+            this.posUnitRelTo(body)
         )
     }
 
@@ -199,6 +210,17 @@ class CelestialBody {
         return this.pos.subtract(body.pos)
     }
 
+    /**
+     * Return the unit vector of position 
+     * relative to another body
+     * @param {CelestialBody} body
+     * @returns {Vector2D} 
+     */
+
+    posUnitRelTo (body) {
+        return this.posRelTo(body).unit
+    }
+
     get posVec() {
         return Circle.pos(this.#circle)
     }
@@ -222,7 +244,7 @@ class CelestialBody {
      * @returns {Vec2D}
      */
     posUnitVecRelTo (body) {
-        return this.posRelTo(body).unit
+        return this.posRelTo(body).unitVec
     }
 
     /**

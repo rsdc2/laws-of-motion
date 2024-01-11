@@ -15,8 +15,8 @@
 // } 
 
 const twoBody = () => {
-    sol.accelerateFrom([sol2])
-    sol2.accelerateFrom([sol])
+    star1.accelerateFrom([star2])
+    star2.accelerateFrom([star1])
     universe.update()
     // const [r, _] = Angle.toPolar(Vector2D.add(sol.momentum, sol2.momentum))
     // cf. https://en.wikipedia.org/wiki/Two-body_problem
@@ -25,15 +25,15 @@ const twoBody = () => {
     // console.log(Angle.toPolar(binary.vel))
     // console.log(binary.pPolar)
     // console.log(universe.pPolar)
-    console.log(sol.pos.vec, universe.R)
+    console.log(star1.pos.vec, universe.R)
 }
 
 const twoSuns = () => {
-    sol.accelerateFrom([sol2, jupiter, moon1, moon2])
-    sol2.accelerateFrom([sol, jupiter, moon1, moon2])
-    jupiter.accelerateFrom([sol, sol2, moon1, moon2])
-    moon1.accelerateFrom([sol, sol2, jupiter, moon2])
-    moon2.accelerateFrom([sol, sol2, jupiter, moon1])
+    star1.accelerateFrom([star2, jupiter, moon1, moon2])
+    star2.accelerateFrom([star1, jupiter, moon1, moon2])
+    jupiter.accelerateFrom([star1, star2, moon1, moon2])
+    moon1.accelerateFrom([star1, star2, jupiter, moon2])
+    moon2.accelerateFrom([star1, star2, jupiter, moon1])
     universe.update()
     console.log(universe.p.r)
     // console.log(sol.rTo(jupiter), sol.rTo(sol2))

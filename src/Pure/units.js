@@ -40,6 +40,22 @@ class Distance {
         return new Distance(metres / 1e9)
     }
 
+    /**
+     * 
+     * @param {number} mkm 
+     */
+    static fromMKm(mkm) {
+        return new Distance(mkm)
+    }
+
+    /**
+     * 
+     * @param {number} pixels 
+     */
+    static fromPixels(pixels) {
+        return new Distance(pixels / 10)
+    }
+    
     get km() {
         return this.#value * 1e6
     }
@@ -51,9 +67,18 @@ class Distance {
     /**
      * Millions of km
      */
-    get value() {
+    get mkm() {
         return this.#value
     }
 
+    get pixels() {
+        return this.#value * 10
+    }
 
+    /**
+     * Millions of km
+     */
+    get value() {
+        return this.#value
+    }
 }

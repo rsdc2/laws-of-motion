@@ -29,6 +29,16 @@ class Vector2D {
     }
 
     /**
+     * 
+     * @param {Vec2D} vec
+     * @returns {Vector2D} 
+     */
+    addVec(vec) {
+        const result = Vector2D.addVec(this.#vec, vec)
+        return new Vector2D(result)
+    }
+
+    /**
      * Add two vectors together
      * @param {Vec2D} vec1 
      * @param {Vec2D} vec2 
@@ -60,6 +70,14 @@ class Vector2D {
         return [x / s, y / s]
     }
 
+    /**
+     * 
+     * @param {Vec2D} vec 
+     * @returns 
+     */
+    static from(vec) {
+        return new Vector2D(vec)
+    }
     /**
      * 
      * @param {Vec2D} vec 

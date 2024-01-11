@@ -31,17 +31,24 @@ class Gravity {
      * See https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation
      * accessed 2024-01-08
      * 
-     * @param {number} r distance in m
-     * @param {number} M mass of b2 in kg (?)
+     * @param {number} r distance in pixels
+     * @param {number} M mass of b2 in kg
      * @param {Vector2D} unitVector unit vector from b1 to b2
-     * @return {Vector2D}
+     * @return {Vector2D} 
      */
     static g(r, M, unitVector) {
         // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
-        const s = - (G * M) / (r ** 2)
+        const r_ = Distance.fromPixels(r).metres
+        const s = - (G * M) / (r_ ** 2)
+        console.log(s)
 
-        return unitVector.multScalar(s)
+        const [x, y] = unitVector.multScalar(s).vec
+
+        return Vector2D.from([
+            Distance.fromMetres(x).pixels,
+            Distance.fromMetres(y).pixels
+        ])
     }
 
     /**

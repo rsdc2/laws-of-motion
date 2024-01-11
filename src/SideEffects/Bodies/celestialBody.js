@@ -116,7 +116,7 @@ class CelestialBody {
     #createCircle () {
         const elem = document.createElementNS(SVGNS, "circle")
 
-        const [cx, cy] = this.#initialParams.pos
+        const [cx, cy] = this.#initialParams.pos.vec
         
         const [r, θ] = this.#initialParams.velPolar
         const [vx, vy] = Angle.toVec(r, θ)

@@ -1,4 +1,4 @@
-class Distance {
+class Dim {
 
     #value // value in millions of km
 
@@ -10,8 +10,24 @@ class Distance {
         this.#value = value
     }
 
+    /**
+     * 
+     * @param {Dim} other 
+     */
+    add(other) {
+        return new Dim(this.value + other.value)
+    }
+
     get au() {
         return this.#value / 1.495978707e2
+    }
+
+    /**
+     * 
+     * @param {number} scalar 
+     */
+    div(scalar) {
+        return new Dim(this.value / scalar)
     }
 
     /**
@@ -20,7 +36,7 @@ class Distance {
      */
     static fromAU(au) {
         const value = au * 1.495978707e2
-        return new Distance(value)
+        return new Dim(value)
     }
 
     /**
@@ -28,7 +44,7 @@ class Distance {
      * @param {number} km 
      */
     static fromKm(km) {
-        return new Distance(km / 1e6)
+        return new Dim(km / 1e6)
     }
 
     /**
@@ -37,7 +53,7 @@ class Distance {
      * @returns 
      */
     static fromMetres(metres) {
-        return new Distance(metres / 1e9)
+        return new Dim(metres / 1e9)
     }
 
     /**
@@ -45,7 +61,7 @@ class Distance {
      * @param {number} mkm 
      */
     static fromMKm(mkm) {
-        return new Distance(mkm)
+        return new Dim(mkm)
     }
 
     /**
@@ -53,7 +69,7 @@ class Distance {
      * @param {number} pixels 
      */
     static fromPixels(pixels) {
-        return new Distance(pixels / 10)
+        return new Dim(pixels / 10)
     }
     
     get km() {
@@ -71,8 +87,33 @@ class Distance {
         return this.#value
     }
 
+    /**
+     * 
+     * @param {number} scalar 
+     */
+    mult(scalar) {
+        return new Dim(this.value * scalar)
+    }
+
     get pixels() {
         return this.#value * 10
+    }
+
+    /**
+     * 
+     * @param {number} exp exponent 
+     */
+    pow(exp) {
+        return new Dim(this.value ** exp)
+
+    }
+
+    /**
+     * 
+     * @param {Dim} other 
+     */
+    subtract(other) {
+        return new Dim(this.value - other.value)
     }
 
     /**

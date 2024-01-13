@@ -8,15 +8,20 @@
  * otherwise methods interact with Vector2D
  * 
  */
+
+
 class Vector2D {
 
-    #vec
+    #x
+    #y
     /**
      * 
-     * @param {Vec2D} vec 
+     * @param {Dim} x
+     * @param {Dim} y 
      */
-    constructor(vec) {
-        this.#vec = vec
+    constructor(x, y) {
+        this.#x = x
+        this.#y = y
     }
     
     /**
@@ -24,30 +29,7 @@ class Vector2D {
      * @param {Vector2D} other 
      */
     add (other) {
-        const addition = Vector2D.addVec(this.#vec, other.vec)
-        return new Vector2D(addition)
-    }
-
-    /**
-     * 
-     * @param {Vec2D} vec
-     * @returns {Vector2D} 
-     */
-    addVec(vec) {
-        const result = Vector2D.addVec(this.#vec, vec)
-        return new Vector2D(result)
-    }
-
-    /**
-     * Add two vectors together
-     * @param {Vec2D} vec1 
-     * @param {Vec2D} vec2 
-     * @return {Vec2D}
-     */
-    static addVec (vec1, vec2) {
-        const [vec1X, vec1Y] = vec1
-        const [vec2X, vec2Y] = vec2
-        return [vec1X + vec2X, vec1Y + vec2Y]
+        return new Vector2D(this.x.add(other.x), this.y.add(other.y))
     }
 
     /**
@@ -55,19 +37,7 @@ class Vector2D {
      * @param {number} s 
      */
     divScalar (s) {
-        const div = Vector2D.divScalarVec(this.#vec, s)
-        return new Vector2D(div)
-    }
-
-    /**
-     * Divide a 2D vector by a scalar
-     * @param {number} s 
-     * @param {Vec2D} vec 
-     * @return {Vec2D}
-     */
-    static divScalarVec (vec, s) {
-        const [x, y] = vec
-        return [x / s, y / s]
+        return new Vector2D(this.x.div(s), this.y.div(s))
     }
 
     /**
@@ -76,14 +46,15 @@ class Vector2D {
      * @returns 
      */
     static from(vec) {
-        return new Vector2D(vec)
+        const [x, y] = vec
+        return new Vector2D(new Dim(x), new Dim(y))
     }
     /**
      * 
      * @param {Vec2D} vec 
      */
     static fromVec2D(vec) {
-        return new Vector2D(vec)
+        return Vector2D.from(vec)
     }   
 
     /**
@@ -91,22 +62,7 @@ class Vector2D {
      * @param {number} s 
      */
     multScalar (s) {
-        return new Vector2D(Vector2D.multScalarVec(s)(this.#vec))
-    }
-
-    /** 
-     * Multiply a vector by a scalar
-     * @param {number} s
-     */
-    static multScalarVec = (s) => 
-    /**
-     * 
-     * @param {Vec2D} vec 
-     * @return {Vec2D}
-     */
-    (vec) => {
-        const [x, y] = vec
-        return [s * x, s * y]
+        return new Vector2D(this.x.mult(s), this.#y.mult(s))
     }
 
     /**
@@ -114,7 +70,7 @@ class Vector2D {
      * Polar representation of the vector
      */
     get polar() {
-        return Angle.toPolar(this.#vec)
+        return Angle.toPolar(this.vec2D)
     }
 
     /**
@@ -130,34 +86,7 @@ class Vector2D {
      * @param {Vector2D} other 
      */
     subtract (other) {
-        const subtraction = Vector2D.subtractVec(this.#vec, other.vec)
-        return new Vector2D(subtraction)
-    }
-
-    /**
-     * vec2 - vec1
-     * @param {Vec2D} vec1 
-     * @param {Vec2D} vec2 
-     * @return {Vec2D}
-     */
-    static subtractVec2 (vec1, vec2) {
-        const [x1, y1] = vec1
-        const [x2, y2] = vec2
-
-        return [x2 - x1, y2 - y1]
-    }
-
-    /**
-     * Substract vec1 - vec2
-     * @param {Vec2D} vec1 
-     * @param {Vec2D} vec2 
-     * @return {Vec2D}
-     */
-    static subtractVec (vec1, vec2) {
-        const [x1, y1] = vec1
-        const [x2, y2] = vec2
-
-        return [x1 - x2, y1 - y2]
+        return new Vector2D(this.x.subtract(other.x), this.y.subtract(other.y))
     }
 
     /**
@@ -170,48 +99,35 @@ class Vector2D {
     }
 
     /**
-     * Sum an array of Vec2D
-     * @param {Array.<Vec2D>} vecs
-     */
-    static sumVecs (vecs) {
-        return vecs.reduce( (vecSum, vec) => Vector2D.addVec(vecSum, vec) )
-    }
-
-    /**
      * Convert a vector into a unit vector
-     * @param {Vec2D} vec
-     * @returns {Vec2D} 
+     * @param {Vector2D} vec
+     * @returns {Vector2D} 
      */
     static toUnit (vec) {
         // cf. https://www.cuemath.com/calculus/unit-vector/ 
-        const [x, y] = vec
-        const magnitude = sqrt(x ** 2 + y ** 2)
-        return [x / magnitude, y / magnitude]
-
+        return vec.unit
     }
 
     get unit() {
-        return Vector2D.fromVec2D(this.unitVec)
-    }
-    
-    /**
-     * The unit vector
-     */
-    get unitVec() {
-        return Vector2D.toUnit(this.#vec)
-    }
-
-    get value() {
-        return this.#vec
+        const magnitude = sqrt(this.#x.pow(2).value + this.#y.pow(2).value)
+        return new Vector2D(this.x.div(magnitude), this.y.div(magnitude))
     }
 
     /**
      * Vector value
      */
-    get vec() {
-        return this.#vec
+    get vec2D() {
+        return /** @type {Vec2D}*/ ([this.x.value, this.y.value])
     }
     
+    get x() {
+        return this.#x
+    }
+
+    get y() {
+        return this.#y
+    }
+ 
     /**
      * The angle of the vector in degrees
      */

@@ -39,15 +39,15 @@ class Gravity {
     static g(r, M, unitVector) {
         // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
-        const r_ = Distance.fromPixels(r).metres
+        const r_ = Dim.fromPixels(r).metres
         const s = - (G * M) / (r_ ** 2)
         console.log(s)
 
         const [x, y] = unitVector.multScalar(s).vec
 
         return Vector2D.from([
-            Distance.fromMetres(x).pixels,
-            Distance.fromMetres(y).pixels
+            Dim.fromMetres(x).pixels,
+            Dim.fromMetres(y).pixels
         ])
     }
 

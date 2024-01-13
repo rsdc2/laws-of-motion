@@ -7,6 +7,9 @@
  * @typedef {[number, number]} PolarVec
  */
 
+/**
+ * @typedef {[Dim, Dim]} DistVec2D
+ */
 
 
 /**

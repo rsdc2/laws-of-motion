@@ -25,19 +25,19 @@ const twoBody = () => {
     // console.log(Angle.toPolar(binary.vel))
     // console.log(binary.pPolar)
     // console.log(universe.pPolar)
-    console.log(star1.pos.vec, universe.R)
+    // console.log(star1.pos.vec, universe.R)
 }
 
-const twoSuns = () => {
-    star1.accelerateFrom([star2, jupiter, moon1, moon2])
-    star2.accelerateFrom([star1, jupiter, moon1, moon2])
-    jupiter.accelerateFrom([star1, star2, moon1, moon2])
-    moon1.accelerateFrom([star1, star2, jupiter, moon2])
-    moon2.accelerateFrom([star1, star2, jupiter, moon1])
-    universe.update()
-    console.log(universe.p.r)
-    // console.log(sol.rTo(jupiter), sol.rTo(sol2))
-}
+// const twoSuns = () => {
+//     star1.accelerateFrom([star2, jupiter, moon1, moon2])
+//     star2.accelerateFrom([star1, jupiter, moon1, moon2])
+//     jupiter.accelerateFrom([star1, star2, moon1, moon2])
+//     moon1.accelerateFrom([star1, star2, jupiter, moon2])
+//     moon2.accelerateFrom([star1, star2, jupiter, moon1])
+//     universe.update()
+//     console.log(universe.p.r)
+//     // console.log(sol.rTo(jupiter), sol.rTo(sol2))
+// }
 
 const Timer = {
     start: () => setInterval( () => {

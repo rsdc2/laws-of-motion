@@ -65,7 +65,7 @@ class Gravity {
     static gVec(r, M, unitVec) {
         // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
-        return Gravity.g(r, M, Vector2D.fromVec2D(unitVec)).vec
+        return Gravity.g(r, M, Vector2D.fromPixelVec2D(unitVec)).vec
     }
 
 }

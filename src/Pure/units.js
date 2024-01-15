@@ -1,10 +1,11 @@
 class Dim {
 
-    #value // value in millions of km
+    #value // value in pixels
+    
 
     /**
      * 
-     * @param {number} value millions of km 
+     * @param {number} value pixels 
      */
     constructor(value) {
         this.#value = value
@@ -19,7 +20,7 @@ class Dim {
     }
 
     get au() {
-        return this.#value / 1.495978707e2
+        return this.#value * Dim.PIXELS2AU
     }
 
     /**
@@ -31,12 +32,13 @@ class Dim {
     }
 
     /**
-     * TODO get source for ratio
+     * 
      * @param {number} au Astronomical Units
      */
     static fromAU(au) {
-        const value = au * 1.495978707e2
-        return new Dim(value)
+        const m = AU2M * au
+        const pixels = m * Dim.M2PIXELS
+        return new Dim(pixels)
     }
 
     /**
@@ -44,7 +46,7 @@ class Dim {
      * @param {number} km 
      */
     static fromKm(km) {
-        return new Dim(km / 1e6)
+        return new Dim(km * Dim.KM2PIXELS)
     }
 
     /**
@@ -53,7 +55,7 @@ class Dim {
      * @returns 
      */
     static fromMetres(metres) {
-        return new Dim(metres / 1e9)
+        return new Dim(metres * Dim.M2PIXELS)
     }
 
     /**
@@ -61,7 +63,7 @@ class Dim {
      * @param {number} mkm 
      */
     static fromMKm(mkm) {
-        return new Dim(mkm)
+        return new Dim(mkm * Dim.MKM2PIXELS)
     }
 
     /**
@@ -69,22 +71,34 @@ class Dim {
      * @param {number} pixels 
      */
     static fromPixels(pixels) {
-        return new Dim(pixels / 10)
+        return new Dim(pixels)
     }
     
     get km() {
-        return this.#value * 1e6
+        return this.#value * Dim.PIXELS2KM
     }
 
     get metres() {
-        return this.#value * 1e9
+        return this.#value * Dim.PIXELS2M
     }
 
     /**
      * Millions of km
      */
     get mkm() {
-        return this.#value
+        return this.#value / 10
+    }
+
+    static get MKM2PIXELS() {
+        return 1 / Dim.PIXELS2MKM
+    }
+
+    static get KM2PIXELS() {
+        return 1 / Dim.PIXELS2KM
+    }
+        
+    static get M2PIXELS() {
+        return 1 / this.PIXELS2M
     }
 
     /**
@@ -96,7 +110,24 @@ class Dim {
     }
 
     get pixels() {
-        return this.#value * 10
+        return this.#value
+    }
+
+    static get PIXELS2AU() {
+        const M2AU = 1 / AU2M
+        return Dim.PIXELS2M * M2AU
+    }
+
+    static get PIXELS2MKM() {
+        return 10
+    }
+
+    static get PIXELS2KM() {
+        return Dim.PIXELS2MKM / 1e6
+    }
+
+    static get PIXELS2M() {
+        return Dim.PIXELS2MKM / 1e9
     }
 
     /**
@@ -122,4 +153,5 @@ class Dim {
     get value() {
         return this.#value
     }
+
 }

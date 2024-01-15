@@ -33,6 +33,19 @@ class Vector2D {
     }
 
     /**
+     * 
+     * @param {Vec2D} other 
+     */
+
+    addMKmVec2D (other) {
+        const [x, y] = other
+        return new Vector2D(
+            Dim.fromMKm(x),
+            Dim.fromMKm(y)
+        )
+    }
+
+    /**
      * Divide the vector by a scalar
      * @param {number} s 
      */
@@ -53,9 +66,20 @@ class Vector2D {
      * 
      * @param {Vec2D} vec 
      */
-    static fromVec2D(vec) {
-        return Vector2D.from(vec)
+    static fromPixelVec2D(vec) {
+        const [x, y] = vec
+        return new Vector2D(new Dim(x), new Dim(y))
     }   
+
+    /**
+     * 
+     * @param {Vec2D} vec 
+     */
+    static fromMKmVec2D(vec) {
+        const [x, y] = vec
+        return new Vector2D(Dim.fromMKm(x), Dim.fromMKm(y))
+    }   
+
 
     /**
      * Multiply the vector by a scalar

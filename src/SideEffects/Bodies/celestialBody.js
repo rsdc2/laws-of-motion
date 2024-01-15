@@ -88,7 +88,7 @@ class CelestialBody {
      * @return {Vector2D}
      */
     accelerationFrom (bodies) {
-        const acc = Vector2D.fromVec2D([0, 0])
+        const acc = Vector2D.fromPixelVec2D([0, 0])
         const gs = bodies.map( (body) => this.gFrom(body) )
         return gs.reduce( (acc, g) => acc.add(g), acc)
     }   
@@ -116,7 +116,7 @@ class CelestialBody {
     #createCircle () {
         const elem = document.createElementNS(SVGNS, "circle")
 
-        const [cx, cy] = this.#initialParams.pos.vec
+        const [cx, cy] = this.#initialParams.pos.vec2D
         
         const [r, θ] = this.#initialParams.velPolar
         const [vx, vy] = Angle.toVec(r, θ)

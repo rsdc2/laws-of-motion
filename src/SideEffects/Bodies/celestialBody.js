@@ -28,7 +28,7 @@ class CelestialBody {
     }
 
     /**
-     * Acceleration of the body as a Vec2D
+     * Acceleration of the body as a pixel Vec2D
      */
     get accVec() {
         return Circle.acc(this.#circle)

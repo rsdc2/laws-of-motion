@@ -31,7 +31,7 @@ class Gravity {
      * See https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation
      * accessed 2024-01-08
      * 
-     * @param {number} r distance in pixels
+     * @param {Dim} r distance as a Dim
      * @param {number} M mass of b2 in kg
      * @param {Vector2D} unitVector unit vector from b1 to b2
      * @return {Vector2D} 
@@ -39,33 +39,27 @@ class Gravity {
     static g(r, M, unitVector) {
         // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
-        const r_ = Dim.fromPixels(r).metres
-        const s = - (G * M) / (r_ ** 2)
-        console.log(s)
+        const s = - (G * M) / (r.metres ** 2)
+        // console.log(s)
 
-        const [x, y] = unitVector.multScalar(s).vec
-
-        return Vector2D.from([
-            Dim.fromMetres(x).pixels,
-            Dim.fromMetres(y).pixels
-        ])
+        return unitVector.multScalar(s)
     }
 
-    /**
-     * Calculate the gravitational attraction experienced
-     * by a body b1 on account of another body b2
-     * at distance r from b2, where b2 has mass M.
-     * Assumes the object being attracted is of negligible
-     * mass compared to the attracting object
-     * @param {number} r distance
-     * @param {number} M mass 
-     * @param {Vec2D} unitVec unit vector from b1 to b2
-     * @return {Vec2D}
-     */
-    static gVec(r, M, unitVec) {
-        // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
+    // /**
+    //  * Calculate the gravitational attraction experienced
+    //  * by a body b1 on account of another body b2
+    //  * at distance r from b2, where b2 has mass M.
+    //  * Assumes the object being attracted is of negligible
+    //  * mass compared to the attracting object
+    //  * @param {number} r distance
+    //  * @param {number} M mass 
+    //  * @param {Vec2D} unitVec unit vector from b1 to b2
+    //  * @return {Vec2D}
+    //  */
+    // static gVec(r, M, unitVec) {
+    //     // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
-        return Gravity.g(r, M, Vector2D.fromPixelVec2D(unitVec)).vec
-    }
+    //     return Gravity.g(r, M, Vector2D.fromPixelVec2D(unitVec)).vec2D
+    // }
 
 }

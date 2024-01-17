@@ -66,18 +66,18 @@ class Angle {
     /**
      * Take a 2D vector, and return a magnitude
      * and an angle in degrees
-     * @param {Vec2D} vec a 2D vector
-     * @returns {[number, number]} a magnitude and 
+     * @param {Vector2D} vec a 2D vector
+     * @returns {[Dim, number]} a magnitude and 
      * an angle in degrees
      */
-    static toPolar = vec => {
+    static toPolar (vec) {
         // cf. https://en.wikipedia.org/wiki/Inverse_trigonometric_functions
         // cf. https://en.wikipedia.org/wiki/Atan2
         // cf. https://en.wikipedia.org/wiki/Polar_coordinate_system#Converting_between_polar_and_Cartesian_coordinates
-        const [x, y] = vec
+        const [x, y] = vec.vec2D
         const θ = Angle.toDeg(atan2(y, x))
         const r = sqrt(x**2 + y**2)
-        return [r, θ]
+        return [Dim.from(r), θ]
     }
 
     get value() {

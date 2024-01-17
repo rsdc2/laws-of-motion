@@ -13,11 +13,11 @@ const Circle = {
         const pos = Circle.pos(circle)
         const vel = Circle.vel(circle)
         
-        const [pos_, vel_, acc_] = Motion.position(pos, vel, acc)
+        const [pos_, vel_, acc_] = Motion.position(Vector2D.from(pos), Vector2D.from(vel), Vector2D.from(acc))
 
-        Circle.setPos(circle, pos_)
-        Circle.setVel(circle, vel_)
-        Circle.setAcc(circle, acc)
+        Circle.setPos(circle, pos_.vec2D)
+        Circle.setVel(circle, vel_.vec2D)
+        Circle.setAcc(circle, acc_.vec2D)
     },
 
     /**
@@ -41,7 +41,7 @@ const Circle = {
      * @returns {SVGCircleElement}
      */
     startPolar: (circle, params) => {
-        const pos = params.pos
+        const pos = params.pos.vec2D
         const vel = params.velPolar
 
         Circle.setPos(circle, pos)
@@ -67,7 +67,7 @@ const Circle = {
     new: (params) => {
         const elem = document.createElementNS(SVGNS, "circle")
 
-        const [cx, cy] = params.pos
+        const [cx, cy] = params.pos.vec2D
 
         setAttrs(elem)(
             ["cx", String(cx)],

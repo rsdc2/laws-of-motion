@@ -20,11 +20,12 @@ class CelestialBody {
      * Acceleration of the body as a Vector2D
      */
     get acc() {
-        return new Vector2D(this.accVec)
+        const [x, y] = this.accVec
+        return new Vector2D(Dim.from(x), Dim.from(y))
     }
 
     set acc(value) {
-        this.accVec = value.vec
+        this.accVec = value.vec2D
     }
 
     /**
@@ -54,9 +55,9 @@ class CelestialBody {
      * @param {Vector2D} acc 
      */
     accelerate (acc) {
-        const [pos, vel, _] = Motion.position(this.posVec, this.velVec, acc.vec)
-        this.posVec = pos
-        this.velVec = vel
+        const [pos, vel, _] = Motion.position(this.pos, this.vel, acc)
+        this.pos = pos
+        this.vel = vel
         this.acc = acc
     }
 
@@ -65,9 +66,9 @@ class CelestialBody {
      * @param {Vec2D} acc 
      */
     accelerateVec (acc) {        
-        const [pos, vel, _] = Motion.position(this.posVec, this.velVec, acc)
-        this.posVec = pos
-        this.velVec = vel
+        const [pos, vel, _] = Motion.position(this.pos, this.vel, Vector2D.from(acc))
+        this.pos = pos
+        this.vel = vel
         this.accVec = acc
     }
 
@@ -140,7 +141,8 @@ class CelestialBody {
      * Force is change in momentum over time.
      */
     get force() {
-        return Vector2D.multScalarVec(this.mass)(this.accVec)
+        return this.acc.multScalar(this.mass)
+        // return Vector2D.multScalarVec(this.mass)(this.accVec)
     }
 
     /**
@@ -181,7 +183,7 @@ class CelestialBody {
      * Mass * postion
      */
     get mpos() {
-        return Vector2D.multScalarVec(this.mass)(this.posVec)
+        return this.pos.multScalar(this.mass)
     }
 
     get p() {
@@ -190,15 +192,16 @@ class CelestialBody {
 
     get pVec() {
         // cf. https://en.wikipedia.org/wiki/Momentum
-        return Vector2D.multScalarVec(this.mass)(this.velVec)
+        return this.p.vec2D
     }
 
     get pos() {
-        return new Vector2D(this.posVec)
+        const [x, y] = this.posVec
+        return Vector2D.from([x, y])
     }
 
     set pos(value) {
-        this.posVec = value.vec 
+        this.posVec = value.vec2D 
     }
 
     /**
@@ -235,7 +238,7 @@ class CelestialBody {
      * @return {Vec2D}
      */
     posVecRelTo (body) {
-        return Vector2D.subtractVec(this.posVec, body.posVec)
+        return this.pos.subtract(body.pos).vec2D
     }
 
     /**
@@ -244,16 +247,16 @@ class CelestialBody {
      * @returns {Vec2D}
      */
     posUnitVecRelTo (body) {
-        return this.posRelTo(body).unitVec
+        return this.posRelTo(body).unit.vec2D
     }
 
     /**
      * Calculate the distance to another body as a scalar
      * @param {CelestialBody} body 
-     * @return {number}
+     * @return {Dim}
      */
     rTo (body) {
-        const [r, _] = Angle.toPolar(this.posVecRelTo(body))
+        const [r, _] = Angle.toPolar(this.posRelTo(body))
         return r
     }
 
@@ -262,15 +265,16 @@ class CelestialBody {
     }
 
     set v(value) {
-        this.velVec = value.vec
+        this.velVec = value.vec2D
     }
 
     get vel() {
-        return new Vector2D(this.velVec)
+        const [x, y] = this.velVec
+        return new Vector2D(Dim.from(x), Dim.from(y))
     }
 
     set vel(value) {
-        this.velVec = value.vec
+        this.velVec = value.vec2D
     }
 
     get velVec() {

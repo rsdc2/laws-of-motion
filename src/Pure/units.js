@@ -33,6 +33,14 @@ class Dim {
 
     /**
      * 
+     * @param {number} pixels 
+     */
+    static from(pixels) {
+        return new Dim(pixels)
+    }
+
+    /**
+     * 
      * @param {number} au Astronomical Units
      */
     static fromAU(au) {

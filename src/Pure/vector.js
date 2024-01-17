@@ -94,7 +94,7 @@ class Vector2D {
      * Polar representation of the vector
      */
     get polar() {
-        return Angle.toPolar(this.vec2D)
+        return Angle.toPolar(this)
     }
 
     /**
@@ -138,7 +138,7 @@ class Vector2D {
     }
 
     /**
-     * Vector value
+     * Vector value in pixels
      */
     get vec2D() {
         return /** @type {Vec2D}*/ ([this.x.value, this.y.value])

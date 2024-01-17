@@ -77,7 +77,8 @@ class Universe {
     }
 
     get p() {
-        return new Vector2D(this.pVec)
+        const ps = this.#bodies.map( body => body.p )
+        return Vector2D.sum(ps)
     }
 
     get pPolar() {
@@ -88,17 +89,16 @@ class Universe {
      * Total momentum as a 2D vector
      */
     get pVec() {
-        const ps = this.#bodies.map( body => body.pVec )
-        return Vector2D.sumVecs(ps)
+        return this.p.vec2D
     }
 
     /**
      * Vector position of the centre of mass of the system
      */
     get R() {
-        const mposs = this.#bodies.map (body => body.mpos)
-        const summposs = Vector2D.sumVecs(mposs)
-        return Vector2D.divScalarVec(summposs, this.M)       
+        const mPositions = this.#bodies.map (body => body.mpos)
+        const sumMPositions = Vector2D.sum(mPositions)
+        return sumMPositions.divScalar(this.M)   
     }
 
     /**
@@ -113,7 +113,7 @@ class Universe {
      * circle
      */
     #updateRCirclePos() {
-        const [cx, cy] = this.R
+        const [cx, cy] = this.R.vec2D
         
         setAttrs(this.#rCircle)(
             ["cx", String(cx)],

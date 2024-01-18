@@ -120,7 +120,7 @@ class CelestialBody {
         const [cx, cy] = this.#initialParams.pos.vec2D
         
         const [r, θ] = this.#initialParams.velPolar
-        const [vx, vy] = Angle.toVec(r, θ)
+        const [vx, vy] = Angle.toVec(r, θ).vec2D
 
         setAttrs(elem)(
             ["cx", String(cx)],

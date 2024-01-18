@@ -34,6 +34,15 @@ class Vector2D {
 
     /**
      * 
+     * @param {number} x 
+     * @param {number} y 
+     */
+    addMKm (x, y) {
+        return this.add(Vector2D.fromMKmVec2D([x, y]))
+    }
+
+    /**
+     * 
      * @param {Vec2D} other 
      */
 
@@ -54,13 +63,12 @@ class Vector2D {
     }
 
     /**
-     * 
+     * Return a new Vector2D from a pixel Vec2D
      * @param {Vec2D} vec 
      * @returns 
      */
     static from(vec) {
-        const [x, y] = vec
-        return new Vector2D(new Dim(x), new Dim(y))
+        return Vector2D.fromPixelVec2D(vec)
     }
     /**
      * 

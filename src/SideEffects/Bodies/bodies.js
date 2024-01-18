@@ -25,15 +25,15 @@ const star1 = new Star({
     pos: centre,
     bodyRadius: 10,
     mass: mass,
-    velPolar: [Dim.fromMKm(0.03).pixels, 270]
+    velPolar: [Dim.fromMKm(0.03), 270]
 })
 
 const star2 = new Star({
     id: "sol2",
-    pos: centre.addMKmVec2D([300, 0]),
+    pos: centre.addMKm(300, 0),
     bodyRadius: 50,
     mass: mass,
-    velPolar: [Dim.fromMKm(0.03).pixels, 90]
+    velPolar: [Dim.fromMKm(0.03), 90]
 })
 
 

@@ -4,7 +4,7 @@
  */
 
 /***
- * @typedef {[number, number]} PolarVec
+ * @typedef {[Dim, number]} PolarVec
  */
 
 /**

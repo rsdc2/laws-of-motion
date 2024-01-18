@@ -149,7 +149,7 @@ const Circle = {
      */
     setVelPolar: (circle, polar) => {
         const [r, θ] = polar
-        const [vx, vy] = Angle.toVec(r, θ)
+        const [vx, vy] = Angle.toVec(r, θ).vec2D
         circle.setAttribute('vx', String(vx))
         circle.setAttribute('vy', String(vy))
         return circle

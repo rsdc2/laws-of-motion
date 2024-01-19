@@ -34,6 +34,16 @@ class Vector2D {
 
     /**
      * 
+     * @param {number} x
+     * @param {number} y 
+     * @returns 
+     */
+    addPix (x, y) {
+        return Vector2D.from([x + this.#x.value, y + this.#y.value])
+    }
+
+    /**
+     * 
      * @param {number} x 
      * @param {number} y 
      */

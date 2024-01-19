@@ -26,7 +26,7 @@ const star1 = new Star({
     pos: centre,
     bodyRadius: 10,
     mass: mass,
-    velPolar: [Dim.from(0.3), 270]
+    velPolar: [Dim.from(0.5), 270]
 })
 
 const star2 = new Star({
@@ -34,7 +34,7 @@ const star2 = new Star({
     pos: centre.addPix(300, 0),
     bodyRadius: 50,
     mass: mass,
-    velPolar: [Dim.from(0.3), 90]
+    velPolar: [Dim.from(0.5), 90]
 })
 
 

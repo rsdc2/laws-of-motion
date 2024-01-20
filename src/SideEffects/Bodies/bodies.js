@@ -37,7 +37,7 @@ const star2 = new Star({
     pos: centre.addMKm([150, 0]),
     bodyRadius: 10,
     mass: 5.972e24,
-    velPolar: [Dim.fromKm(40), 90]
+    velPolar: [Dim.fromKm(400000), 90]
 })
 
 

@@ -54,7 +54,7 @@ class Dim {
      * @param {number} km 
      */
     static fromKm(km) {
-        return new Dim(km * Dim.PIXELS_PER_KM)
+        return Dim.fromMetres(km * 1000)
     }
 
     /**
@@ -71,7 +71,7 @@ class Dim {
      * @param {number} mkm 
      */
     static fromMKm(mkm) {
-        return new Dim(mkm * Dim.PIXELS_PER_MKM)
+        return Dim.fromKm(mkm * 1000000)
     }
 
     /**
@@ -83,7 +83,7 @@ class Dim {
     }
     
     get km() {
-        return this.#value * Dim.KM_PER_PIXEL
+        return this.metres / 1000
     }
 
     get metres() {
@@ -94,7 +94,7 @@ class Dim {
      * Millions of km
      */
     get mkm() {
-        return this.#value / Dim.MKM_PER_PIXEL
+        return this.km / 1000000
     }
 
     static get MKM_PER_PIXEL() {

@@ -39,22 +39,22 @@ class Dim {
         return new Dim(pixels)
     }
 
-    /**
-     * 
-     * @param {number} au Astronomical Units
-     */
-    static fromAU(au) {
-        const m = AU2M * au
-        const pixels = m * Dim.M2PIXELS
-        return new Dim(pixels)
-    }
+    // /**
+    //  * 
+    //  * @param {number} au Astronomical Units
+    //  */
+    // static fromAU(au) {
+    //     const m = AU2M * au
+    //     const pixels = m * Dim.M2PIXELS
+    //     return new Dim(pixels)
+    // }
 
     /**
      * 
      * @param {number} km 
      */
     static fromKm(km) {
-        return new Dim(km * Dim.KM2PIXELS)
+        return new Dim(km * Dim.PIXELS_PER_KM)
     }
 
     /**
@@ -63,7 +63,7 @@ class Dim {
      * @returns 
      */
     static fromMetres(metres) {
-        return new Dim(metres * Dim.M2PIXELS)
+        return new Dim(metres * Dim.PIXELS_PER_M)
     }
 
     /**
@@ -71,7 +71,7 @@ class Dim {
      * @param {number} mkm 
      */
     static fromMKm(mkm) {
-        return new Dim(mkm * Dim.MKM2PIXELS)
+        return new Dim(mkm * Dim.PIXELS_PER_MKM)
     }
 
     /**
@@ -83,30 +83,30 @@ class Dim {
     }
     
     get km() {
-        return this.#value * Dim.PIXELS2KM
+        return this.#value * Dim.KM_PER_PIXEL
     }
 
     get metres() {
-        return this.#value * Dim.PIXELS2M
+        return this.#value * Dim.M_PER_PIXEL
     }
 
     /**
      * Millions of km
      */
     get mkm() {
-        return this.#value / 10
+        return this.#value / Dim.MKM_PER_PIXEL
     }
 
-    static get MKM2PIXELS() {
-        return 1 / Dim.PIXELS2MKM
+    static get MKM_PER_PIXEL() {
+        return 1 / Dim.PIXELS_PER_MKM
     }
 
-    static get KM2PIXELS() {
-        return 1 / Dim.PIXELS2KM
+    static get KM_PER_PIXEL() {
+        return 1 / Dim.PIXELS_PER_KM
     }
         
-    static get M2PIXELS() {
-        return 1 / this.PIXELS2M
+    static get M_PER_PIXEL() {
+        return 1 / this.PIXELS_PER_M
     }
 
     /**
@@ -123,19 +123,19 @@ class Dim {
 
     static get PIXELS2AU() {
         const M2AU = 1 / AU2M
-        return Dim.PIXELS2M * M2AU
+        return Dim.PIXELS_PER_M * M2AU
     }
 
-    static get PIXELS2MKM() {
-        return 10
+    static get PIXELS_PER_MKM() {
+        return Dim.PIXELS_PER_M * 1e9
     }
 
-    static get PIXELS2KM() {
-        return Dim.PIXELS2MKM / 1e6
+    static get PIXELS_PER_KM() {
+        return Dim.PIXELS_PER_M * 1000
     }
 
-    static get PIXELS2M() {
-        return Dim.PIXELS2MKM / 1e9
+    static get PIXELS_PER_M() {
+        return 0.5 / 1e8
     }
 
     /**

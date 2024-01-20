@@ -16,25 +16,28 @@
 //     velPolar: [0.3, 90]
 // })
 
-const centre = Vector2D.from([2000, 2000])
-
+const centre = Vector2D.fromMKm([300, 300])
+const vel = Dim.fromKm(24)
+// const vel = Dim.fromKm(30)
 // const mass = 1.989e28 * 1e9
-const mass = 100
+const mass = 1.989e30
+// const mass = 0.01
+// const mass = 100
 
 const star1 = new Star({
     id: "sol",
     pos: centre,
-    bodyRadius: 10,
-    mass: mass,
-    velPolar: [Dim.from(0.5), 270]
+    bodyRadius: 50,
+    mass: 1.9885e30,
+    velPolar: [Dim.from(0), 270]
 })
 
 const star2 = new Star({
     id: "sol2",
-    pos: centre.addPix(300, 0),
-    bodyRadius: 50,
-    mass: mass,
-    velPolar: [Dim.from(0.5), 90]
+    pos: centre.addMKm([150, 0]),
+    bodyRadius: 10,
+    mass: 5.972e24,
+    velPolar: [Dim.fromKm(40), 90]
 })
 
 

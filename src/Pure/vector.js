@@ -34,21 +34,21 @@ class Vector2D {
 
     /**
      * 
-     * @param {number} x
-     * @param {number} y 
-     * @returns 
+     * @param {Vec2D} vec
+     * @returns {Vector2D}
      */
-    addPix (x, y) {
+    addPix (vec) {
+        const [x, y] = vec
         return Vector2D.from([x + this.#x.value, y + this.#y.value])
     }
 
     /**
-     * 
-     * @param {number} x 
-     * @param {number} y 
-     */
-    addMKm (x, y) {
-        return this.add(Vector2D.fromMKmVec2D([x, y]))
+     * @param {Vec2D} vec
+     * @returns {Vector2D}
+    */
+    addMKm (vec) {
+        const [x, y] = vec
+        return this.add(Vector2D.fromMKm([x, y]))
     }
 
     /**
@@ -78,13 +78,13 @@ class Vector2D {
      * @returns 
      */
     static from(vec) {
-        return Vector2D.fromPixelVec2D(vec)
+        return Vector2D.fromPix(vec)
     }
     /**
      * 
      * @param {Vec2D} vec 
      */
-    static fromPixelVec2D(vec) {
+    static fromPix(vec) {
         const [x, y] = vec
         return new Vector2D(new Dim(x), new Dim(y))
     }   
@@ -93,7 +93,7 @@ class Vector2D {
      * 
      * @param {Vec2D} vec 
      */
-    static fromMKmVec2D(vec) {
+    static fromMKm(vec) {
         const [x, y] = vec
         return new Vector2D(Dim.fromMKm(x), Dim.fromMKm(y))
     }   

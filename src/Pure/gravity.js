@@ -39,8 +39,8 @@ class Gravity {
     static g(r, M, unitVector) {
         // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
-        const s = - (G * M) / ((r.metres) ** 2)
-        console.log(s, M, r.mkm)
+        const s = - G * (M / ((r.m) ** 2))
+        // console.log(s, M, r.mkm)
 
         return unitVector.multScalar(s)
     }

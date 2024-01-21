@@ -195,6 +195,16 @@ class CelestialBody {
         return this.p.vec2D
     }
 
+    /**
+     * Period of rotation
+     * cf. https://en.wikipedia.org/wiki/Circular_motion
+     * @param {CelestialBody} body
+     * @returns {number}
+     */
+    period(body) {
+        return (2 * PI * this.rTo(body).metres) / this.vel.r.metres
+    }
+
     get pos() {
         const [x, y] = this.posVec
         return Vector2D.from([x, y])

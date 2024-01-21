@@ -32,10 +32,11 @@ const star1 = new Star({
     velPolar: [Dim.from(0), 270]
 })
 
+
 const star2 = new Star({
     id: "sol2",
     // pos: centre.addMKm([740, 0]),
-    pos: centre.addMKm([150, 0]),
+    pos: centre.addM([149.6e9, 0]),
     bodyRadius: 10,
     mass: 5.972e24,
     // mass: 1.89e27,

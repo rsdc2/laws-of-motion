@@ -15,10 +15,12 @@
 // } 
 
 const twoBody = () => {
+    console.log(star2.period(star1) / (60 * 60 * 24))
     star1.accelerateFrom([star2])
     star2.accelerateFrom([star1])
+    console.log(star2.vel.r.m)
     // console.log(star2.vel.r.km, star2.vel.θ)
-    console.log(star2.period(star1) / (60 * 60 * 24))
+    // console.log(star2.accelerationFrom([star1]).r.m)
     universe.update()
     // const [r, _] = Angle.toPolar(Vector2D.add(sol.momentum, sol2.momentum))
     // cf. https://en.wikipedia.org/wiki/Two-body_problem
@@ -46,6 +48,6 @@ const Timer = {
         // sunAndPlanets()
         // twoSuns()
         twoBody()
-    }, 500)
+    }, 1)
 }
 

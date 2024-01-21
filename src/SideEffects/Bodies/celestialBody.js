@@ -231,7 +231,7 @@ class CelestialBody {
      */
 
     posUnitRelTo (body) {
-        return this.posRelTo(body).unit
+        return this.posRelTo(body).unitM
     }
 
     get posVec() {

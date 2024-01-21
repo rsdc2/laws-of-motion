@@ -46,6 +46,16 @@ class Vector2D {
      * @param {Vec2D} vec
      * @returns {Vector2D}
     */
+    addM (vec) {
+        const [x, y] = vec
+        return this.add(Vector2D.fromM([x, y]))
+    }
+
+
+    /**
+     * @param {Vec2D} vec
+     * @returns {Vector2D}
+    */
     addMKm (vec) {
         const [x, y] = vec
         return this.add(Vector2D.fromMKm([x, y]))
@@ -88,6 +98,16 @@ class Vector2D {
         const [x, y] = vec
         return new Vector2D(new Dim(x), new Dim(y))
     }   
+
+    /**
+     * 
+     * @param {Vec2D} vec 
+     */
+    static fromM(vec) {
+        const [x, y] = vec
+        return new Vector2D(Dim.fromMetres(x), Dim.fromMetres(y))
+    }   
+
 
     /**
      * 
@@ -153,6 +173,12 @@ class Vector2D {
     get unit() {
         const magnitude = sqrt(this.#x.pow(2).value + this.#y.pow(2).value)
         return new Vector2D(this.x.div(magnitude), this.y.div(magnitude))
+    }
+
+    get unitM() {
+        const magnitude = sqrt(this.#x.m ** 2 + this.#y.m ** 2)
+        const vec = Vector2D.fromM([this.x.m / magnitude, this.y.m / magnitude])
+        return vec
     }
 
     /**

@@ -1,15 +1,15 @@
-class BigG {
-    #G = G
+// class BigG {
+//     #G = G
 
-    get forMetres() {
-        return this.#G
-    }
+//     get forMetres() {
+//         return this.#G
+//     }
 
-    get forKm() {
-        return this.#G
-    }
+//     get forKm() {
+//         return this.#G
+//     }
 
-}
+// }
 
 
 class Gravity {
@@ -39,10 +39,12 @@ class Gravity {
     static g(r, M, unitVector) {
         // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
-        const s = - G * (M / ((r.m) ** 2))
+        const s = - (G * (M / r.m ** 2))
         // console.log(s, M, r.mkm)
 
-        return unitVector.multScalar(s)
+        const g = unitVector.multScalar(s)
+        // console.log("g =", g.r.metres)
+        return g
     }
 
     // /**

@@ -25,7 +25,7 @@ class CelestialBody {
     }
 
     set acc(value) {
-        this.accVec = value.vec2D
+        this.accVec = value.vec
     }
 
     /**
@@ -117,10 +117,10 @@ class CelestialBody {
     #createCircle () {
         const elem = document.createElementNS(SVGNS, "circle")
 
-        const [cx, cy] = this.#initialParams.pos.vec2D
+        const [cx, cy] = this.#initialParams.pos.vec
         
         const [r, θ] = this.#initialParams.velPolar
-        const [vx, vy] = Angle.toVec(r, θ).vec2D
+        const [vx, vy] = Angle.toVec(r, θ).vec
 
         setAttrs(elem)(
             ["cx", String(cx)],
@@ -192,7 +192,7 @@ class CelestialBody {
 
     get pVec() {
         // cf. https://en.wikipedia.org/wiki/Momentum
-        return this.p.vec2D
+        return this.p.vec
     }
 
     /**
@@ -211,7 +211,7 @@ class CelestialBody {
     }
 
     set pos(value) {
-        this.posVec = value.vec2D 
+        this.posVec = value.vec 
     }
 
     /**
@@ -231,7 +231,7 @@ class CelestialBody {
      */
 
     posUnitRelTo (body) {
-        return this.posRelTo(body).unitM
+        return this.posRelTo(body).unit.m
     }
 
     get posVec() {
@@ -248,7 +248,7 @@ class CelestialBody {
      * @return {Vec}
      */
     posVecRelTo (body) {
-        return this.pos.subtract(body.pos).vec2D
+        return this.pos.subtract(body.pos).vec
     }
 
     /**
@@ -257,7 +257,7 @@ class CelestialBody {
      * @returns {Vec}
      */
     posUnitVecRelTo (body) {
-        return this.posRelTo(body).unit.vec2D
+        return this.posRelTo(body).unit.m.vec
     }
 
     /**
@@ -275,7 +275,7 @@ class CelestialBody {
     }
 
     set v(value) {
-        this.velVec = value.vec2D
+        this.velVec = value.vec
     }
 
     get vel() {
@@ -284,7 +284,7 @@ class CelestialBody {
     }
 
     set vel(value) {
-        this.velVec = value.vec2D
+        this.velVec = value.vec
     }
 
     get velVec() {

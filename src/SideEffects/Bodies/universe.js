@@ -89,7 +89,7 @@ class Universe {
      * Total momentum as a 2D vector
      */
     get pVec() {
-        return this.p.vec2D
+        return this.p.vec
     }
 
     /**
@@ -113,7 +113,7 @@ class Universe {
      * circle
      */
     #updateRCirclePos() {
-        const [cx, cy] = this.R.vec2D
+        const [cx, cy] = this.R.vec
         
         setAttrs(this.#rCircle)(
             ["cx", String(cx)],

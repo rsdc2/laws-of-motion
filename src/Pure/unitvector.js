@@ -12,195 +12,39 @@
 
 class UnitVector {
 
-    #x
-    #y
+    // cf. https://en.wikipedia.org/wiki/Unit_vector
+
+    #vector
     /**
      * 
-     * @param {Dim} x
-     * @param {Dim} y 
+     * @param {Vector} vector
      */
-    constructor(x, y) {
-        this.#x = x
-        this.#y = y
-    }
-    
-    /**
-     * Add to another Vector2D
-     * @param {Vector} other 
-     */
-    add (other) {
-        return new Vector(this.x.add(other.x), this.y.add(other.y))
+    constructor(vector) {
+        this.#vector = vector
     }
 
-    /**
-     * 
-     * @param {Vec} vec
-     * @returns {Vector}
-     */
-    addPix (vec) {
-        const [x, y] = vec
-        return Vector.from([x + this.#x.value, y + this.#y.value])
+    get pix() {
+        const r = sqrt(this.#x.pix + this.#y.pix)
+        return Vector.fromPix([this.#x.pix / r, this.#y.pix / r])
     }
 
-    /**
-     * @param {Vec} vec
-     * @returns {Vector}
-    */
-    addM (vec) {
-        const [x, y] = vec
-        return this.add(Vector.fromM([x, y]))
+    get m() {
+        const r = sqrt(this.#x.m ** 2 + this.#y.m ** 2)
+        return Vector.fromM([this.#x.m / r, this.#y.m / r])
     }
 
-
-    /**
-     * @param {Vec} vec
-     * @returns {Vector}
-    */
-    addMKm (vec) {
-        const [x, y] = vec
-        return this.add(Vector.fromMKm([x, y]))
+    get #x() {
+        return this.#vector.x
     }
 
-    /**
-     * 
-     * @param {Vec} other 
-     */
-
-    addMKmVec2D (other) {
-        const [x, y] = other
-        return new Vector(
-            Dim.fromMKm(x),
-            Dim.fromMKm(y)
-        )
-    }
-
-    /**
-     * Divide the vector by a scalar
-     * @param {number} s 
-     */
-    divScalar (s) {
-        return new Vector(this.x.div(s), this.y.div(s))
-    }
-
-    /**
-     * Return a new Vector2D from a pixel Vec2D
-     * @param {Vec} vec 
-     * @returns 
-     */
-    static from(vec) {
-        return Vector.fromPix(vec)
-    }
-    /**
-     * 
-     * @param {Vec} vec 
-     */
-    static fromPix(vec) {
-        const [x, y] = vec
-        return new Vector(new Dim(x), new Dim(y))
-    }   
-
-    /**
-     * 
-     * @param {Vec} vec 
-     */
-    static fromM(vec) {
-        const [x, y] = vec
-        return new Vector(Dim.fromMetres(x), Dim.fromMetres(y))
-    }   
-
-
-    /**
-     * 
-     * @param {Vec} vec 
-     */
-    static fromMKm(vec) {
-        const [x, y] = vec
-        return new Vector(Dim.fromMKm(x), Dim.fromMKm(y))
-    }   
-
-
-    /**
-     * Multiply the vector by a scalar
-     * @param {number} s 
-     */
-    multScalar (s) {
-        return new Vector(this.x.mult(s), this.#y.mult(s))
-    }
-
-    /**
-     * 
-     * Polar representation of the vector
-     */
-    get polar() {
-        return Angle.toPolar(this)
-    }
-
-    /**
-     * Magnitude of the vector
-     */
-    get r() {
-        const [r, _] = this.polar
-        return r
-    }   
-
-    /**
-     * Subtract another vector from this one
-     * @param {Vector} other 
-     */
-    subtract (other) {
-        return new Vector(this.x.subtract(other.x), this.y.subtract(other.y))
-    }
-
-    /**
-     * Sum an array of Vector2D
-     * @param {Array.<Vector>} vecs 
-     */
-
-    static sum(vecs) {
-        return vecs.reduce( (vecSum, vec) => vecSum.add(vec) )
-    }
-
-    /**
-     * Convert a vector into a unit vector
-     * @param {Vector} vec
-     * @returns {Vector} 
-     */
-    static toUnit (vec) {
-        // cf. https://www.cuemath.com/calculus/unit-vector/ 
-        return vec.unit
-    }
-
-    get unit() {
-        const magnitude = sqrt(this.#x.pow(2).value + this.#y.pow(2).value)
-        return new Vector(this.x.div(magnitude), this.y.div(magnitude))
-    }
-
-    get unitM() {
-        const magnitude = sqrt(this.#x.m ** 2 + this.#y.m ** 2)
-        const vec = Vector.fromM([this.x.m / magnitude, this.y.m / magnitude])
-        return vec
-    }
-
-    /**
-     * Vector value in pixels
-     */
-    get vec2D() {
-        return /** @type {Vec}*/ ([this.x.value, this.y.value])
-    }
-    
-    get x() {
-        return this.#x
-    }
-
-    get y() {
-        return this.#y
+    get #y() {
+        return this.#vector.y
     }
  
     /**
      * The angle of the vector in degrees
      */
     get θ() {
-        const [_, θ] = this.polar
-        return θ
+        return this.#vector.θ
     }
 }

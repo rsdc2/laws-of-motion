@@ -163,28 +163,20 @@ class Vector {
     /**
      * Convert a vector into a unit vector
      * @param {Vector} vec
-     * @returns {Vector} 
+     * @returns {UnitVector} 
      */
     static toUnit (vec) {
-        // cf. https://www.cuemath.com/calculus/unit-vector/ 
         return vec.unit
     }
 
     get unit() {
-        const magnitude = sqrt(this.#x.pow(2).value + this.#y.pow(2).value)
-        return new Vector(this.x.div(magnitude), this.y.div(magnitude))
-    }
-
-    get unitM() {
-        const magnitude = sqrt(this.#x.m ** 2 + this.#y.m ** 2)
-        const vec = Vector.fromM([this.x.m / magnitude, this.y.m / magnitude])
-        return vec
+        return new UnitVector(this)
     }
 
     /**
      * Vector value in pixels
      */
-    get vec2D() {
+    get vec() {
         return /** @type {Vec}*/ ([this.x.value, this.y.value])
     }
     

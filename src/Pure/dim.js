@@ -113,6 +113,10 @@ class Dim {
         return new Dim(this.value * scalar)
     }
 
+    get pix() {
+        return this.#value
+    }
+
     get pixels() {
         return this.#value
     }

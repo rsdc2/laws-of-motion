@@ -7,10 +7,10 @@ const Motion = {
      * (pos), an initial velocity (vel) and 
      * an acceleration
      * @param {number} t
-     * @param {Vec2D} pos
-     * @param {Vec2D} vel 
-     * @param {Vec2D} acc
-     * @return {Vec2D}
+     * @param {Vec} pos
+     * @param {Vec} vel 
+     * @param {Vec} acc
+     * @return {Vec}
      */
     positionAtT: (t, pos, vel, acc) => {
         // cf. https://en.wikipedia.org/wiki/Force
@@ -28,10 +28,10 @@ const Motion = {
      * based on an initial starting position
      * (pos), an initial velocity (vel) and 
      * an acceleration
-     * @param {Vector2D} pos initial position
-     * @param {Vector2D} vel initial velocity
-     * @param {Vector2D} acc acceleration
-     * @return {[Vector2D, Vector2D, Vector2D]}
+     * @param {Vector} pos initial position
+     * @param {Vector} vel initial velocity
+     * @param {Vector} acc acceleration
+     * @return {[Vector, Vector, Vector]}
      */
     position: (pos, vel, acc) => {
         // cf. https://en.wikipedia.org/wiki/Force

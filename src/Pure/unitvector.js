@@ -10,7 +10,7 @@
  */
 
 
-class Vector {
+class UnitVector {
 
     #x
     #y

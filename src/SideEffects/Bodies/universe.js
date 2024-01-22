@@ -78,7 +78,7 @@ class Universe {
 
     get p() {
         const ps = this.#bodies.map( body => body.p )
-        return Vector2D.sum(ps)
+        return Vector.sum(ps)
     }
 
     get pPolar() {
@@ -97,7 +97,7 @@ class Universe {
      */
     get R() {
         const mPositions = this.#bodies.map (body => body.mpos)
-        const sumMPositions = Vector2D.sum(mPositions)
+        const sumMPositions = Vector.sum(mPositions)
         return sumMPositions.divScalar(this.M)   
     }
 

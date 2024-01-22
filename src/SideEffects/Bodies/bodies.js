@@ -16,7 +16,7 @@
 //     velPolar: [0.3, 90]
 // })
 
-const centre = Vector2D.fromMKm([300, 300])
+const centre = Vector.fromMKm([300, 300])
 const vel = Dim.fromKm(24)
 // const vel = Dim.fromKm(30)
 // const mass = 1.989e28 * 1e9

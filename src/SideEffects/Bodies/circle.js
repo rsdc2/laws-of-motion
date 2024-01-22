@@ -6,14 +6,14 @@ const Circle = {
     
     /**
      * 
-     * @param {Vec2D} acc 
+     * @param {Vec} acc 
      * @param {SVGCircleElement} circle 
      */
     accelerate: (acc, circle) => {
         const pos = Circle.pos(circle)
         const vel = Circle.vel(circle)
         
-        const [pos_, vel_, acc_] = Motion.position(Vector2D.from(pos), Vector2D.from(vel), Vector2D.from(acc))
+        const [pos_, vel_, acc_] = Motion.position(Vector.from(pos), Vector.from(vel), Vector.from(acc))
 
         Circle.setPos(circle, pos_.vec2D)
         Circle.setVel(circle, vel_.vec2D)
@@ -23,8 +23,8 @@ const Circle = {
     /**
      * Set initial velocity and position
      * @param {SVGCircleElement} circle 
-     * @param {Vec2D} pos initial position
-     * @param {Vec2D} vel initial velocity
+     * @param {Vec} pos initial position
+     * @param {Vec} vel initial velocity
      * @returns {SVGCircleElement}
      */
     start: (circle, pos, vel) => {
@@ -96,7 +96,7 @@ const Circle = {
     /**
      * Set the acceleration vector of a circle element
      * @param {SVGCircleElement} circle 
-     * @param {Vec2D} acc
+     * @param {Vec} acc
      * @returns {SVGCircleElement}
      */
     setAcc: (circle, acc) => {
@@ -118,7 +118,7 @@ const Circle = {
     /**
      * Set the cx and cy coordinates of a circle element
      * @param {SVGCircleElement} circle 
-     * @param {Vec2D} pos
+     * @param {Vec} pos
      * @returns {SVGCircleElement}
      */
     setPos: (circle, pos) => {
@@ -131,7 +131,7 @@ const Circle = {
     /**
      * Set the velocity vector of a circle element
      * @param {SVGCircleElement} circle 
-     * @param {Vec2D} vxy
+     * @param {Vec} vxy
      * @returns {SVGCircleElement}
      */
     setVel: (circle, vxy) => {
@@ -196,7 +196,7 @@ const Circle = {
     /**
      * Get the velocity of a body as a 2D vector 
      * @param {SVGCircleElement} body 
-     * @returns {Vec2D}
+     * @returns {Vec}
      */
     acc: (body) => {
 
@@ -230,7 +230,7 @@ const Circle = {
     /**
      * Get the velocity of a body as a 2D vector 
      * @param {SVGCircleElement} body 
-     * @returns {Vec2D}
+     * @returns {Vec}
      */
     vel: (body) => {
 
@@ -243,7 +243,7 @@ const Circle = {
     /**
      * 
      * @param {SVGCircleElement} body 
-     * @returns {Vec2D}
+     * @returns {Vec}
      */
     pos: (body) => [Circle.numAttr(body)("cx"), Circle.numAttr(body)("cy")],
 

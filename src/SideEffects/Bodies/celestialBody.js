@@ -21,7 +21,7 @@ class CelestialBody {
      */
     get acc() {
         const [x, y] = this.accVec
-        return new Vector2D(Dim.from(x), Dim.from(y))
+        return new Vector(Dim.from(x), Dim.from(y))
     }
 
     set acc(value) {
@@ -52,7 +52,7 @@ class CelestialBody {
 
     /**
      * 
-     * @param {Vector2D} acc 
+     * @param {Vector} acc 
      */
     accelerate (acc) {
         const [pos, vel, _] = Motion.position(this.pos, this.vel, acc)
@@ -63,10 +63,10 @@ class CelestialBody {
 
     /**
      * Apply an acceleration
-     * @param {Vec2D} acc 
+     * @param {Vec} acc 
      */
     accelerateVec (acc) {        
-        const [pos, vel, _] = Motion.position(this.pos, this.vel, Vector2D.from(acc))
+        const [pos, vel, _] = Motion.position(this.pos, this.vel, Vector.from(acc))
         this.pos = pos
         this.vel = vel
         this.accVec = acc
@@ -86,10 +86,10 @@ class CelestialBody {
      * Obtain sum of gravitational accelerations from an 
      * array of bodies
      * @param {Array.<CelestialBody>} bodies 
-     * @return {Vector2D}
+     * @return {Vector}
      */
     accelerationFrom (bodies) {
-        const acc = Vector2D.fromPix([0, 0])
+        const acc = Vector.fromPix([0, 0])
         const gs = bodies.map( (body) => this.gFrom(body) )
         return gs.reduce( (acc, g) => acc.add(g), acc)
     }   
@@ -149,7 +149,7 @@ class CelestialBody {
      * Calculate the gravitational force
      * exerted by another body
      * @param {CelestialBody} body 
-     * @returns {Vector2D}
+     * @returns {Vector}
      */
     gFrom(body) {
         return Gravity.g(
@@ -207,7 +207,7 @@ class CelestialBody {
 
     get pos() {
         const [x, y] = this.posVec
-        return Vector2D.from([x, y])
+        return Vector.from([x, y])
     }
 
     set pos(value) {
@@ -217,7 +217,7 @@ class CelestialBody {
     /**
      * Position vector relative to another body
      * @param {CelestialBody} body 
-     * @returns {Vector2D}
+     * @returns {Vector}
      */
     posRelTo (body) {
         return this.pos.subtract(body.pos)
@@ -227,7 +227,7 @@ class CelestialBody {
      * Return the unit vector of position 
      * relative to another body
      * @param {CelestialBody} body
-     * @returns {Vector2D} 
+     * @returns {Vector} 
      */
 
     posUnitRelTo (body) {
@@ -245,7 +245,7 @@ class CelestialBody {
     /**
      * Position vector relative to another body
      * @param {CelestialBody} body 
-     * @return {Vec2D}
+     * @return {Vec}
      */
     posVecRelTo (body) {
         return this.pos.subtract(body.pos).vec2D
@@ -254,7 +254,7 @@ class CelestialBody {
     /**
      * 
      * @param {CelestialBody} body 
-     * @returns {Vec2D}
+     * @returns {Vec}
      */
     posUnitVecRelTo (body) {
         return this.posRelTo(body).unit.vec2D
@@ -280,7 +280,7 @@ class CelestialBody {
 
     get vel() {
         const [x, y] = this.velVec
-        return new Vector2D(Dim.from(x), Dim.from(y))
+        return new Vector(Dim.from(x), Dim.from(y))
     }
 
     set vel(value) {

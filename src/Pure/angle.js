@@ -54,19 +54,19 @@ class Angle {
      * return a 2D vector
      * @param {Dim} r magnitude
      * @param {number} θ angle
-     * @returns {Vector2D} a 2D vector
+     * @returns {Vector} a 2D vector
      */
     static toVec = (r, θ) => {
         const x = r.pixels * cos(Angle.toRad(θ))
         const y = r.pixels * sin(Angle.toRad(θ))
 
-        return Vector2D.from([x, y])
+        return Vector.from([x, y])
     }
 
     /**
      * Take a 2D vector, and return a magnitude
      * and an angle in degrees
-     * @param {Vector2D} vec a 2D vector
+     * @param {Vector} vec a 2D vector
      * @returns {[Dim, number]} a magnitude and 
      * an angle in degrees
      */

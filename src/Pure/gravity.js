@@ -33,8 +33,8 @@ class Gravity {
      * 
      * @param {Dim} r distance as a Dim
      * @param {number} M mass of b2 in kg
-     * @param {Vector2D} unitVector unit vector from b1 to b2
-     * @return {Vector2D} 
+     * @param {Vector} unitVector unit vector from b1 to b2
+     * @return {Vector} 
      */
     static g(r, M, unitVector) {
         // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration

@@ -33,16 +33,16 @@ class Gravity {
      * 
      * @param {Dim} r distance as a Dim
      * @param {number} M mass of b2 in kg
-     * @param {Vector} unitVector unit vector from b1 to b2
+     * @param {UnitVector} unit unit vector from b1 to b2
      * @return {Vector} 
      */
-    static g(r, M, unitVector) {
+    static g(r, M, unit) {
         // cf. https://en.wikipedia.org/wiki/Gravitational_acceleration
 
         const s = - (G * (M / r.m ** 2))
         // console.log(s, M, r.mkm)
 
-        const g = unitVector.multScalar(s)
+        const g = unit.m.multScalar(s)
         // console.log("g =", g.r.metres)
         return g
     }

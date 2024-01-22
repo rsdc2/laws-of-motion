@@ -227,11 +227,11 @@ class CelestialBody {
      * Return the unit vector of position 
      * relative to another body
      * @param {CelestialBody} body
-     * @returns {Vector} 
+     * @returns {UnitVector} 
      */
 
     posUnitRelTo (body) {
-        return this.posRelTo(body).unit.m
+        return this.posRelTo(body).unit
     }
 
     get posVec() {
@@ -249,15 +249,6 @@ class CelestialBody {
      */
     posVecRelTo (body) {
         return this.pos.subtract(body.pos).vec
-    }
-
-    /**
-     * 
-     * @param {CelestialBody} body 
-     * @returns {Vec}
-     */
-    posUnitVecRelTo (body) {
-        return this.posRelTo(body).unit.m.vec
     }
 
     /**

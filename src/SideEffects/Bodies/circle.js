@@ -101,8 +101,8 @@ const Circle = {
      */
     setAcc: (circle, acc) => {
         const [ax, ay] = acc
-        const ax_ = ax * (TIMEMULT ** 2)
-        const ay_ = ay * (TIMEMULT ** 2)
+        const ax_ = ax 
+        const ay_ = ay 
         circle.setAttribute('ax', String(ax_))
         circle.setAttribute('ay', String(ay_))
         return circle
@@ -138,8 +138,8 @@ const Circle = {
      */
     setVel: (circle, vxy) => {
         const [vx, vy] = vxy
-        const vx_ = vx * TIMEMULT
-        const vy_ = vy * TIMEMULT
+        const vx_ = vx 
+        const vy_ = vy 
         circle.setAttribute('vx', String(vx_))
         circle.setAttribute('vy', String(vy_))
         return circle
@@ -203,7 +203,7 @@ const Circle = {
         const ax = Circle.numAttr(body)("ax")
         const ay = Circle.numAttr(body)("ay")
         
-        return [ax / (TIMEMULT ** 2), ay / (TIMEMULT ** 2)]
+        return [ax, ay]
     },
 
     /**
@@ -237,7 +237,7 @@ const Circle = {
         const vx = Circle.numAttr(body)("vx")
         const vy = Circle.numAttr(body)("vy")
         
-        return [vx / TIMEMULT, vy / TIMEMULT]
+        return [vx, vy]
     },
 
     /**

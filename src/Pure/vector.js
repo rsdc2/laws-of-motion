@@ -23,6 +23,14 @@ class Vector {
         this.#x = x
         this.#y = y
     }
+
+    get actual1() {
+        return Vector.from(this.vec).divScalar(TIMEMULT)
+    }
+
+    get actual2() {
+        return Vector.from(this.vec).divScalar(TIMEMULT ** 2)
+    }
     
     /**
      * Add to another Vector2D

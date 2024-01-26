@@ -99,7 +99,9 @@ class CelestialBody {
     accelerationFrom (bodies) {
         const acc = Vector.fromPix([0, 0])
         const gs = bodies.map( (body) => this.gFrom(body) )
-        return gs.reduce( (acc, g) => acc.add(g), acc)
+
+        const gsTimeMult = gs.map( g => g.multScalar(TIMEMULT ** 2) )
+        return gsTimeMult.reduce( (acc, g) => acc.add(g), acc)
     }   
 
     /**
@@ -215,6 +217,15 @@ class CelestialBody {
      */
     period(body) {
         return (2 * PI * this.rTo(body).metres) / this.vel.r.metres
+    }
+
+    /**
+     * 
+     * @param {CelestialBody} body 
+     * @returns 
+     */
+    periodActual(body) {
+        return this.period(body) * TIMEMULT
     }
 
     get pos() {

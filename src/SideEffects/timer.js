@@ -15,10 +15,11 @@
 // } 
 
 const twoBody = () => {
-    console.log(star2.period(star1) / (60 * 60 * 24))
+    // console.log(star2.periodActual(star1) / (60 * 60 * 24))
     star1.accelerateFrom([star2])
     star2.accelerateFrom([star1])
-    console.log(star2.vel.r.m)
+    console.log(star2.vel.actual1.r.km)
+    // console.log(star2.acc.actual2.r.m)
     // console.log(star2.vel.r.km, star2.vel.θ)
     // console.log(star2.accelerationFrom([star1]).r.m)
     universe.update()
@@ -48,6 +49,6 @@ const Timer = {
         // sunAndPlanets()
         // twoSuns()
         twoBody()
-    }, 1)
+    }, 100)
 }
 

@@ -55,7 +55,11 @@ class CelestialBody {
      * @param {Vector} acc 
      */
     accelerate (acc) {
-        const [pos, vel, _] = Motion.position(this.pos, this.vel, acc)
+        const [pos, vel, _] = Motion.position(
+            this.pos, 
+            this.vel, 
+            acc
+        )
         this.pos = pos
         this.vel = vel
         this.acc = acc

@@ -66,7 +66,11 @@ class CelestialBody {
      * @param {Vec} acc 
      */
     accelerateVec (acc) {        
-        const [pos, vel, _] = Motion.position(this.pos, this.vel, Vector.from(acc))
+        const [pos, vel, _] = Motion.position(
+            this.pos, 
+            this.vel, 
+            Vector.from(acc)
+        )
         this.pos = pos
         this.vel = vel
         this.accVec = acc
@@ -120,7 +124,11 @@ class CelestialBody {
         const [cx, cy] = this.#initialParams.pos.vec
         
         const [r, θ] = this.#initialParams.velPolar
-        const [vx, vy] = Angle.toVec(r, θ).vec
+
+        // Multiply by the time multiplier
+        const r_ = r.mult(TIMEMULT)
+
+        const [vx, vy] = Angle.toVec(r_, θ).vec
 
         setAttrs(elem)(
             ["cx", String(cx)],

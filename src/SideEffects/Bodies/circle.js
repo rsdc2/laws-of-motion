@@ -101,8 +101,10 @@ const Circle = {
      */
     setAcc: (circle, acc) => {
         const [ax, ay] = acc
-        circle.setAttribute('ax', String(ax))
-        circle.setAttribute('ay', String(ay))
+        const ax_ = ax * (TIMEMULT ** 2)
+        const ay_ = ay * (TIMEMULT ** 2)
+        circle.setAttribute('ax', String(ax_))
+        circle.setAttribute('ay', String(ay_))
         return circle
     },
     
@@ -136,8 +138,10 @@ const Circle = {
      */
     setVel: (circle, vxy) => {
         const [vx, vy] = vxy
-        circle.setAttribute('vx', String(vx))
-        circle.setAttribute('vy', String(vy))
+        const vx_ = vx * TIMEMULT
+        const vy_ = vy * TIMEMULT
+        circle.setAttribute('vx', String(vx_))
+        circle.setAttribute('vy', String(vy_))
         return circle
     },
 
@@ -165,10 +169,6 @@ const Circle = {
         circle.setAttribute('cx', String(x))
         return circle
     },
-
-
-
-
 
     /**
      * Set the cx and cy coordinates of a circle element
@@ -203,7 +203,7 @@ const Circle = {
         const ax = Circle.numAttr(body)("ax")
         const ay = Circle.numAttr(body)("ay")
         
-        return [ax, ay]
+        return [ax / (TIMEMULT ** 2), ay / (TIMEMULT ** 2)]
     },
 
     /**
@@ -237,7 +237,7 @@ const Circle = {
         const vx = Circle.numAttr(body)("vx")
         const vy = Circle.numAttr(body)("vy")
         
-        return [vx, vy]
+        return [vx / TIMEMULT, vy / TIMEMULT]
     },
 
     /**

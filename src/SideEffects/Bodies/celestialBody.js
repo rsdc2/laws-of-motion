@@ -36,7 +36,7 @@ class CelestialBody {
     }
 
     /**
-     * Set the acceleration of the body
+     * Set the acceleration of the circle
      */
     set accVec(value) {
         Circle.setAcc(this.#circle, value)

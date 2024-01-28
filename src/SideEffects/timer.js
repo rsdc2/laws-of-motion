@@ -16,9 +16,11 @@
 
 const twoBody = () => {
     // console.log(star2.periodActual(star1) / (60 * 60 * 24))
-    star1.accelerateFrom([star2])
-    star2.accelerateFrom([star1])
-    console.log(star2.vel.actual1.r.km)
+    sun.accelerateFrom([earth, moon])
+    earth.accelerateFrom([sun, moon])
+    moon.accelerateFrom([earth, sun])
+    console.log(earth.vel.actual1.r.km, earth.posRelTo(sun).r.mkm)
+    // console.log(moon.vel.actual1.r.km, moon.posRelTo(earth).r.mkm)
     // console.log(star2.acc.actual2.r.m)
     // console.log(star2.vel.r.km, star2.vel.θ)
     // console.log(star2.accelerationFrom([star1]).r.m)
@@ -49,6 +51,6 @@ const Timer = {
         // sunAndPlanets()
         // twoSuns()
         twoBody()
-    }, 100)
+    }, 50)
 }
 

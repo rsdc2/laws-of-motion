@@ -17,6 +17,8 @@
 // })
 
 const centre = Vector.fromMKm([300, 300])
+const earthPos = centre.addM([147.098450e9, 0])
+const moonPos = earthPos.addM([362600000, 0])
 const vel = Dim.fromKm(24)
 // const vel = Dim.fromKm(30)
 // const mass = 1.989e28 * 1e9
@@ -24,7 +26,7 @@ const mass = 1.989e30
 // const mass = 0.01
 // const mass = 100
 
-const star1 = new Star({
+const sun = new Star({
     id: "sol",
     pos: centre,
     bodyRadius: 50,
@@ -33,17 +35,25 @@ const star1 = new Star({
 })
 
 
-const star2 = new Star({
-    id: "sol2",
-    // pos: centre.addMKm([740, 0]),
-    pos: centre.addM([149.6e9, 0]),
+const earth = new Planet({
+    id: "earth",
+    pos: earthPos,
     bodyRadius: 10,
-    mass: 5.972e24,
-    // mass: 1.89e27,
-    // velPolar: [Dim.fromKm(13), 89]
-    velPolar: [Dim.fromKm(30), 90]
+    mass: 5.972168e24,
+    velPolar: [Dim.fromKm(30.29), 90]
 })
 
+/**
+ * https://en.wikipedia.org/wiki/Moon
+ */
+
+const moon = new Moon({
+    id: "moon",
+    pos: moonPos,
+    bodyRadius: 10,
+    mass: 7.342e22,
+    velPolar: [Dim.fromKm(30), 90]
+})
 
 // const jupiter = new Planet({
 //     id: "jupiter",
@@ -80,7 +90,7 @@ const star2 = new Star({
 
 const universe = new Universe(
     svg("#space"), 
-    [star1, star2]
+    [sun, earth, moon]
 )
 
 // const universe = new Universe(

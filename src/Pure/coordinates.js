@@ -1,3 +1,6 @@
+import { Angle } from "./angle.js"
+import { cos, sin } from "./imports.js"
+
 /**
  * Convert polar coortdinates to x, y values
  * cf. https://en.wikipedia.org/wiki/Polar_coordinate_system#Converting_between_polar_and_Cartesian_coordinates
@@ -5,7 +8,7 @@
  * @param {("degrees"|"radians")} angleUnit 
  */
 
-const cart = 
+export const cart = 
     /**
     * @param {("degrees"|"radians")} angleUnit 
     */
@@ -31,6 +34,6 @@ const cart =
     return [r * cos(rad), r * sin(rad)]
 }
 
-const cartDeg = cart("degrees")
+export const cartDeg = cart("degrees")
 
-const cartRad = cart("radians")
+export const cartRad = cart("radians")

@@ -1,3 +1,6 @@
+import { sqrt } from "./imports.js"
+import { Vector } from "./vector.js"
+
 
 /**
  * Class for handling 2D unit vectors.
@@ -7,7 +10,7 @@
  */
 
 
-class UnitVector {
+export class UnitVector {
 
     // cf. https://en.wikipedia.org/wiki/Unit_vector
     // https://eng.libretexts.org/Bookshelves/Mechanical_Engineering/Engineering_Statics%3A_Open_and_Interactive_(Baker_and_Haynes)/02%3A_Forces_and_Other_Vectors/2.05%3A_Unit_Vectors

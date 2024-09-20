@@ -5,14 +5,14 @@
  * @returns {T}
  */
 
-const identity = (val) => val
+export const identity = (val) => val
 
 /**
  * @template T
  * @param  {...T} arr 
  * @returns 
  */
-const includes = 
+export const includes = 
     (...arr) => 
     (/** @type {T} */ item) => {
 
@@ -25,7 +25,7 @@ const includes =
  * @param {string} s
  * @returns {Array.<string>}
  */
-const strToArr = (s) => {
+export const strToArr = (s) => {
     let arr = []
 
     for (let i = 0; i < s.length; i++) {
@@ -41,4 +41,4 @@ const strToArr = (s) => {
  * @returns 
  */
 
-const toUpper = (s) => s.toUpperCase() 
+export const toUpper = (s) => s.toUpperCase() 

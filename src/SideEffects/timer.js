@@ -1,4 +1,4 @@
-
+import { sun, earth, moon, universe } from "./Bodies/bodies.js"
 
 // const sunAndPlanets = () => {
 //     const [x1, y1] = Vector2D.subtract(SOL.pos, BodyT.pos(pluto())) // current relative position
@@ -14,7 +14,7 @@
 
 // } 
 
-const twoBody = () => {
+export const twoBody = () => {
     // console.log(star2.periodActual(star1) / (60 * 60 * 24))
     sun.accelerateFrom([earth, moon])
     earth.accelerateFrom([sun, moon])
@@ -46,7 +46,7 @@ const twoBody = () => {
 //     // console.log(sol.rTo(jupiter), sol.rTo(sol2))
 // }
 
-const Timer = {
+export const Timer = {
     start: () => setInterval( () => {
         // sunAndPlanets()
         // twoSuns()

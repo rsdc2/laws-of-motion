@@ -1,4 +1,4 @@
-class Dim {
+export class Dim {
 
     #value // value in pixels
     

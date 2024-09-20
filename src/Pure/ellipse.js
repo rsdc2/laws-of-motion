@@ -1,6 +1,7 @@
+import { sin, sqrt, cos } from "./imports.js"
 
 
-const Ellipse = {
+export const Ellipse = {
 
     /**
      * 

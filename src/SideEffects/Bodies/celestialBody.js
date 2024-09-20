@@ -1,15 +1,27 @@
 
+import { setAttrs, addClasses } from "../General/elementAttributes.js";
+import { Circle } from "./circle.js";
+import { Vector } from "../../Pure/vector.js";
+import { Dim } from "../../Pure/dim.js";
+import { Gravity } from "../../Pure/gravity.js";
+import { Motion } from "../../Pure/motion.js";
+import { PI } from "../../Pure/imports.js";
+import { SVGNS } from "../../Pure/namespaces.js";
+import { TIMEMULT } from "../../Pure/constants.js";
+import { Angle } from "../../Pure/angle.js";
+import { UnitVector } from "../../Pure/unitvector.js";
+
 /**
  * Services for a general celestial body, incl.
  * planets, stars and moons
  */
-class CelestialBody {
+export class CelestialBody {
     #initialParams
     #circle
 
     /**
      * 
-     * @param {InitialBodyParams} params body parameters
+     * @param {import("../../Pure/typedefs.js").InitialBodyParams} params body parameters
      */
     constructor (params) {
         this.#initialParams = params
@@ -67,7 +79,7 @@ class CelestialBody {
 
     /**
      * Apply an acceleration
-     * @param {Vec} acc 
+     * @param {import("../../Pure/typedefs.js").Vec} acc 
      */
     accelerateVec (acc) {        
         const [pos, vel, _] = Motion.position(
@@ -268,7 +280,7 @@ class CelestialBody {
     /**
      * Position vector relative to another body
      * @param {CelestialBody} body 
-     * @return {Vec}
+     * @return {import("../../Pure/typedefs.js").Vec}
      */
     posVecRelTo (body) {
         return this.pos.subtract(body.pos).vec

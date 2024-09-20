@@ -1,12 +1,18 @@
+import { setAttrs, addClasses } from "../General/elementAttributes.js"
+import { Motion } from "../../Pure/motion.js"
+import { Vector } from "../../Pure/vector.js"
+import { SVGNS } from "../../Pure/namespaces.js"
+import { Angle } from "../../Pure/angle.js"
+
 /**
  * Functions for interacting with SVG circle elements
  * @namespace
  */
-const Circle = {
+export const Circle = {
     
     /**
      * 
-     * @param {Vec} acc 
+     * @param {import("../../Pure/typedefs.js").Vec} acc 
      * @param {SVGCircleElement} circle 
      */
     accelerate: (acc, circle) => {
@@ -23,8 +29,8 @@ const Circle = {
     /**
      * Set initial velocity and position
      * @param {SVGCircleElement} circle 
-     * @param {Vec} pos initial position
-     * @param {Vec} vel initial velocity
+     * @param {import("../../Pure/typedefs.js").Vec} pos initial position
+     * @param {import("../../Pure/typedefs.js").Vec} vel initial velocity
      * @returns {SVGCircleElement}
      */
     start: (circle, pos, vel) => {
@@ -37,7 +43,7 @@ const Circle = {
      * Set initial velocity and position with 
      * velocity in polar terms
      * @param {SVGCircleElement} circle 
-     * @param {InitialBodyParams} params
+     * @param {import("../../Pure/typedefs.js").InitialBodyParams} params
      * @returns {SVGCircleElement}
      */
     startPolar: (circle, params) => {
@@ -61,7 +67,7 @@ const Circle = {
     /**
      * Create a new circle element with relevant 
      * properties for a body
-     * @param {InitialBodyParams} params
+     * @param {import("../../Pure/typedefs.js").InitialBodyParams} params
      * @returns {SVGCircleElement}
      */
     new: (params) => {
@@ -96,7 +102,7 @@ const Circle = {
     /**
      * Set the acceleration vector of a circle element
      * @param {SVGCircleElement} circle 
-     * @param {Vec} acc
+     * @param {import("../../Pure/typedefs.js").Vec} acc
      * @returns {SVGCircleElement}
      */
     setAcc: (circle, acc) => {
@@ -120,7 +126,7 @@ const Circle = {
     /**
      * Set the cx and cy coordinates of a circle element
      * @param {SVGCircleElement} circle 
-     * @param {Vec} pos
+     * @param {import("../../Pure/typedefs.js").Vec} pos
      * @returns {SVGCircleElement}
      */
     setPos: (circle, pos) => {
@@ -133,7 +139,7 @@ const Circle = {
     /**
      * Set the velocity vector of a circle element
      * @param {SVGCircleElement} circle 
-     * @param {Vec} vxy
+     * @param {import("../../Pure/typedefs.js").Vec} vxy
      * @returns {SVGCircleElement}
      */
     setVel: (circle, vxy) => {
@@ -148,7 +154,7 @@ const Circle = {
     /**
      * Set the velocity vector of a circle element in polar terms
      * @param {SVGCircleElement} circle 
-     * @param {PolarVec} polar
+     * @param {import("../../Pure/typedefs.js").PolarVec} polar
      * @returns {SVGCircleElement}
      */
     setVelPolar: (circle, polar) => {
@@ -196,7 +202,7 @@ const Circle = {
     /**
      * Get the velocity of a body as a 2D vector 
      * @param {SVGCircleElement} body 
-     * @returns {Vec}
+     * @returns {import("../../Pure/typedefs.js").Vec}
      */
     acc: (body) => {
 
@@ -230,7 +236,7 @@ const Circle = {
     /**
      * Get the velocity of a body as a 2D vector 
      * @param {SVGCircleElement} body 
-     * @returns {Vec}
+     * @returns {import("../../Pure/typedefs.js").Vec}
      */
     vel: (body) => {
 
@@ -243,7 +249,7 @@ const Circle = {
     /**
      * 
      * @param {SVGCircleElement} body 
-     * @returns {Vec}
+     * @returns {import("../../Pure/typedefs.js").Vec}
      */
     pos: (body) => [Circle.numAttr(body)("cx"), Circle.numAttr(body)("cy")],
 

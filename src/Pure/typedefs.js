@@ -1,3 +1,5 @@
+import { Dim } from "./dim.js";
+import { Vector } from "./vector.js";
 
 /***
  * @typedef {[number, number]} Vec

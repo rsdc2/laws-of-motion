@@ -1,5 +1,9 @@
+import { Dim } from "./dim.js"
+import { PI } from "./imports.js"
+import { Vector } from "./vector.js"
+import { cos, sin, atan2, sqrt} from "./imports.js"
 
-class Angle {
+export class Angle {
 
     #angle
     /**

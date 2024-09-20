@@ -1,9 +1,13 @@
+import { setAttrs, addClasses } from "../General/elementAttributes.js"
+import { CelestialBody } from "./celestialBody.js"
+import { Vector } from "../../Pure/vector.js"
+import { SVGNS } from "../../Pure/namespaces.js"
 
 /**
  * Services for all the bodies in a closed system
  */
 
-class Universe {
+export class Universe {
     #elem 
     #bodies
     #rCircle
@@ -54,6 +58,7 @@ class Universe {
      */
     #createRCircle () {
         const elem = document.createElementNS(SVGNS, "circle")
+
         setAttrs(elem)(
             ["id", "R"]
         )

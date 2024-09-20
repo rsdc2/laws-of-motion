@@ -1,4 +1,10 @@
-
+import { Universe } from "./universe.js"
+import { Star } from "./star.js"
+import { Planet } from "./planet.js"
+import { Moon } from "./moon.js"
+import { svg } from "../General/elements.js"
+import { Dim } from "../../Pure/dim.js"
+import { Vector } from "../../Pure/vector.js"
 
 // const sol = new Star({
 //     id: "sol",
@@ -16,17 +22,17 @@
 //     velPolar: [0.3, 90]
 // })
 
-const centre = Vector.fromMKm([300, 300])
-const earthPos = centre.addM([147.098450e9, 0])
-const moonPos = earthPos.addM([362600000, 0])
-const vel = Dim.fromKm(24)
+export const centre = Vector.fromMKm([300, 300])
+export const earthPos = centre.addM([147.098450e9, 0])
+export const moonPos = earthPos.addM([362600000, 0])
+export const vel = Dim.fromKm(24)
 // const vel = Dim.fromKm(30)
 // const mass = 1.989e28 * 1e9
-const mass = 1.989e30
+export const mass = 1.989e30
 // const mass = 0.01
 // const mass = 100
 
-const sun = new Star({
+export const sun = new Star({
     id: "sol",
     pos: centre,
     bodyRadius: 50,
@@ -35,7 +41,7 @@ const sun = new Star({
 })
 
 
-const earth = new Planet({
+export const earth = new Planet({
     id: "earth",
     pos: earthPos,
     bodyRadius: 10,
@@ -47,7 +53,7 @@ const earth = new Planet({
  * https://en.wikipedia.org/wiki/Moon
  */
 
-const moon = new Moon({
+export const moon = new Moon({
     id: "moon",
     pos: moonPos,
     bodyRadius: 10,
@@ -88,7 +94,7 @@ const moon = new Moon({
 // })
 
 
-const universe = new Universe(
+export const universe = new Universe(
     svg("#space"), 
     [sun, earth, moon]
 )

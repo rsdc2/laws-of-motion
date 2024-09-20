@@ -1,3 +1,3 @@
-function addListeners() {
+export function addListeners() {
 
 }

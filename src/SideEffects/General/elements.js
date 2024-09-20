@@ -1,8 +1,12 @@
+import { hasClass, removeClasses } from "./elementAttributes.js"
+
+import { addClasses } from "./elementAttributes.js"
+
 /**
  * @param {string} query
  * @return {HTMLButtonElement}
  */
-const button = query => {
+export const button = query => {
     return document.querySelector("button" + query)
 }
 
@@ -10,7 +14,7 @@ const button = query => {
  * @param {string} query
  * @return {Array.<HTMLButtonElement>}
  */
-const buttons = query => {
+export const buttons = query => {
     return Array.from(document.querySelectorAll("button" + query))
 }
 
@@ -19,7 +23,7 @@ const buttons = query => {
  * @param {string} query
  * @return {HTMLDivElement}
  */
-const div = query => {
+export const div = query => {
     return document.querySelector("div" + query)
 }
 
@@ -28,7 +32,7 @@ const div = query => {
  * @param {string} query
  * @return {HTMLSpanElement}
  */
-const span = query => {
+export const span = query => {
     return document.querySelector("span" + query)
 }
 
@@ -36,7 +40,7 @@ const span = query => {
  * @param {string} query
  * @return {Array.<HTMLSpanElement>}
  */
-const spans = query => {
+export const spans = query => {
     return Array.from(document.querySelectorAll("span" + query))
 }
 
@@ -44,7 +48,7 @@ const spans = query => {
  * Toggles class of element
  * @param {string} cls
  */
-const toggle = cls => (/** @type {HTMLElement}*/ elem) => {
+export const toggle = cls => (/** @type {HTMLElement}*/ elem) => {
     if (hasClass(cls)(elem)) {
         removeClasses(elem)(cls)
     } else {
@@ -58,7 +62,7 @@ const toggle = cls => (/** @type {HTMLElement}*/ elem) => {
  * @returns {SVGCircleElement}
  */
 
-const circle = query => document.querySelector("circle" + query)
+export const circle = query => document.querySelector("circle" + query)
 
 /**
  * 
@@ -66,7 +70,7 @@ const circle = query => document.querySelector("circle" + query)
  * @returns {SVGEllipseElement}
  */
 
-const ellipse = query => document.querySelector("ellipse" + query)
+export const ellipse = query => document.querySelector("ellipse" + query)
 
 /**
  * 
@@ -74,4 +78,4 @@ const ellipse = query => document.querySelector("ellipse" + query)
  * @returns {SVGElement}
  */
 
-const svg = query => document.querySelector("svg" + query)
+export const svg = query => document.querySelector("svg" + query)

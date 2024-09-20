@@ -1,3 +1,8 @@
+import { Dim } from "./dim.js"
+import { UnitVector } from "./unitvector.js"
+import { Vector } from "./vector.js"
+import { G } from "./constants.js"
+
 // class BigG {
 //     #G = G
 
@@ -12,7 +17,7 @@
 // }
 
 
-class Gravity {
+export class Gravity {
     /**
      * Calculate the gravitational attraction experienced
      * by a body b1 on account of another body b2

@@ -1,4 +1,6 @@
-const Motion = {
+import { Vector } from "./vector.js"
+
+export const Motion = {
 
 
     /**
@@ -7,10 +9,10 @@ const Motion = {
      * (pos), an initial velocity (vel) and 
      * an acceleration
      * @param {number} t
-     * @param {Vec} pos
-     * @param {Vec} vel 
-     * @param {Vec} acc
-     * @return {Vec}
+     * @param {import("./typedefs.js").Vec} pos
+     * @param {import("./typedefs.js").Vec} vel 
+     * @param {import("./typedefs.js").Vec} acc
+     * @return {import("./typedefs.js").Vec}
      */
     positionAtT: (t, pos, vel, acc) => {
         // cf. https://en.wikipedia.org/wiki/Force

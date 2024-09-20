@@ -1,4 +1,7 @@
-
+import { Dim } from "./dim.js"
+import { TIMEMULT } from "./constants.js"
+import { UnitVector } from "./unitvector.js"
+import { Angle } from "./angle.js"
 /**
  * Class for handling 2D vectors.
  * Underlying interface is Vec2D, which is
@@ -10,7 +13,7 @@
  */
 
 
-class Vector {
+export class Vector {
 
     #x
     #y
@@ -42,7 +45,7 @@ class Vector {
 
     /**
      * 
-     * @param {Vec} vec
+     * @param {import("./typedefs.js").Vec} vec
      * @returns {Vector}
      */
     addPix (vec) {
@@ -51,7 +54,7 @@ class Vector {
     }
 
     /**
-     * @param {Vec} vec
+     * @param {import("./typedefs.js").Vec} vec
      * @returns {Vector}
     */
     addM (vec) {
@@ -61,7 +64,7 @@ class Vector {
 
 
     /**
-     * @param {Vec} vec
+     * @param {import("./typedefs.js").Vec} vec
      * @returns {Vector}
     */
     addMKm (vec) {
@@ -71,7 +74,7 @@ class Vector {
 
     /**
      * 
-     * @param {Vec} other 
+     * @param {import("./typedefs.js").Vec} other 
      */
 
     addMKmVec2D (other) {
@@ -92,7 +95,7 @@ class Vector {
 
     /**
      * Return a new Vector2D from a pixel Vec2D
-     * @param {Vec} vec 
+     * @param {import("./typedefs.js").Vec} vec 
      * @returns 
      */
     static from(vec) {
@@ -100,7 +103,7 @@ class Vector {
     }
     /**
      * 
-     * @param {Vec} vec 
+     * @param {import("./typedefs.js").Vec} vec 
      */
     static fromPix(vec) {
         const [x, y] = vec
@@ -109,7 +112,7 @@ class Vector {
 
     /**
      * 
-     * @param {Vec} vec 
+     * @param {import("./typedefs.js").Vec} vec 
      */
     static fromM(vec) {
         const [x, y] = vec
@@ -119,7 +122,7 @@ class Vector {
 
     /**
      * 
-     * @param {Vec} vec 
+     * @param {import("./typedefs.js").Vec} vec 
      */
     static fromMKm(vec) {
         const [x, y] = vec
@@ -185,7 +188,7 @@ class Vector {
      * Vector value in pixels
      */
     get vec() {
-        return /** @type {Vec}*/ ([this.x.value, this.y.value])
+        return /** @type {import("./typedefs.js").Vec}*/ ([this.x.value, this.y.value])
     }
     
     get x() {

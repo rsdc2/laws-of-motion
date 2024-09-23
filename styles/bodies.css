@@ -1,0 +1,74 @@
+
+circle.body {
+    fill: grey
+}
+
+circle.planet#mercury {
+    fill: grey
+}
+
+circle.planet#venus {
+    fill: palegoldenrod
+}
+
+circle.planet#earth {
+    fill: blue
+}
+
+circle.planet#mars {
+    fill: red
+}
+
+circle.planet#jupiter {
+    fill: orange
+}
+
+circle.planet#saturn {
+    fill: yellow
+}
+
+circle.planet#saturnRings {
+    fill: none;
+    stroke: white;
+}
+
+circle.planet#uranus {
+    fill: turquoise;
+}
+
+circle.planet#neptune {
+    fill: darkblue;
+}
+
+circle.planet#pluto {
+    fill: grey;
+}
+
+circle.star {
+    fill: white
+}
+
+circle.star#sol {
+    fill: red;
+}
+
+circle.star#sol2 {
+    fill: yellow;
+}
+
+circle.moon {
+    fill: grey
+}
+
+circle.moon#moon1 {
+    fill: grey
+}
+
+circle.moon#moon2 {
+    fill: green
+}
+
+ellipse.orbit {
+    stroke: white;
+    fill: none;
+}

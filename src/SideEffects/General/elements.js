@@ -45,6 +45,15 @@ export const spans = query => {
 }
 
 /**
+ * 
+ * @param {string} query 
+ * @returns {HTMLTableElement}
+ */
+export const table = query => {
+    return document.querySelector("table" + query)
+}
+
+/**
  * Toggles class of element
  * @param {string} cls
  */

@@ -107,7 +107,7 @@ export class Universe {
     }
 
     /**
-     * Update the object
+     * Update the center of mass of the universe
      */
     update() {
         this.#updateRCirclePos()

@@ -11,6 +11,7 @@ import { TIMEMULT } from "../../SideEffects/timeconfig.js";
 import { Angle } from "../../Pure/angle.js";
 import { UnitVector } from "../../Pure/unitvector.js";
 import { InitialBodyParams } from "../../Pure/typedefs.js";
+import { table } from "../General/elements.js";
 
 /**
  * Services for a general celestial body, incl.
@@ -18,7 +19,8 @@ import { InitialBodyParams } from "../../Pure/typedefs.js";
  */
 export class CelestialBody {
     #initialParams
-    #circle
+    #svgCircle // The SVG element representing the body
+    #attrDiv // The Div element containing attributes for the body
 
     /**
      * 
@@ -26,7 +28,8 @@ export class CelestialBody {
      */
     constructor (params) {
         this.#initialParams = params
-        this.#circle = this.#createCircle()
+        this.#svgCircle = this.#createSVGCircle()
+        this.#attrDiv = this.#createAttrLabel()
     }
 
     /**
@@ -45,14 +48,14 @@ export class CelestialBody {
      * Acceleration of the body as a pixel Vec2D
      */
     get accVec() {
-        return Circle.acc(this.#circle)
+        return Circle.acc(this.#svgCircle)
     }
 
     /**
      * Set the acceleration of the circle
      */
     set accVec(value) {
-        Circle.setAcc(this.#circle, value)
+        Circle.setAcc(this.#svgCircle, value)
     }
 
     get acceleration() {
@@ -133,11 +136,14 @@ export class CelestialBody {
     }
 
     get circle() {
-        return this.#circle
+        return this.#svgCircle
     }
 
-    // Create the circle
-    #createCircle () {
+    /**
+     * Create SVG element to represent the body
+     * @returns {SVGCircleElement}
+     */
+    #createSVGCircle () {
         const elem = document.createElementNS(SVGNS, "circle")
 
         const [cx, cy] = this.#initialParams.pos.vec
@@ -160,6 +166,23 @@ export class CelestialBody {
         )
 
         this.addBodyClass(elem)
+        return elem
+    }
+
+    /**
+     * Create the HTML element that gives attributes
+     * for the body, and append it to the table element
+     * that contains all the attributes
+     * @returns { HTMLDivElement }
+     */
+
+    #createAttrLabel() {
+        const elem = document.createElement('div')
+        
+        const tableElem = table("#attrs")
+        const row = tableElem.insertRow()
+        const cell = row.insertCell()
+        cell.append(elem)
         return elem
     }
 
@@ -270,12 +293,21 @@ export class CelestialBody {
         return this.posRelTo(body).unit
     }
 
+    /**
+     * Return the position of the SVG element
+     * representing the body
+     */
     get posVec() {
-        return Circle.pos(this.#circle)
+        return Circle.pos(this.#svgCircle)
     }
 
+    /**
+     * Set the position of the SVG element
+     * representing the body
+     */
     set posVec(value) {
-        Circle.setPos(this.#circle, value)
+        Circle.setPos(this.#svgCircle, value)
+        this.#attrDiv.textContent = `Velocity: ${this.vel}`
     }
 
     /**
@@ -315,10 +347,10 @@ export class CelestialBody {
     }
 
     get velVec() {
-        return Circle.vel(this.#circle)
+        return Circle.vel(this.#svgCircle)
     }
 
     set velVec(value) {
-        Circle.setVel(this.#circle, value)
+        Circle.setVel(this.#svgCircle, value)
     }
 }

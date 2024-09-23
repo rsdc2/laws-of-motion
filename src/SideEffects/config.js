@@ -6,7 +6,7 @@ import { PolarVec } from "../Pure/typedefs.js"
 
 
 
-export const CENTRE = Vector.fromMKm([300, 300])
+export const CENTRE = Vector.fromPix([1250, 1250])
 export const EARTHPOS = CENTRE.addM([147.098450e9, 0])
 export const MOONPOS = EARTHPOS.addM([362600000, 0])
 export const VEL = Dim.fromKm(24)

@@ -12,6 +12,7 @@ import { Angle } from "../../Pure/angle.js";
 import { UnitVector } from "../../Pure/unitvector.js";
 import { InitialBodyParams } from "../../Pure/typedefs.js";
 import { table } from "../General/elements.js";
+import { CENTRE } from "../config.js";
 
 /**
  * @typedef {Object} _Inputs
@@ -304,7 +305,9 @@ export class CelestialBody {
             return this.#initialParams.x
         } 
         
-        return Number.parseFloat(this.#attrInputs.x.value)        
+        const dim = Dim.fromMKm(Number.parseFloat(this.#attrInputs.x.value)).add(CENTRE.x)
+
+        return dim
     }
 
     get newY() {
@@ -312,8 +315,9 @@ export class CelestialBody {
             return this.#initialParams.y
         } 
         
-        return Number.parseFloat(this.#attrInputs.y.value)        
+        const dim = Dim.fromMKm(Number.parseFloat(this.#attrInputs.y.value)).add(CENTRE.y)
 
+        return dim
     }
 
     get newMass() {

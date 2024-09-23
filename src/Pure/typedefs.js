@@ -1,6 +1,7 @@
 import { Dim } from "./dim.js";
 import { Vector } from "./vector.js";
-import { Pair } from "./tuple.js";
+import { CENTRE } from "../SideEffects/config.js";
+
 /***
  * @typedef {[number, number]} _Vec
  */
@@ -42,6 +43,11 @@ export class InitialBodyParams {
         this.#initialParams = params
     }
 
+    get Θ() {
+        const [_, θ] = this.#initialParams.velPolar
+        return θ
+    }
+
     get bodyRadius() {
         return this.#initialParams.bodyRadius
     }
@@ -49,6 +55,7 @@ export class InitialBodyParams {
     get circle(){
         return this.#initialParams.circle
     }
+
 
     deepcopy() {
         return new InitialBodyParams(
@@ -80,8 +87,21 @@ export class InitialBodyParams {
         return this.#initialParams.pos
     }
 
+    get speed() {
+        const [r, _] =this.#initialParams.velPolar
+        return r
+    }
+
     get velPolar() {
         return this.#initialParams.velPolar
+    }
+
+    get x() {
+        return this.pos.x
+    }
+
+    get y() {
+        return this.pos.y
     }
 }
 

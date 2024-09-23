@@ -4,8 +4,6 @@ import { Vector } from "../Pure/vector.js"
 import { Dim } from "../Pure/dim.js"
 import { PolarVec } from "../Pure/typedefs.js"
 
-
-
 export const CENTRE = Vector.fromPix([1250, 1250])
 export const EARTHPOS = CENTRE.addM([147.098450e9, 0])
 export const MOONPOS = EARTHPOS.addM([362600000, 0])

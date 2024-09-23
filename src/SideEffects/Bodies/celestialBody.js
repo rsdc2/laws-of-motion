@@ -14,6 +14,15 @@ import { InitialBodyParams } from "../../Pure/typedefs.js";
 import { table } from "../General/elements.js";
 
 /**
+ * @typedef {Object} _Inputs
+ * @property {HTMLInputElement} speed
+ * @property {HTMLInputElement} angle
+ * @property {HTMLInputElement} mass 
+ * @property {HTMLInputElement} x
+ * @property {HTMLInputElement} y
+ */
+
+/**
  * Services for a general celestial body, incl.
  * planets, stars and moons
  */
@@ -22,7 +31,7 @@ export class CelestialBody {
     #svgCircle // The SVG element representing the body
     #attrLabel // The Div element containing attributes for the body
     #attrRow // The row in the attr table corresponding to the body
-    #attrInput
+    #attrInputs
 
     /**
      * 
@@ -32,9 +41,9 @@ export class CelestialBody {
         this.#initialParams = params
         this.#attrRow = this.#createAttrRow()
         this.#svgCircle = this.#createSVGCircle()
-        this.reset(params.deepcopy())
         this.#attrLabel = this.#createAttrLabel()
-        this.#attrInput = this.#createAttrInput()
+        this.#attrInputs = this.#createAttrInputs()
+        this.reset(params.deepcopy())
     }
 
     /**
@@ -136,6 +145,17 @@ export class CelestialBody {
         return elem
     }
 
+    get attrInputs() {
+        return this.#attrInputs
+    }
+
+    /**
+     * @return { HTMLDivElement }
+     */
+    get attrLabel() {
+        return this.#attrLabel
+    }
+
     get bodyRadius() {
         return this.#initialParams.bodyRadius
     }
@@ -144,20 +164,35 @@ export class CelestialBody {
         return this.#svgCircle
     }
 
-
-
     /**
      * Create input element for body
-     * @returns 
+     * @param {string} label
+     * @returns {HTMLInputElement}
      */
-
-    #createAttrInput() {
+    #createAttrInput(label) {
         const elem = document.createElement("input")
+        elem.id = `attr-input-${label}-${this.name}`
         elem.type = "text"
         addClasses(elem)("attr")
         const cell = this.#attrRow.insertCell()
         cell.append(elem)
         return elem        
+    }
+    /**
+     * 
+
+     * @returns {_Inputs}
+     */
+    #createAttrInputs() {
+        const inputs = {
+            "speed": this.#createAttrInput("speed"),
+            "angle": this.#createAttrInput("angle"),
+            "mass": this.#createAttrInput("mass"),
+            "x": this.#createAttrInput("x"),
+            "y": this.#createAttrInput("y")
+        }
+
+        return inputs
     }
 
     /**
@@ -166,10 +201,10 @@ export class CelestialBody {
      * that contains all the attributes
      * @returns { HTMLDivElement }
      */
-
     #createAttrLabel() {
         const elem = document.createElement("div")
         addClasses(elem)("attr")
+        elem.id = `attr-label-${this.name}`
         const cell = this.#attrRow.insertCell()
         cell.append(elem)
         return elem
@@ -185,16 +220,13 @@ export class CelestialBody {
         return row
     }
 
-
     /**
      * Create SVG element to represent the body
      * @returns {SVGCircleElement}
      */
     #createSVGCircle () {
-        const elem = document.createElementNS(SVGNS, "circle")
-        return elem
+        return document.createElementNS(SVGNS, "circle")
     }
-
 
     /**
      * Returns the overall force acting on the body.
@@ -255,6 +287,49 @@ export class CelestialBody {
      */
     get name() {
         return this.initialParams.name
+    }
+
+    get newΘ() {
+        if (this.#attrInputs.angle.value.trim() == "") {
+            return this.#initialParams.Θ
+        } 
+        
+        return Number.parseFloat(this.#attrInputs.angle.value)
+
+    }
+
+
+    get newX() {
+        if (this.#attrInputs.x.value.trim() == "") {
+            return this.#initialParams.x
+        } 
+        
+        return Number.parseFloat(this.#attrInputs.x.value)        
+    }
+
+    get newY() {
+        if (this.#attrInputs.y.value.trim() == "") {
+            return this.#initialParams.y
+        } 
+        
+        return Number.parseFloat(this.#attrInputs.y.value)        
+
+    }
+
+    get newMass() {
+        if (this.#attrInputs.mass.value.trim() == "") {
+            return this.#initialParams.mass
+        } 
+        
+        return Number.parseFloat(this.#attrInputs.mass.value)        
+    }
+
+    get newSpeed() {
+        if (this.#attrInputs.speed.value.trim() == "") {
+            return this.initialParams.speed
+        } 
+        
+        return Dim.fromKm(Number.parseFloat(this.#attrInputs.speed.value))
     }
 
     /**
@@ -351,18 +426,26 @@ export class CelestialBody {
     }
 
     /**
-     * Reset to initial values
+     * Reset the body to initial values
      * @param {InitialBodyParams} params
      */
     reset(params) {
-        console.log("Resetting: ", params)
         const elem = this.#svgCircle
         const [cx, cy] = params.pos.vec
+        let r, θ
+
+        if (this.attrInput.value.trim() == "") {
+            [r, θ] = params.velPolar
+        } 
+        else {
+            [r, θ] = params.velPolar
+            r = Dim.fromKm(Number.parseFloat(this.attrInput.value))
+            console.log(r.km)
+        }
         
-        const [r, θ] = params.velPolar
 
         // Multiply by the time multiplier
-        const r_ = r.mult(TIMEMULT)
+        const r_ = this.newSpeed.mult(TIMEMULT)
 
         const [vx, vy] = Angle.toVec(r_, θ).vec
 

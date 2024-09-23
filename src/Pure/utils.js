@@ -19,9 +19,6 @@ export const includes =
         return arr.includes(item)
 }
 
-
-
-
 /**
  * Convert a string to an array of characters
  * @param {string} s

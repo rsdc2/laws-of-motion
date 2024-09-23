@@ -17,6 +17,7 @@ import { Pair } from "./tuple.js";
 /**
  * @typedef {Object} _InitialBodyParams
  * @property {string} id
+ * @property {string} name
  * @property {Vector} pos position vector in pixels
  * @property {number} bodyRadius
  * @property {number} mass mass in kg * 1e9
@@ -24,6 +25,12 @@ import { Pair } from "./tuple.js";
  * @property {SVGCircleElement} [circle]
  */
 
+
+/**
+ * Convenience class for accessing / defining
+ * initial parameters for a celestial object.
+ * Saves having to import the typedef.
+ */
 export class InitialBodyParams {
 
     #initialParams
@@ -35,28 +42,32 @@ export class InitialBodyParams {
         this.#initialParams = params
     }
 
-    get id () {
-        return this.#initialParams.id
-    }
-
-    get pos() {
-        return this.#initialParams.pos
-    }
-
     get bodyRadius() {
         return this.#initialParams.bodyRadius
+    }
+
+    get circle(){
+        return this.#initialParams.circle
+    }
+
+    get id () {
+        return this.#initialParams.id
     }
 
     get mass() {
         return this.#initialParams.mass
     }
 
-    get velPolar() {
-        return this.#initialParams.velPolar
+    get name() {
+        return this.#initialParams.name
     }
 
-    get circle(){
-        return this.#initialParams.circle
+    get pos() {
+        return this.#initialParams.pos
+    }
+
+    get velPolar() {
+        return this.#initialParams.velPolar
     }
 }
 

@@ -1,10 +1,15 @@
+/**
+ * Module where celestial bodies are created
+ * 
+ */
+
 import { Universe } from "./universe.js"
 import { Star } from "./star.js"
 import { Planet } from "./planet.js"
 import { Moon } from "./moon.js"
 import { svg } from "../General/elements.js"
 import { Dim } from "../../Pure/dim.js"
-import { InitialBodyParams, PolarVec } from "../../Pure/typedefs.js"
+import { InitialBodyParams } from "../../Pure/typedefs.js"
 import { 
     CENTRE, 
     EARTHPOS, 
@@ -12,6 +17,37 @@ import {
     EARTHSTARTVEL, 
     MOONSTARTVEL } from "../config.js"
 import { EARTHMASS, SUNMASS, MOONMASS } from "../../Pure/constants.js"
+
+
+export const sun = new Star(new InitialBodyParams({
+    id: "sol",
+    name: "Sol",
+    pos: CENTRE,
+    bodyRadius: 50,
+    mass: SUNMASS,
+    velPolar: [Dim.from(0), 270]
+}))
+
+
+export const earth = new Planet(new InitialBodyParams({
+    id: "earth",
+    name: "Earth",
+    pos: EARTHPOS,
+    bodyRadius: 10,
+    mass: EARTHMASS,
+    velPolar: EARTHSTARTVEL
+}))
+
+
+export const moon = new Moon(new InitialBodyParams({
+    id: "moon",
+    name: "Moon",
+    pos: MOONPOS,
+    bodyRadius: 10,
+    mass: MOONMASS,
+    velPolar: MOONSTARTVEL
+}))
+
 
 // const sol = new Star({
 //     id: "sol",
@@ -30,35 +66,6 @@ import { EARTHMASS, SUNMASS, MOONMASS } from "../../Pure/constants.js"
 // })
 
 
-
-export const sun = new Star(new InitialBodyParams({
-    id: "sol",
-    pos: CENTRE,
-    bodyRadius: 50,
-    mass: SUNMASS,
-    velPolar: [Dim.from(0), 270]
-}))
-
-
-export const earth = new Planet(new InitialBodyParams({
-    id: "earth",
-    pos: EARTHPOS,
-    bodyRadius: 10,
-    mass: EARTHMASS,
-    velPolar: EARTHSTARTVEL
-}))
-
-/**
- * https://en.wikipedia.org/wiki/Moon
- */
-
-export const moon = new Moon(new InitialBodyParams({
-    id: "moon",
-    pos: MOONPOS,
-    bodyRadius: 10,
-    mass: MOONMASS,
-    velPolar: MOONSTARTVEL
-}))
 
 // const jupiter = new Planet({
 //     id: "jupiter",

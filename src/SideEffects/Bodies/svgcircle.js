@@ -248,7 +248,7 @@ export const Circle = {
     },
 
     /**
-     * 
+     * Get the position of the element in local coordinates
      * @param {SVGCircleElement} body 
      * @returns {import("../../Pure/typedefs.js")._Vec}
      */

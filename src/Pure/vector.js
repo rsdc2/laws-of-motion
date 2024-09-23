@@ -154,7 +154,7 @@ export class Vector {
         const [r, _] = this.polar
         return r
     }   
-
+    
     /**
      * Subtract another vector from this one
      * @param {Vector} other 
@@ -170,6 +170,10 @@ export class Vector {
 
     static sum(vecs) {
         return vecs.reduce( (vecSum, vec) => vecSum.add(vec) )
+    }
+
+    toString() {
+        return `(${this.x}, ${this.y})`
     }
 
     /**
@@ -207,4 +211,6 @@ export class Vector {
         const [_, θ] = this.polar
         return θ
     }
+
+
 }

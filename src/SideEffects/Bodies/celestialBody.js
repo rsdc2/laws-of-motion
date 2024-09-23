@@ -1,6 +1,6 @@
 
 import { setAttrs, addClasses } from "../General/elementAttributes.js";
-import { Circle } from "./circle.js";
+import { Circle } from "./svgcircle.js";
 import { Vector } from "../../Pure/vector.js";
 import { Dim } from "../../Pure/dim.js";
 import { Gravity } from "../../Pure/gravity.js";
@@ -177,8 +177,8 @@ export class CelestialBody {
      */
 
     #createAttrLabel() {
-        const elem = document.createElement('div')
-        
+        const elem = document.createElement("div")
+        addClasses(elem)("attr")
         const tableElem = table("#attrs")
         const row = tableElem.insertRow()
         const cell = row.insertCell()
@@ -209,6 +209,9 @@ export class CelestialBody {
         )
     }
 
+    /**
+     * The internal id of the object
+     */
     get id() {
         return this.#initialParams.id
     }
@@ -236,6 +239,17 @@ export class CelestialBody {
         return this.pos.multScalar(this.mass)
     }
 
+    /**
+     * The name of the object to display to the user
+     * 
+     */
+    get name() {
+        return this.initialParams.name
+    }
+
+    /**
+     * Momentum
+     */
     get p() {
         return this.v.multScalar(this.mass)
     }
@@ -256,6 +270,7 @@ export class CelestialBody {
     }
 
     /**
+     * Return the real period of the orbit 
      * 
      * @param {CelestialBody} body 
      * @returns 
@@ -306,8 +321,14 @@ export class CelestialBody {
      * representing the body
      */
     set posVec(value) {
+        // Set the position of the SVG object 
         Circle.setPos(this.#svgCircle, value)
-        this.#attrDiv.textContent = `Velocity: ${this.vel}`
+
+        // Set the value of the attribute label on
+        // the frontend
+        const speed = this.velActual.r.km
+
+        this.#attrDiv.textContent = `${this.name} km/s: ${speed.toFixed(2)}`
     }
 
     /**
@@ -342,8 +363,18 @@ export class CelestialBody {
         return new Vector(Dim.from(x), Dim.from(y))
     }
 
+    /**
+     * The velocity in units per second * TIMEMULT
+     */
     set vel(value) {
         this.velVec = value.vec
+    }
+
+    /**
+     * The velocity in units per second
+     */
+    get velActual() {
+        return this.vel.divScalar(TIMEMULT)
     }
 
     get velVec() {

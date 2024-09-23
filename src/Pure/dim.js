@@ -142,6 +142,10 @@ export class Dim {
         return new Dim(this.value - other.value)
     }
 
+    toString() {
+        return `${this.value}`
+    }
+
     /**
      * Millions of km
      */

@@ -7,9 +7,10 @@ import { Gravity } from "../../Pure/gravity.js";
 import { Motion } from "../../Pure/motion.js";
 import { PI } from "../../Pure/imports.js";
 import { SVGNS } from "../../Pure/namespaces.js";
-import { TIMEMULT } from "../../Pure/constants.js";
+import { TIMEMULT } from "../../SideEffects/timeconfig.js";
 import { Angle } from "../../Pure/angle.js";
 import { UnitVector } from "../../Pure/unitvector.js";
+import { InitialBodyParams } from "../../Pure/typedefs.js";
 
 /**
  * Services for a general celestial body, incl.
@@ -21,7 +22,7 @@ export class CelestialBody {
 
     /**
      * 
-     * @param {import("../../Pure/typedefs.js").InitialBodyParams} params body parameters
+     * @param {InitialBodyParams} params body parameters
      */
     constructor (params) {
         this.#initialParams = params
@@ -79,7 +80,7 @@ export class CelestialBody {
 
     /**
      * Apply an acceleration
-     * @param {import("../../Pure/typedefs.js").Vec} acc 
+     * @param {import("../../Pure/typedefs.js")._Vec} acc 
      */
     accelerateVec (acc) {        
         const [pos, vel, _] = Motion.position(
@@ -280,7 +281,7 @@ export class CelestialBody {
     /**
      * Position vector relative to another body
      * @param {CelestialBody} body 
-     * @return {import("../../Pure/typedefs.js").Vec}
+     * @return {import("../../Pure/typedefs.js")._Vec}
      */
     posVecRelTo (body) {
         return this.pos.subtract(body.pos).vec

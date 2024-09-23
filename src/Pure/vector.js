@@ -1,7 +1,8 @@
 import { Dim } from "./dim.js"
-import { TIMEMULT } from "../SideEffects/config.js"
+import { TIMEMULT } from "../SideEffects/timeconfig.js"
 import { UnitVector } from "./unitvector.js"
 import { Angle } from "./angle.js"
+
 /**
  * Class for handling 2D vectors.
  * Underlying interface is Vec2D, which is
@@ -45,7 +46,7 @@ export class Vector {
 
     /**
      * 
-     * @param {import("./typedefs.js").Vec} vec
+     * @param {import("./typedefs.js")._Vec} vec
      * @returns {Vector}
      */
     addPix (vec) {
@@ -54,7 +55,7 @@ export class Vector {
     }
 
     /**
-     * @param {import("./typedefs.js").Vec} vec
+     * @param {import("./typedefs.js")._Vec} vec
      * @returns {Vector}
     */
     addM (vec) {
@@ -64,7 +65,7 @@ export class Vector {
 
 
     /**
-     * @param {import("./typedefs.js").Vec} vec
+     * @param {import("./typedefs.js")._Vec} vec
      * @returns {Vector}
     */
     addMKm (vec) {
@@ -74,7 +75,7 @@ export class Vector {
 
     /**
      * 
-     * @param {import("./typedefs.js").Vec} other 
+     * @param {import("./typedefs.js")._Vec} other 
      */
 
     addMKmVec2D (other) {
@@ -95,7 +96,7 @@ export class Vector {
 
     /**
      * Return a new Vector2D from a pixel Vec2D
-     * @param {import("./typedefs.js").Vec} vec 
+     * @param {import("./typedefs.js")._Vec} vec 
      * @returns 
      */
     static from(vec) {
@@ -103,7 +104,7 @@ export class Vector {
     }
     /**
      * 
-     * @param {import("./typedefs.js").Vec} vec 
+     * @param {import("./typedefs.js")._Vec} vec 
      */
     static fromPix(vec) {
         const [x, y] = vec
@@ -112,7 +113,7 @@ export class Vector {
 
     /**
      * 
-     * @param {import("./typedefs.js").Vec} vec 
+     * @param {import("./typedefs.js")._Vec} vec 
      */
     static fromM(vec) {
         const [x, y] = vec
@@ -122,7 +123,7 @@ export class Vector {
 
     /**
      * 
-     * @param {import("./typedefs.js").Vec} vec 
+     * @param {import("./typedefs.js")._Vec} vec 
      */
     static fromMKm(vec) {
         const [x, y] = vec
@@ -188,7 +189,7 @@ export class Vector {
      * Vector value in pixels
      */
     get vec() {
-        return /** @type {import("./typedefs.js").Vec}*/ ([this.x.value, this.y.value])
+        return /** @type {import("./typedefs.js")._Vec}*/ ([this.x.value, this.y.value])
     }
     
     get x() {

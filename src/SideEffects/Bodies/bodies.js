@@ -4,7 +4,13 @@ import { Planet } from "./planet.js"
 import { Moon } from "./moon.js"
 import { svg } from "../General/elements.js"
 import { Dim } from "../../Pure/dim.js"
-import { CENTRE, EARTHPOS, MOONPOS } from "../config.js"
+import { InitialBodyParams, PolarVec } from "../../Pure/typedefs.js"
+import { 
+    CENTRE, 
+    EARTHPOS, 
+    MOONPOS, 
+    EARTHSTARTVEL, 
+    MOONSTARTVEL } from "../config.js"
 import { EARTHMASS, SUNMASS, MOONMASS } from "../../Pure/constants.js"
 
 // const sol = new Star({
@@ -25,34 +31,34 @@ import { EARTHMASS, SUNMASS, MOONMASS } from "../../Pure/constants.js"
 
 
 
-export const sun = new Star({
+export const sun = new Star(new InitialBodyParams({
     id: "sol",
     pos: CENTRE,
     bodyRadius: 50,
     mass: SUNMASS,
     velPolar: [Dim.from(0), 270]
-})
+}))
 
 
-export const earth = new Planet({
+export const earth = new Planet(new InitialBodyParams({
     id: "earth",
     pos: EARTHPOS,
     bodyRadius: 10,
     mass: EARTHMASS,
-    velPolar: [Dim.fromKm(30.29), 90]
-})
+    velPolar: EARTHSTARTVEL
+}))
 
 /**
  * https://en.wikipedia.org/wiki/Moon
  */
 
-export const moon = new Moon({
+export const moon = new Moon(new InitialBodyParams({
     id: "moon",
     pos: MOONPOS,
     bodyRadius: 10,
     mass: MOONMASS,
-    velPolar: [Dim.fromKm(30), 90]
-})
+    velPolar: MOONSTARTVEL
+}))
 
 // const jupiter = new Planet({
 //     id: "jupiter",

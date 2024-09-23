@@ -1,0 +1,1 @@
+export const TIMEMULT = 50000

@@ -4,7 +4,8 @@ import { Planet } from "./planet.js"
 import { Moon } from "./moon.js"
 import { svg } from "../General/elements.js"
 import { Dim } from "../../Pure/dim.js"
-import { Vector } from "../../Pure/vector.js"
+import { CENTRE, EARTHPOS, MOONPOS } from "../config.js"
+import { EARTHMASS, SUNMASS, MOONMASS } from "../../Pure/constants.js"
 
 // const sol = new Star({
 //     id: "sol",
@@ -22,30 +23,22 @@ import { Vector } from "../../Pure/vector.js"
 //     velPolar: [0.3, 90]
 // })
 
-export const centre = Vector.fromMKm([300, 300])
-export const earthPos = centre.addM([147.098450e9, 0])
-export const moonPos = earthPos.addM([362600000, 0])
-export const vel = Dim.fromKm(24)
-// const vel = Dim.fromKm(30)
-// const mass = 1.989e28 * 1e9
-export const mass = 1.989e30
-// const mass = 0.01
-// const mass = 100
+
 
 export const sun = new Star({
     id: "sol",
-    pos: centre,
+    pos: CENTRE,
     bodyRadius: 50,
-    mass: 1.9885e30,
+    mass: SUNMASS,
     velPolar: [Dim.from(0), 270]
 })
 
 
 export const earth = new Planet({
     id: "earth",
-    pos: earthPos,
+    pos: EARTHPOS,
     bodyRadius: 10,
-    mass: 5.972168e24,
+    mass: EARTHMASS,
     velPolar: [Dim.fromKm(30.29), 90]
 })
 
@@ -55,9 +48,9 @@ export const earth = new Planet({
 
 export const moon = new Moon({
     id: "moon",
-    pos: moonPos,
+    pos: MOONPOS,
     bodyRadius: 10,
-    mass: 7.342e22,
+    mass: MOONMASS,
     velPolar: [Dim.fromKm(30), 90]
 })
 

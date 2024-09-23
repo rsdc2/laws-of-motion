@@ -1,5 +1,5 @@
 import { Dim } from "./dim.js"
-import { TIMEMULT } from "./constants.js"
+import { TIMEMULT } from "../SideEffects/config.js"
 import { UnitVector } from "./unitvector.js"
 import { Angle } from "./angle.js"
 /**

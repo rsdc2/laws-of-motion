@@ -431,29 +431,17 @@ export class CelestialBody {
      */
     reset(params) {
         const elem = this.#svgCircle
-        const [cx, cy] = params.pos.vec
-        let r, θ
-
-        if (this.attrInput.value.trim() == "") {
-            [r, θ] = params.velPolar
-        } 
-        else {
-            [r, θ] = params.velPolar
-            r = Dim.fromKm(Number.parseFloat(this.attrInput.value))
-            console.log(r.km)
-        }
-        
 
         // Multiply by the time multiplier
         const r_ = this.newSpeed.mult(TIMEMULT)
 
-        const [vx, vy] = Angle.toVec(r_, θ).vec
+        const [vx, vy] = Angle.toVec(r_, this.newΘ).vec
 
         setAttrs(elem)(
-            ["cx", String(cx)],
-            ["cy", String(cy)],
+            ["cx", String(this.newX)],
+            ["cy", String(this.newY)],
             ["r", String(params.bodyRadius)],
-            ["mass", String(params.mass)],
+            ["mass", String(this.newMass)],
             ["vx", String(vx)],
             ["vy", String(vy)],
             ["id", this.id]

@@ -50,6 +50,20 @@ export class InitialBodyParams {
         return this.#initialParams.circle
     }
 
+    deepcopy() {
+        return new InitialBodyParams(
+            {
+                id: this.#initialParams.id,
+                name: this.#initialParams.name,
+                pos: this.#initialParams.pos.deepcopy(),
+                bodyRadius: this.#initialParams.bodyRadius,
+                mass: this.#initialParams.mass,
+                velPolar: [this.#initialParams.velPolar[0], this.#initialParams.velPolar[1]],
+                circle: this.#initialParams.circle
+            }
+        )
+    }
+
     get id () {
         return this.#initialParams.id
     }

@@ -86,6 +86,10 @@ export class Vector {
         )
     }
 
+    deepcopy() {
+        return new Vector(this.#x, this.#y)
+    }
+
     /**
      * Divide the vector by a scalar
      * @param {number} s 
@@ -154,7 +158,7 @@ export class Vector {
         const [r, _] = this.polar
         return r
     }   
-    
+
     /**
      * Subtract another vector from this one
      * @param {Vector} other 

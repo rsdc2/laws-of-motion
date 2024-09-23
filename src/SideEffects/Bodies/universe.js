@@ -98,6 +98,16 @@ export class Universe {
     }
 
     /**
+     * Reset all bodies to initial parameters
+     */
+    reset() {
+        this.#bodies.forEach( body => {
+            console.log("Resetting", body.initialParams)
+            body.reset(body.initialParams) 
+        })
+    }
+
+    /**
      * Vector position of the centre of mass of the system
      */
     get R() {

@@ -23,6 +23,10 @@ export class Dim {
     //     return this.#value * Dim.PIXELS2AU
     // }
 
+    deepcopy() {
+        return new Dim(this.#value)
+    }
+
     /**
      * 
      * @param {number} scalar 

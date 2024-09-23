@@ -20,7 +20,9 @@ import { table } from "../General/elements.js";
 export class CelestialBody {
     #initialParams
     #svgCircle // The SVG element representing the body
-    #attrDiv // The Div element containing attributes for the body
+    #attrLabel // The Div element containing attributes for the body
+    #attrRow // The row in the attr table corresponding to the body
+    #attrInput
 
     /**
      * 
@@ -28,8 +30,11 @@ export class CelestialBody {
      */
     constructor (params) {
         this.#initialParams = params
+        this.#attrRow = this.#createAttrRow()
         this.#svgCircle = this.#createSVGCircle()
-        this.#attrDiv = this.#createAttrLabel()
+        this.reset(params.deepcopy())
+        this.#attrLabel = this.#createAttrLabel()
+        this.#attrInput = this.#createAttrInput()
     }
 
     /**
@@ -139,34 +144,20 @@ export class CelestialBody {
         return this.#svgCircle
     }
 
+
+
     /**
-     * Create SVG element to represent the body
-     * @returns {SVGCircleElement}
+     * Create input element for body
+     * @returns 
      */
-    #createSVGCircle () {
-        const elem = document.createElementNS(SVGNS, "circle")
 
-        const [cx, cy] = this.#initialParams.pos.vec
-        
-        const [r, θ] = this.#initialParams.velPolar
-
-        // Multiply by the time multiplier
-        const r_ = r.mult(TIMEMULT)
-
-        const [vx, vy] = Angle.toVec(r_, θ).vec
-
-        setAttrs(elem)(
-            ["cx", String(cx)],
-            ["cy", String(cy)],
-            ["r", String(this.#initialParams.bodyRadius)],
-            ["mass", String(this.#initialParams.mass)],
-            ["vx", String(vx)],
-            ["vy", String(vy)],
-            ["id", this.id]
-        )
-
-        this.addBodyClass(elem)
-        return elem
+    #createAttrInput() {
+        const elem = document.createElement("input")
+        elem.type = "text"
+        addClasses(elem)("attr")
+        const cell = this.#attrRow.insertCell()
+        cell.append(elem)
+        return elem        
     }
 
     /**
@@ -179,12 +170,31 @@ export class CelestialBody {
     #createAttrLabel() {
         const elem = document.createElement("div")
         addClasses(elem)("attr")
-        const tableElem = table("#attrs")
-        const row = tableElem.insertRow()
-        const cell = row.insertCell()
+        const cell = this.#attrRow.insertCell()
         cell.append(elem)
         return elem
     }
+
+    /**
+     * Create the row in the attr table corresponding
+     * to the current object
+     */
+    #createAttrRow() {
+        const tableElem = table("#attrs")
+        const row = tableElem.insertRow()
+        return row
+    }
+
+
+    /**
+     * Create SVG element to represent the body
+     * @returns {SVGCircleElement}
+     */
+    #createSVGCircle () {
+        const elem = document.createElementNS(SVGNS, "circle")
+        return elem
+    }
+
 
     /**
      * Returns the overall force acting on the body.
@@ -328,7 +338,7 @@ export class CelestialBody {
         // the frontend
         const speed = this.velActual.r.km
 
-        this.#attrDiv.textContent = `${this.name} km/s: ${speed.toFixed(2)}`
+        this.#attrLabel.textContent = `${this.name}: ${speed.toFixed(2)} km/s`
     }
 
     /**
@@ -338,6 +348,36 @@ export class CelestialBody {
      */
     posVecRelTo (body) {
         return this.pos.subtract(body.pos).vec
+    }
+
+    /**
+     * Reset to initial values
+     * @param {InitialBodyParams} params
+     */
+    reset(params) {
+        console.log("Resetting: ", params)
+        const elem = this.#svgCircle
+        const [cx, cy] = params.pos.vec
+        
+        const [r, θ] = params.velPolar
+
+        // Multiply by the time multiplier
+        const r_ = r.mult(TIMEMULT)
+
+        const [vx, vy] = Angle.toVec(r_, θ).vec
+
+        setAttrs(elem)(
+            ["cx", String(cx)],
+            ["cy", String(cy)],
+            ["r", String(params.bodyRadius)],
+            ["mass", String(params.mass)],
+            ["vx", String(vx)],
+            ["vy", String(vy)],
+            ["id", this.id]
+        )
+
+        this.addBodyClass(elem)
+        return elem
     }
 
     /**

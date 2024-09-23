@@ -13,6 +13,7 @@ import { UnitVector } from "../../Pure/unitvector.js";
 import { InitialBodyParams } from "../../Pure/typedefs.js";
 import { table } from "../General/elements.js";
 import { CENTRE } from "../config.js";
+import { EARTHMASS } from "../../Pure/constants.js";
 
 /**
  * @typedef {Object} _Inputs
@@ -271,8 +272,11 @@ export class CelestialBody {
         return this.mass
     }
 
+    /**
+     * Mass in kg
+     */
     get mass() {
-        return this.#initialParams.mass
+        return Number.parseFloat(this.#svgCircle.getAttribute("mass"))
     }
 
     /**
@@ -299,6 +303,22 @@ export class CelestialBody {
 
     }
 
+    get newMass() {
+        if (this.#attrInputs.mass.value.trim() == "") {
+            return this.#initialParams.mass
+            
+        } 
+        
+        return Number.parseFloat(this.#attrInputs.mass.value) * EARTHMASS        
+    }
+
+    get newSpeed() {
+        if (this.#attrInputs.speed.value.trim() == "") {
+            return this.initialParams.speed
+        } 
+        
+        return Dim.fromKm(Number.parseFloat(this.#attrInputs.speed.value))
+    }
 
     get newX() {
         if (this.#attrInputs.x.value.trim() == "") {
@@ -318,22 +338,6 @@ export class CelestialBody {
         const dim = Dim.fromMKm(Number.parseFloat(this.#attrInputs.y.value)).add(CENTRE.y)
 
         return dim
-    }
-
-    get newMass() {
-        if (this.#attrInputs.mass.value.trim() == "") {
-            return this.#initialParams.mass
-        } 
-        
-        return Number.parseFloat(this.#attrInputs.mass.value)        
-    }
-
-    get newSpeed() {
-        if (this.#attrInputs.speed.value.trim() == "") {
-            return this.initialParams.speed
-        } 
-        
-        return Dim.fromKm(Number.parseFloat(this.#attrInputs.speed.value))
     }
 
     /**
@@ -417,7 +421,7 @@ export class CelestialBody {
         // the frontend
         const speed = this.velActual.r.km
 
-        this.#attrLabel.textContent = `${this.name}: ${speed.toFixed(2)} km/s`
+        this.#attrLabel.textContent = `${this.name}: ${speed.toFixed(2)} km/s | ${(this.mass / EARTHMASS).toFixed(2)} earths`
     }
 
     /**

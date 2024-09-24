@@ -51,6 +51,18 @@ export class Universe {
         this.#elem.appendChild(circle)
     }
 
+    get bodies() {
+        return this.#bodies
+    }
+
+    /**
+     * Return all the bodies except body
+     * @param {CelestialBody} bodyToExclude
+     */
+    bodiesExcept(bodyToExclude) {
+        return this.#bodies.filter(body => body.id !== bodyToExclude.id)
+    }
+
     /**
      * Create circle for representing the position 
      * of the centre of mass

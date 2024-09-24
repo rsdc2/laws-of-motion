@@ -9,7 +9,8 @@ import { Planet } from "./planet.js"
 import { Moon } from "./moon.js"
 import { svg } from "../General/elements.js"
 import { Dim } from "../../Pure/dim.js"
-import { InitialBodyParams } from "../../Pure/typedefs.js"
+import { InitialBodyParams, PolarVec } from "../../Pure/typedefs.js"
+import { CelestialBody } from "./celestialBody.js"
 import { 
     CENTRE, 
     EARTHPOS, 
@@ -48,6 +49,24 @@ export const moon = new Moon(new InitialBodyParams({
     velPolar: MOONSTARTVEL
 }))
 
+
+/**
+ * Create a new celestial body with preset parameters
+ * @param {string} id 
+ * @param {string} name 
+ */
+export function bodyFactory(id, name) {
+    return new CelestialBody(new InitialBodyParams(
+        {
+            id: id,
+            name: name,
+            pos: CENTRE,
+            bodyRadius: 10,
+            mass: 0,
+            velPolar: PolarVec([new Dim(0), 0])
+        }
+    ))
+}
 
 // const sol = new Star({
 //     id: "sol",

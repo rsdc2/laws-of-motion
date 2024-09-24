@@ -1,11 +1,16 @@
-import { sun, earth, moon, universe } from "./Bodies/bodies.js"
+import { sun, earth, moon, universe, bodyFactory } from "./Bodies/bodies.js"
 
 
 export const multibody = () => {
 
-    sun.accelerateFrom([earth, moon])
-    earth.accelerateFrom([sun, moon])
-    moon.accelerateFrom([earth, sun])
+    universe.bodies.forEach( body => {
+        body.accelerateFrom(universe.bodiesExcept(body))
+    })
+
+
+    // sun.accelerateFrom([earth, moon])
+    // earth.accelerateFrom([sun, moon])
+    // moon.accelerateFrom([earth, sun])
 
     universe.update()
 }

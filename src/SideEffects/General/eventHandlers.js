@@ -1,7 +1,12 @@
 import { button } from "./elements.js";
 import { universe, bodyFactory } from "../Bodies/bodies.js";
+import { Timer } from "../timer.js";
 
-export function setEventHandlers( ) {
+/**
+ * 
+ * @param {Timer} timer 
+ */
+export function setEventHandlers(timer) {
     button("#reset").onclick = () => {
         universe.reset()
     }
@@ -11,4 +16,13 @@ export function setEventHandlers( ) {
         const body = bodyFactory(name.toLowerCase(), name)
         universe.addBody(body)
     }
+
+    button("#pause").onclick = () => {
+        timer.pause()
+    }
+
+    button("#start").onclick = () => {
+        timer.start()
+    }
+
 }

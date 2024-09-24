@@ -1,24 +1,18 @@
-import { sun, earth, moon, universe, bodyFactory } from "./Bodies/bodies.js"
+import { universe } from "./Bodies/bodies.js"
 
 
-export const multibody = () => {
+export class Timer {
+    #timeout 
 
-    universe.bodies.forEach( body => {
-        body.accelerateFrom(universe.bodiesExcept(body))
-    })
+    start() {
+        this.#timeout = setInterval( () => {
+            universe.accelerateAllAndUpdate()
+        }, 50)
+    }
 
+    pause() {
+        clearInterval(this.#timeout)
+    }
 
-    // sun.accelerateFrom([earth, moon])
-    // earth.accelerateFrom([sun, moon])
-    // moon.accelerateFrom([earth, sun])
-
-    universe.update()
-}
-
-
-export const Timer = {
-    start: () => setInterval( () => {
-        multibody()
-    }, 50)
 }
 

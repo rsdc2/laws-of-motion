@@ -26,6 +26,14 @@ export class Universe {
         this.#appendCircle(this.#rCircle)
     }
 
+    accelerateAllAndUpdate() {
+        this.bodies.forEach( body => {
+            body.accelerateFrom(this.bodiesExcept(body))
+        })
+    
+        this.update()
+    }
+
     /**
      * Add an array of bodies to the SVG element
      * @param {Array.<CelestialBody>} bodies 

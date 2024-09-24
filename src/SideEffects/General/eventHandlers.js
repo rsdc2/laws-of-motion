@@ -1,14 +1,16 @@
 import { button } from "./elements.js";
-import { universe, bodyFactory } from "../Bodies/bodies.js";
-import { Timer } from "../timer.js";
-
+import { bodyFactory } from "../Bodies/bodies.js";
+import { Universe } from "../Bodies/universe.js";
 /**
  * 
- * @param {Timer} timer 
+ * @param {Universe} universe
  */
-export function setEventHandlers(timer) {
+export function setEventHandlers(universe) {
     button("#reset").onclick = () => {
+        universe.modifyingToFalse()
+        universe.pauseTimer()
         universe.reset()
+        universe.startTimer()
     }
 
     button("#addBody").onclick = () => {
@@ -18,11 +20,17 @@ export function setEventHandlers(timer) {
     }
 
     button("#pause").onclick = () => {
-        timer.pause()
+        universe.pauseTimer()
     }
 
     button("#start").onclick = () => {
-        timer.start()
+        if (universe.paused) {
+            universe.startTimer()
+        }
+    }
+
+    button("#modify").onclick = () => {
+        universe.toggleModifying()
     }
 
 }

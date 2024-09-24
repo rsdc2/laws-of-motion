@@ -75,6 +75,8 @@ export const mars = new Planet(new InitialBodyParams({
     mass: MARSMASS,
     velPolar: MARSSTARTVEL
 }))
+
+
 // export const moon = new Moon(new InitialBodyParams({
 //     id: "moon",
 //     name: "Moon",
@@ -95,71 +97,13 @@ export function bodyFactory(id, name) {
         {
             id: id,
             name: name,
-            pos: CENTRE,
+            pos: CENTRE.addMKm([10, 10]),
             bodyRadius: 10,
-            mass: 0,
-            velPolar: PolarVec([new Dim(0), 0])
+            mass: EARTHMASS,
+            velPolar: PolarVec([Dim.fromKm(60), 90])
         }
     ))
 }
 
-// const sol = new Star({
-//     id: "sol",
-//     pos: [3000, 3000],
-//     bodyRadius: 10,
-//     mass: 1.989e13,
-//     velPolar: [0.3, 270]
-// })
-
-// const sol2 = new Star({
-//     id: "sol2",
-//     pos: Vector2D.addVec([2000, 0], sol.initialPos),
-//     bodyRadius: 50,
-//     mass: 1.989e13,
-//     velPolar: [0.3, 90]
-// })
 
 
-
-// const jupiter = new Planet({
-//     id: "jupiter",
-//     pos: Vector2D.addVec([1000, 0], sol.initialPos),
-//     bodyRadius: 20,
-//     mass: 1.898e27,
-//     velPolar: [1, 90]
-// })
-
-// const pluto = new Planet({
-//     id: "pluto",
-//     pos: Vector2D.addVec([2000, 0], sol.initialPos),
-//     bodyRadius: 10,
-//     mass: 50,
-//     velPolar: [0.7, 90]
-// })
-
-// const moon1 = new Moon({
-//     id: "moon1",
-//     pos: Vector2D.addVec([100, 0], jupiter.initialPos),
-//     bodyRadius: 10,
-//     mass: 0.1,
-//     velPolar: [1.4, 90]
-// })
-
-// const moon2 = new Moon({
-//     id: "moon2",
-//     pos: Vector2D.addVec([100, 0], sol2.initialPos),
-//     bodyRadius: 10,
-//     mass: 0.1,
-//     velPolar: [1.5, 90]
-// })
-
-
-export const universe = new Universe(
-    svg("#space"), 
-    [sun, mercury, venus, earth, mars]
-)
-
-// const universe = new Universe(
-//     svg("#space"),
-//     [sol, sol2, jupiter, moon1, moon2]
-// )

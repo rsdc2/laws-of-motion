@@ -1,8 +1,22 @@
 table#attrs {
     top: 10;
-    left: 10
+    left: 10;
 }
 
 div.attr {
     color: whitesmoke;
+}
+
+div.container.attributes.input {
+    position: fixed;
+    bottom: 0
+}
+
+.attr.input {
+    text-align: right;
+}
+
+input.attr.input {
+    color: whitesmoke;
+    background-color: rgba(128, 128, 128, 0.308);
 }

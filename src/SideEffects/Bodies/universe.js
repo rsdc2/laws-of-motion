@@ -2,6 +2,10 @@ import { setAttrs, addClasses } from "../General/elementAttributes.js"
 import { CelestialBody } from "./celestialBody.js"
 import { Vector } from "../../Pure/vector.js"
 import { SVGNS } from "../../Pure/namespaces.js"
+import { hide, show } from "../General/elementAttributes.js"
+import { inputAttrs } from "../frontend.js"
+import { button } from "../General/elements.js"
+import { Timer } from "../timer.js"
 
 /**
  * Services for all the bodies in a closed system
@@ -11,6 +15,8 @@ export class Universe {
     #elem 
     #bodies
     #rCircle
+    #modifying
+    #timer
 
     /**
      * 
@@ -24,6 +30,8 @@ export class Universe {
 
         this.#rCircle = this.#createRCircle()
         this.#appendCircle(this.#rCircle)
+        this.#timer = new Timer()
+        this.modifyingToFalse()
     }
 
     accelerateAllAndUpdate() {
@@ -122,7 +130,6 @@ export class Universe {
      */
     reset() {
         this.#bodies.forEach( body => {
-            console.log("Resetting", body.initialParams)
             body.reset(body.initialParams) 
         })
     }
@@ -156,4 +163,47 @@ export class Universe {
             ["r", "20"]
         )
     }
+
+
+    get paused() {
+        return this.#timer.paused
+    }
+
+    modifyingToFalse() {
+        this.#modifying = false
+        hide(...inputAttrs())
+        hide(button("#addBody"))
+        this.reset()
+
+        if (this.paused) {
+            this.#timer.start(this)
+        }
+    }
+
+    modifyingToTrue() {
+        this.#modifying = true
+        show(...inputAttrs())
+        show(button("#addBody"))
+        this.reset()
+        this.pauseTimer()
+    }
+
+    pauseTimer() {
+        this.#timer.pause()
+    }
+
+    startTimer() {
+        
+        this.#timer.start(this)
+    }
+
+    toggleModifying() {
+        if (this.#modifying) {
+            this.modifyingToFalse()
+        }
+        else {
+            this.modifyingToTrue()
+        }
+    }
+
 }

@@ -100,3 +100,19 @@ export const isActivated = (/** @type {HTMLButtonElement}*/ elem) => hasClass("a
  * @param {Array.<HTMLElement>} elems
  */
 export const show = (...elems) => elems.forEach( elem => elem.hidden = false )
+
+/**
+ * Toggle whether or not an element is hidden
+ * @param  {Array<HTMLElement>} elems 
+ * @returns 
+ */
+export const toggleHide = (...elems) => elems.forEach ( elem => {
+    if (elem.hidden) {
+        elem.hidden = false
+    }
+    else {
+        elem.hidden = true
+    }
+}
+
+)

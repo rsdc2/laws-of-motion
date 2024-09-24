@@ -20,12 +20,43 @@ export const buttons = query => {
 
 
 /**
+ * 
+ * @param {string} query
+ * @returns {SVGCircleElement}
+ */
+
+export const circle = query => document.querySelector("circle" + query)
+
+/**
  * @param {string} query
  * @return {HTMLDivElement}
  */
 export const div = query => {
     return document.querySelector("div" + query)
 }
+
+
+/**
+ * 
+ * @param {string} query 
+ * @returns {SVGEllipseElement}
+ */
+
+export const ellipse = query => document.querySelector("ellipse" + query)
+
+/**
+ * Input element query
+ * @param {string} query 
+ * @returns 
+ */
+export const input = query => document.querySelector("input" + query)
+
+/**
+ * Input elements query
+ * @param {string} query 
+ * @returns 
+ */
+export const inputs = query => document.querySelectorAll("input" + query)
 
 
 /**
@@ -64,22 +95,6 @@ export const toggle = cls => (/** @type {HTMLElement}*/ elem) => {
         addClasses(elem)(cls)
     }
 }
-
-/**
- * 
- * @param {string} query
- * @returns {SVGCircleElement}
- */
-
-export const circle = query => document.querySelector("circle" + query)
-
-/**
- * 
- * @param {string} query 
- * @returns {SVGEllipseElement}
- */
-
-export const ellipse = query => document.querySelector("ellipse" + query)
 
 /**
  * 

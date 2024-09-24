@@ -32,7 +32,8 @@ export class CelestialBody {
     #initialParams
     #svgCircle // The SVG element representing the body
     #attrLabel // The Div element containing attributes for the body
-    #attrRow // The row in the attr table corresponding to the body
+    #attrInputRow // The row in the attr table corresponding to the body
+    #attrLabelRow
     #attrInputs
 
     /**
@@ -41,7 +42,8 @@ export class CelestialBody {
      */
     constructor (params) {
         this.#initialParams = params
-        this.#attrRow = this.#createAttrRow()
+        this.#attrInputRow = this.#createAttrInputRow()
+        this.#attrLabelRow = this.#createAttrLabelRow()
         this.#svgCircle = this.#createSVGCircle()
         this.#attrLabel = this.#createAttrLabel()
         this.#attrInputs = this.#createAttrInputs()
@@ -175,24 +177,42 @@ export class CelestialBody {
         const elem = document.createElement("input")
         elem.id = `attr-input-${label}-${this.name}`
         elem.type = "text"
-        addClasses(elem)("attr")
-        const cell = this.#attrRow.insertCell()
+        elem.classList.add("attr", "input")
+        const cell = this.#attrInputRow.insertCell()
         cell.append(elem)
         return elem        
     }
+
+    #createAttrInputLabel() {
+        const label = this.#attrInputRow.insertCell()
+        const labelDiv = document.createElement("div")
+        labelDiv.classList.add("attr", "input")
+        label.append(labelDiv)
+        labelDiv.textContent = this.name
+        return labelDiv
+    }
+
     /**
      * 
 
      * @returns {_Inputs}
      */
+
     #createAttrInputs() {
         const inputs = {
+            "label": this.#createAttrInputLabel(),
             "speed": this.#createAttrInput("speed"),
             "angle": this.#createAttrInput("angle"),
             "mass": this.#createAttrInput("mass"),
             "x": this.#createAttrInput("x"),
             "y": this.#createAttrInput("y")
         }
+
+        inputs.speed.value = this.initialParams.speed.km.toFixed(2).toString()
+        inputs.angle.value = this.initialParams.Θ.toFixed(2).toString()
+        inputs.mass.value = (this.initialParams.mass / EARTHMASS).toFixed(2).toString()
+        inputs.x.value = this.initialParams.x.subtract(CENTRE.x).mkm.toFixed(2).toString()
+        inputs.y.value = this.initialParams.y.subtract(CENTRE.y).mkm.toFixed(2).toString()
 
         return inputs
     }
@@ -207,17 +227,23 @@ export class CelestialBody {
         const elem = document.createElement("div")
         addClasses(elem)("attr")
         elem.id = `attr-label-${this.name}`
-        const cell = this.#attrRow.insertCell()
+        const cell = this.#attrLabelRow.insertCell()
         cell.append(elem)
         return elem
     }
 
     /**
-     * Create the row in the attr table corresponding
+     * Create the row in the attr input table corresponding
      * to the current object
      */
-    #createAttrRow() {
-        const tableElem = table("#attrs")
+    #createAttrInputRow() {
+        const tableElem = table(".attrs.input")
+        const row = tableElem.insertRow()
+        return row
+    }
+
+    #createAttrLabelRow() {
+        const tableElem = table(".attrs")
         const row = tableElem.insertRow()
         return row
     }

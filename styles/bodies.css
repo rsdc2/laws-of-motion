@@ -3,6 +3,10 @@ circle.body {
     fill: grey
 }
 
+circle.centre-of-gravity {
+    fill: none
+}
+
 circle.planet#mercury {
     fill: grey
 }

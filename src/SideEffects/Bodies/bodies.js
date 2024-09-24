@@ -13,11 +13,18 @@ import { InitialBodyParams, PolarVec } from "../../Pure/typedefs.js"
 import { CelestialBody } from "./celestialBody.js"
 import { 
     CENTRE, 
+    MERCURYPOS,
+    VENUSPOS,
     EARTHPOS, 
+    MARSPOS,
     MOONPOS, 
+    MERCURYSTARTVEL,
+    VENUSSTARTVEL,
     EARTHSTARTVEL, 
-    MOONSTARTVEL } from "../config.js"
-import { EARTHMASS, SUNMASS, MOONMASS } from "../../Pure/constants.js"
+    MARSSTARTVEL,
+    MOONSTARTVEL 
+} from "../config.js"
+import { MERCURYMASS, VENUSMASS, EARTHMASS, MARSMASS, SUNMASS, MOONMASS } from "../../Pure/constants.js"
 
 
 export const sun = new Star(new InitialBodyParams({
@@ -40,14 +47,42 @@ export const earth = new Planet(new InitialBodyParams({
 }))
 
 
-export const moon = new Moon(new InitialBodyParams({
-    id: "moon",
-    name: "Moon",
-    pos: MOONPOS,
+export const mercury = new Planet(new InitialBodyParams({
+    id: "mercury",
+    name: "Mercury",
+    pos: MERCURYPOS,
     bodyRadius: 10,
-    mass: MOONMASS,
-    velPolar: MOONSTARTVEL
+    mass: MERCURYMASS,
+    velPolar: MERCURYSTARTVEL
 }))
+
+
+export const venus = new Planet(new InitialBodyParams({
+    id: "venus",
+    name: "Venus",
+    pos: VENUSPOS,
+    bodyRadius: 10,
+    mass: VENUSMASS,
+    velPolar: VENUSSTARTVEL
+}))
+
+
+export const mars = new Planet(new InitialBodyParams({
+    id: "mars",
+    name: "Mars",
+    pos: MARSPOS,
+    bodyRadius: 10,
+    mass: MARSMASS,
+    velPolar: MARSSTARTVEL
+}))
+// export const moon = new Moon(new InitialBodyParams({
+//     id: "moon",
+//     name: "Moon",
+//     pos: MOONPOS,
+//     bodyRadius: 10,
+//     mass: MOONMASS,
+//     velPolar: MOONSTARTVEL
+// }))
 
 
 /**
@@ -121,7 +156,7 @@ export function bodyFactory(id, name) {
 
 export const universe = new Universe(
     svg("#space"), 
-    [sun, earth, moon]
+    [sun, mercury, venus, earth, mars]
 )
 
 // const universe = new Universe(

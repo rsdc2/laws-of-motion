@@ -82,7 +82,7 @@ export class Universe {
         setAttrs(elem)(
             ["id", "R"]
         )
-        addClasses(elem)("body")
+        addClasses(elem)("body", "centre-of-gravity")
         return elem
     }
 

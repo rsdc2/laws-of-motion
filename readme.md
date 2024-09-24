@@ -8,8 +8,7 @@ With the default settings it simulates the orbits of the inner planets, i.e. Mer
 
 ## Run from GitHub Pages
 
-Follow this link:
-
+Follow this link [https://rsdc2.github.io/laws-of-motion/](https://rsdc2.github.io/laws-of-motion/).
 
 
 ## Run locally

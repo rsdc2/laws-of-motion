@@ -15,7 +15,7 @@ export class Universe {
     #elem 
     #bodies
     #rCircle
-    #modifying
+    /** @type {boolean}*/ #modifying
     #timer
 
     /**

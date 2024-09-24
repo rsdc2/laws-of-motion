@@ -30,7 +30,7 @@ import { EARTHMASS } from "../../Pure/constants.js";
  */
 export class CelestialBody {
     #initialParams
-    #svgCircle // The SVG element representing the body
+    /** @type { SVGCircleElement} */ #svgCircle // The SVG element representing the body
     #attrLabel // The Div element containing attributes for the body
     #attrInputRow // The row in the attr table corresponding to the body
     #attrLabelRow
@@ -47,7 +47,7 @@ export class CelestialBody {
         this.#svgCircle = this.#createSVGCircle()
         this.#attrLabel = this.#createAttrLabel()
         this.#attrInputs = this.#createAttrInputs()
-        this.reset(params.deepcopy())
+        this.resetToInitialParams(params.deepcopy())
     }
 
     /**
@@ -166,6 +166,12 @@ export class CelestialBody {
 
     get circle() {
         return this.#svgCircle
+    }
+
+    remove() {
+        this.#svgCircle.remove()
+        this.#attrInputRow.remove()
+        this.#attrLabelRow.remove()
     }
 
     /**
@@ -463,7 +469,7 @@ export class CelestialBody {
      * Reset the body to initial values
      * @param {InitialBodyParams} params
      */
-    reset(params) {
+    resetToInitialParams(params) {
         const elem = this.#svgCircle
 
         // Multiply by the time multiplier

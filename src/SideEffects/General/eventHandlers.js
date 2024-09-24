@@ -1,13 +1,17 @@
 import { button } from "./elements.js";
 import { bodyFactory } from "../Bodies/bodies.js";
 import { Universe } from "../Bodies/universe.js";
+import { createPlanets } from "../Bodies/bodies.js";
+import { svg } from "./elements.js";
 /**
  * 
  * @param {Universe} universe
  */
 export function setEventHandlers(universe) {
     button("#reset").onclick = () => {
-        universe.reset()
+        universe.clear()
+        universe = new Universe(svg("#space"), createPlanets()) 
+        universe.startTimer()
     }
 
     button("#addBody").onclick = () => {

@@ -6,6 +6,7 @@ import { hide, show } from "../General/elementAttributes.js"
 import { inputAttrs } from "../frontend.js"
 import { button } from "../General/elements.js"
 import { Timer } from "../timer.js"
+import { createPlanets } from "./bodies.js"
 
 /**
  * Services for all the bodies in a closed system
@@ -31,7 +32,7 @@ export class Universe {
         this.#rCircle = this.#createRCircle()
         this.#appendCircle(this.#rCircle)
         this.#timer = new Timer()
-        this.modifyingToFalse()
+        this.setModifyingToFalse()
     }
 
     accelerateAllAndUpdate() {
@@ -44,7 +45,7 @@ export class Universe {
 
     /**
      * Add an array of bodies to the SVG element
-     * @param {Array.<CelestialBody>} bodies 
+     * @param {Array<CelestialBody>} bodies 
      */
     addBodies (bodies) {
         bodies.forEach ( (body) => this.addBody(body) )
@@ -77,6 +78,15 @@ export class Universe {
      */
     bodiesExcept(bodyToExclude) {
         return this.#bodies.filter(body => body.id !== bodyToExclude.id)
+    }
+
+    /**
+     * Remove all bodies from the system
+     */
+    clear() {
+        this.#bodies.forEach( body => body.remove() )
+        this.#bodies = []
+        this.#elem.textContent = ""
     }
 
     /**
@@ -113,32 +123,29 @@ export class Universe {
         return this.#modifying
     }
 
-    modifyingToFalse() {
+    setModifyingToFalse() {
         this.#modifying = false
         hide(...inputAttrs())
         hide(button("#addBody"))
-        this.#resetBodies()
+        this.#resetBodiesToInitialParams()
 
         if (this.paused) {
             this.#timer.start(this)
         }
     }
 
-    modifyingToTrue() {
+    setModifyingToTrue() {
         this.#modifying = true
         show(...inputAttrs())
         show(button("#addBody"))
-        this.#resetBodies()
+        this.#resetBodiesToInitialParams()
         this.pauseTimer()
     }
-
-
 
     get p() {
         const ps = this.#bodies.map( body => body.p )
         return Vector.sum(ps)
     }
-
 
     get paused() {
         return this.#timer.paused
@@ -147,7 +154,6 @@ export class Universe {
     pauseTimer() {
         this.#timer.pause()
     }
-
 
     get pPolar() {
         return this.p.polar
@@ -164,18 +170,18 @@ export class Universe {
      * Reset all bodies to initial parameters
      */
     reset() {
-        this.modifyingToFalse()
+        this.setModifyingToFalse()
         this.pauseTimer()
-        this.#resetBodies()
+        this.#resetBodiesToInitialParams()
         this.startTimer()
     }
 
     /**
      * Set bodies to initial params
      */
-    #resetBodies() {
+    #resetBodiesToInitialParams() {
         this.#bodies.forEach( body => {
-            body.reset(body.initialParams) 
+            body.resetToInitialParams(body.initialParams) 
         })
     }
 
@@ -189,19 +195,17 @@ export class Universe {
     }
 
     startTimer() {
-        
         this.#timer.start(this)
     }
 
     toggleModifying() {
         if (this.#modifying) {
-            this.modifyingToFalse()
+            this.setModifyingToFalse()
         }
         else {
-            this.modifyingToTrue()
+            this.setModifyingToTrue()
         }
     }
-
 
     /**
      * Update the center of mass of the universe

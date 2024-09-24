@@ -2,7 +2,12 @@
 <html>
 
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self'; 
+      script-src 'self'; 
+      style-src 'self'; 
+    " />
     <link rel="stylesheet" href="styles/text.css">
     <link rel="stylesheet" href="styles/bodies.css">
     <link rel="stylesheet" href="styles/body.css">

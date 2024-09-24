@@ -33,6 +33,13 @@ e.g.
 http://localhost:8080
 ```
 
+## Usage instructions
+
+- To modify initial parameters for the objects, click `Modify initial parameters`, and change the details in the appropriate cells of the table.
+- To reset to initial settings, click `Reset`.
+- To pause the simulation, click `Pause`.
+- To restart the simulation, clikc `Start`.
+
 ## Dependencies
 
 The only dependency is [`http-server`](https://www.npmjs.com/package/http-server) (MIT license) for serving the code locally.

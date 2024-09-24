@@ -109,10 +109,45 @@ export class Universe {
         return masses.reduce( (sum, mass) => sum + mass )
     }
 
+    get modifying() {
+        return this.#modifying
+    }
+
+    modifyingToFalse() {
+        this.#modifying = false
+        hide(...inputAttrs())
+        hide(button("#addBody"))
+        this.#resetBodies()
+
+        if (this.paused) {
+            this.#timer.start(this)
+        }
+    }
+
+    modifyingToTrue() {
+        this.#modifying = true
+        show(...inputAttrs())
+        show(button("#addBody"))
+        this.#resetBodies()
+        this.pauseTimer()
+    }
+
+
+
     get p() {
         const ps = this.#bodies.map( body => body.p )
         return Vector.sum(ps)
     }
+
+
+    get paused() {
+        return this.#timer.paused
+    }
+
+    pauseTimer() {
+        this.#timer.pause()
+    }
+
 
     get pPolar() {
         return this.p.polar
@@ -129,6 +164,16 @@ export class Universe {
      * Reset all bodies to initial parameters
      */
     reset() {
+        this.modifyingToFalse()
+        this.pauseTimer()
+        this.#resetBodies()
+        this.startTimer()
+    }
+
+    /**
+     * Set bodies to initial params
+     */
+    #resetBodies() {
         this.#bodies.forEach( body => {
             body.reset(body.initialParams) 
         })
@@ -142,6 +187,21 @@ export class Universe {
         const sumMPositions = Vector.sum(mPositions)
         return sumMPositions.divScalar(this.M)   
     }
+
+    startTimer() {
+        
+        this.#timer.start(this)
+    }
+
+    toggleModifying() {
+        if (this.#modifying) {
+            this.modifyingToFalse()
+        }
+        else {
+            this.modifyingToTrue()
+        }
+    }
+
 
     /**
      * Update the center of mass of the universe
@@ -165,45 +225,5 @@ export class Universe {
     }
 
 
-    get paused() {
-        return this.#timer.paused
-    }
-
-    modifyingToFalse() {
-        this.#modifying = false
-        hide(...inputAttrs())
-        hide(button("#addBody"))
-        this.reset()
-
-        if (this.paused) {
-            this.#timer.start(this)
-        }
-    }
-
-    modifyingToTrue() {
-        this.#modifying = true
-        show(...inputAttrs())
-        show(button("#addBody"))
-        this.reset()
-        this.pauseTimer()
-    }
-
-    pauseTimer() {
-        this.#timer.pause()
-    }
-
-    startTimer() {
-        
-        this.#timer.start(this)
-    }
-
-    toggleModifying() {
-        if (this.#modifying) {
-            this.modifyingToFalse()
-        }
-        else {
-            this.modifyingToTrue()
-        }
-    }
 
 }

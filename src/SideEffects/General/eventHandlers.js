@@ -7,16 +7,16 @@ import { Universe } from "../Bodies/universe.js";
  */
 export function setEventHandlers(universe) {
     button("#reset").onclick = () => {
-        universe.modifyingToFalse()
-        universe.pauseTimer()
         universe.reset()
-        universe.startTimer()
     }
 
     button("#addBody").onclick = () => {
         const name = prompt("Please enter a name for the new body:")
-        const body = bodyFactory(name.toLowerCase(), name)
-        universe.addBody(body)
+
+        if (name != null) {
+            const body = bodyFactory(name.toLowerCase(), name)
+            universe.addBody(body)    
+        }
     }
 
     button("#pause").onclick = () => {
@@ -24,6 +24,10 @@ export function setEventHandlers(universe) {
     }
 
     button("#start").onclick = () => {
+        if (universe.modifying) {
+            universe.reset()
+            return
+        }
         if (universe.paused) {
             universe.startTimer()
         }

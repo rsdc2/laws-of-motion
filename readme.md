@@ -35,4 +35,4 @@ http://localhost:8080
 
 ## Dependencies
 
-The only dependency is `http-server` (MIT license) for serving the code locally.
+The only dependency is [`http-server`](https://www.npmjs.com/package/http-server) (MIT license) for serving the code locally.

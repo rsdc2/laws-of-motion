@@ -16,14 +16,16 @@ import {
     VENUSPOS,
     EARTHPOS, 
     MARSPOS,
+    JUPITERPOS,
     MOONPOS, 
     MERCURYSTARTVEL,
     VENUSSTARTVEL,
     EARTHSTARTVEL, 
     MARSSTARTVEL,
+    JUPITERSTARTVEL,
     MOONSTARTVEL 
 } from "../config.js"
-import { MERCURYMASS, VENUSMASS, EARTHMASS, MARSMASS, SUNMASS, MOONMASS } from "../../Pure/constants.js"
+import { MERCURYMASS, VENUSMASS, EARTHMASS, MARSMASS, SUNMASS, MOONMASS, JUPITERMASS } from "../../Pure/constants.js"
 
 
 /**
@@ -80,6 +82,15 @@ export function createPlanets() {
         mass: MARSMASS,
         velPolar: MARSSTARTVEL
     }))
+
+    const jupiter = new Planet(new InitialBodyParams({
+        id: "jupiter",
+        name: "Jupiter",
+        pos: JUPITERPOS,
+        bodyRadius: 30,
+        mass: JUPITERMASS,
+        velPolar: JUPITERSTARTVEL
+    }))
     
     
     // export const moon = new Moon(new InitialBodyParams({
@@ -91,7 +102,7 @@ export function createPlanets() {
     //     velPolar: MOONSTARTVEL
     // }))
 
-    return [sun, mercury, venus, earth, mars]
+    return [sun, mercury, venus, earth, mars, jupiter]
     
 }
 

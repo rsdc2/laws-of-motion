@@ -14,7 +14,7 @@ import { InitialBodyParams } from "../../Pure/typedefs.js";
 import { table } from "../General/elements.js";
 import { CENTRE } from "../config.js";
 import { EARTHMASS } from "../../Pure/constants.js";
-
+import { validateNumber, validateDim } from "../../Pure/utils.js";
 /**
  * @typedef {Object} _Inputs
  * @property {HTMLInputElement} speed
@@ -331,7 +331,16 @@ export class CelestialBody {
             return this.#initialParams.Θ
         } 
         
-        return Number.parseFloat(this.#attrInputs.angle.value)
+        try {
+            const val = Number.parseFloat(this.#attrInputs.angle.value)
+            if (isNaN(val)) {
+                return this.#initialParams.Θ
+            } else {
+                return val
+            }
+        } catch (error) {
+            return this.#initialParams.Θ
+        }
 
     }
 
@@ -340,8 +349,11 @@ export class CelestialBody {
             return this.#initialParams.mass
             
         } 
-        
-        return Number.parseFloat(this.#attrInputs.mass.value) * EARTHMASS        
+        try {
+            return validateNumber(Number.parseFloat(this.#attrInputs.mass.value) * EARTHMASS, this.#initialParams.mass)    
+        } catch (error) {
+            return this.#initialParams.mass
+        }    
     }
 
     get newSpeed() {
@@ -349,7 +361,14 @@ export class CelestialBody {
             return this.initialParams.speed
         } 
         
-        return Dim.fromKm(Number.parseFloat(this.#attrInputs.speed.value))
+        try {
+            return validateDim(
+                Dim.fromKm(Number.parseFloat(this.#attrInputs.speed.value)),
+                this.initialParams.speed
+            )
+        } catch (error) {
+            return this.initialParams.speed
+        }
     }
 
     get newX() {
@@ -357,9 +376,15 @@ export class CelestialBody {
             return this.#initialParams.x
         } 
         
-        const dim = Dim.fromMKm(Number.parseFloat(this.#attrInputs.x.value)).add(CENTRE.x)
-
-        return dim
+        try {
+            return validateDim(
+                Dim.fromMKm(Number.parseFloat(this.#attrInputs.x.value)).add(CENTRE.x),
+                this.#initialParams.x
+            )
+            
+        } catch (error) {
+            return this.#initialParams.x
+        }
     }
 
     get newY() {
@@ -367,9 +392,15 @@ export class CelestialBody {
             return this.#initialParams.y
         } 
         
-        const dim = Dim.fromMKm(Number.parseFloat(this.#attrInputs.y.value)).add(CENTRE.y)
+        try {
+            return validateDim(
+                Dim.fromMKm(Number.parseFloat(this.#attrInputs.y.value)).add(CENTRE.y),
+                this.#initialParams.y
+            )
 
-        return dim
+        } catch (error) {
+            return this.#initialParams.y
+        }
     }
 
     /**

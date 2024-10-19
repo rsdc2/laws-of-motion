@@ -1,4 +1,6 @@
 
+import { Dim } from "./dim.js"
+
 /**
  * @template T
  * @param {T} val
@@ -41,3 +43,20 @@ export const strToArr = (s) => {
  */
 
 export const toUpper = (s) => s.toUpperCase() 
+
+/**
+ * 
+ * @param {number} num 
+ * @param {number} def 
+ * @returns 
+ */
+export const validateNumber = (num, def) => isNaN(num) ? def : num
+
+/**
+ * 
+ * @param {Dim} dim 
+ * @param {Dim} def 
+ * @returns 
+ */
+export const validateDim = (dim, def) => isNaN(dim.value) ? def : dim
+

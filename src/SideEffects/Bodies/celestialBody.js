@@ -175,7 +175,7 @@ export class CelestialBody {
      */
     #createAttrInput(label) {
         const elem = document.createElement("input")
-        elem.id = `attr-input-${label}-${this.name}`
+        // elem.id = `attr-input-${label}-${this.name}`
         elem.type = "text"
         elem.classList.add("attr", "input")
         const cell = this.#attrInputRow.insertCell()

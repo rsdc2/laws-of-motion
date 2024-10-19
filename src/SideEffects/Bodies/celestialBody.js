@@ -168,12 +168,6 @@ export class CelestialBody {
         return this.#svgCircle
     }
 
-    remove() {
-        this.#svgCircle.remove()
-        this.#attrInputRow.remove()
-        this.#attrLabelRow.remove()
-    }
-
     /**
      * Create input element for body
      * @param {string} label
@@ -332,12 +326,10 @@ export class CelestialBody {
         } 
         
         try {
-            const val = Number.parseFloat(this.#attrInputs.angle.value)
-            if (isNaN(val)) {
-                return this.#initialParams.Θ
-            } else {
-                return val
-            }
+            return validateNumber(
+                Number.parseFloat(this.#attrInputs.angle.value),
+                this.#initialParams.Θ
+            )
         } catch (error) {
             return this.#initialParams.Θ
         }
@@ -494,6 +486,12 @@ export class CelestialBody {
      */
     posVecRelTo (body) {
         return this.pos.subtract(body.pos).vec
+    }
+
+    remove() {
+        this.#svgCircle.remove()
+        this.#attrInputRow.remove()
+        this.#attrLabelRow.remove()
     }
 
     /**

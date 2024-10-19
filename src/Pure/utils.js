@@ -45,18 +45,18 @@ export const strToArr = (s) => {
 export const toUpper = (s) => s.toUpperCase() 
 
 /**
- * 
+ * Check that a number is a number, and returns a default value if not
  * @param {number} num 
  * @param {number} def 
- * @returns 
+ * @returns {number}
  */
 export const validateNumber = (num, def) => isNaN(num) ? def : num
 
 /**
- * 
+ * Check that the number underlying a dim is a number, and returns a default dim if not
  * @param {Dim} dim 
  * @param {Dim} def 
- * @returns 
+ * @returns {Dim}
  */
 export const validateDim = (dim, def) => isNaN(dim.value) ? def : dim
 

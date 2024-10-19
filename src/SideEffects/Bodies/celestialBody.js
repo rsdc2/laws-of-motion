@@ -226,7 +226,8 @@ export class CelestialBody {
     #createAttrLabel() {
         const elem = document.createElement("div")
         addClasses(elem)("attr")
-        elem.id = `attr-label-${this.name}`
+        // console.log('hello')
+        // elem.id = `attr-label-${this.name}`
         const cell = this.#attrLabelRow.insertCell()
         cell.append(elem)
         return elem

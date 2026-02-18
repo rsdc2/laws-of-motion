@@ -376,6 +376,7 @@ export class CelestialBody {
             )
             
         } catch (error) {
+            // this.#attrInputs.x.value = this.#initialParams.x.value.toString()
             return this.#initialParams.x
         }
     }
@@ -392,6 +393,7 @@ export class CelestialBody {
             )
 
         } catch (error) {
+            // this.#attrInputs.x.value = this.#initialParams.x.value.toString()
             return this.#initialParams.y
         }
     }
